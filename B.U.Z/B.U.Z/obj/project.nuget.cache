@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8lyA7uj4vzLaIaOpaSzE1cU0WC5HxE09wK0yDuXMcoMlgo46Y1ZwfNysGWcA5kSszT39AOKXGQIiG5d0zgks5A==",
+  "dgSpecHash": "3uN+BAHaEuyvX17duCK2vD2GfJxTGceJg17dTnKDG/kyelxve9YkeYO36ZeKDFlzBPq2xM0DeFbQiXwyxRrzcg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PC\\source\\repos\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
+  "projectFilePath": "C:\\Users\\PC\\Desktop\\Predavanja\\Razvoj softvera I\\Seminarski rad\\DevAzure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.10\\microsoft.aspnetcore.cryptography.internal.3.1.10.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.10\\microsoft.aspnetcore.cryptography.keyderivation.3.1.10.nupkg.sha512",
