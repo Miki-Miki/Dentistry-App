@@ -22,22 +22,27 @@ namespace B.U.Z.Controllers
         {
             return View();
         }
+
         public IActionResult Termini()
         {
             return View();
         }
+
         public IActionResult Pacijenti()
         {
             return View();
         }
+
         public IActionResult Dijagnoze()
         {
             return View();
         }
+
         public IActionResult Recepti()
         {
             return View();
         }
+
         public IActionResult Privacy()
         {
             return View();
