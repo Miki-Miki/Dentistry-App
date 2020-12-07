@@ -22,21 +22,21 @@ namespace B.U.Z
 {
     public class Startup
     {
-        private IConfiguration _config;
+        private IConfiguration _config { get; }
 
         public Startup(IConfiguration config)
         {
             _config = config;
         }
 
-        public IConfiguration Configuration { get; }
+        //public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    _config.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
@@ -49,11 +49,11 @@ namespace B.U.Z
             //    options.Filters.Add(new AuthorizeFilter(policy));
             //}).AddXmlSerializerFormatters();
 
-            var mailKitOptions = _config.GetSection("Email").Get<MailKitOptions>();
+            //var mailKitOptions = _config.GetSection("Email").Get<MailKitOptions>();
 
-            services.AddMailKit(config => {
-                config.UseMailKit(mailKitOptions);
-            });
+            //services.AddMailKit(config => {
+            //    config.UseMailKit(mailKitOptions);
+            //});
 
         }
 

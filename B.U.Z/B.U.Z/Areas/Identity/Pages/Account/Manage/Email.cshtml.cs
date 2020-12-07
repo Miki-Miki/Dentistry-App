@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using NETCore.MailKit.Core;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace B.U.Z.Areas.Identity.Pages.Account.Manage
 {
@@ -20,18 +21,16 @@ namespace B.U.Z.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
-        private readonly IEmailService _emailService;
+        //private readonly IEmailService _emailService;
 
         public EmailModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender,
-            IEmailService emailService)
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-            _emailService = emailService;
         }
 
         public string Username { get; set; }
@@ -148,10 +147,46 @@ namespace B.U.Z.Areas.Identity.Pages.Account.Manage
             //    "Confirm your email",
             //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            await _emailService.SendAsync(email, "Verify email adress", callbackUrl);
+            //await _emailService.SendAsync(email, "Verify email adress", callbackUrl);
 
             StatusMessage = "Verification email sent. Please check your email.";
             return RedirectToPage();
+        }
+
+        public IActionResult SendEmailToUser(Models.EmailViewModel emailModel)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("BUZ Project", "buz.stomatologija@gmail.com"));
+            message.To.Add(new MailboxAddress("", emailModel.To));
+            message.Subject = emailModel.Subject;
+
+            message.Body = new TextPart("plain")
+            {
+                Text = emailModel.Body
+            };
+
+            using (var client = new SmtpClient())
+            {
+                try
+                {
+                    client.Connect("smtp.gmail.com", 587, false);
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+                    client.Authenticate("buz.stomatologija@gmail.com", "vmhXPuAg2hTEdw3");
+
+                    client.Send(message);
+                }
+                catch
+                {
+                    throw;
+                }
+                finally
+                {
+                    client.Disconnect(true);
+                    client.Dispose();
+                }                
+            }
+
+            return Page();
         }
     }
 }

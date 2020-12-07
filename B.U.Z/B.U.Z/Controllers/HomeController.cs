@@ -48,6 +48,11 @@ namespace B.U.Z.Controllers
             return View();
         }
 
+        public IActionResult Email()
+        {
+            return Redirect("/EmailSendingService/Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

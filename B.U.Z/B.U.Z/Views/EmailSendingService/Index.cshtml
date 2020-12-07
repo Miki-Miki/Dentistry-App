@@ -1,0 +1,30 @@
+﻿@model EmailViewModel
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form id="email-form" asp-controller="EmailSendingService" asp-action="SendEmail">
+            <div class="form-group">
+                <label>To</label>
+                <div class="form-group">
+                    <input asp-for="To" id="emailTo" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input asp-for="Subject" id="emailSubject" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Body</label>
+                    <textarea asp-for="Body" id="emailBody" class="form-control"></textarea>
+                </div>
+
+            </div>
+
+            <input class="btn-primary" type="submit" value="Send" />
+
+        </form>
+
+    </div>
+</div>
