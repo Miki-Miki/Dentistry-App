@@ -15,14 +15,18 @@ using Microsoft.Extensions.Hosting;
 using B.U.Z.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
 
 namespace B.U.Z
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IConfiguration _config;
+
+        public Startup(IConfiguration config)
         {
-            Configuration = configuration;
+            _config = config;
         }
 
         public IConfiguration Configuration { get; }
@@ -37,12 +41,19 @@ namespace B.U.Z
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
+
             //services.AddMvc(options =>
             //{
             //    var policy = new AuthorizationPolicyBuilder()
             //    .RequireAuthenticatedUser().Build();
             //    options.Filters.Add(new AuthorizeFilter(policy));
             //}).AddXmlSerializerFormatters();
+
+            var mailKitOptions = _config.GetSection("Email").Get<MailKitOptions>();
+
+            services.AddMailKit(config => {
+                config.UseMailKit(mailKitOptions);
+            });
 
         }
 
