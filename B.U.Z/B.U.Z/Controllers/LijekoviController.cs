@@ -29,7 +29,7 @@ namespace B.U.Z.Controllers
             Lijekovi novi = new Lijekovi
             {
                 Naziv = l.Naziv,
-                Opis = l.Opis
+                Opis = l.Opis,
             };
             db.Lijekovi.Add(novi);
             db.SaveChanges();
@@ -57,14 +57,21 @@ namespace B.U.Z.Controllers
             };
             return View(m);
         }
-        public IActionResult SpasiNoviStariLijek(LijekoviUrediVM l)
+        public IActionResult SpasiNoviStariLijek(Lijekovi l)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            Lijekovi novi = db.Lijekovi.Find(l.Lijek_Id);
+            Lijekovi novi = db.Lijekovi.Find(l.Id);
             novi.Naziv = l.Naziv;
             novi.Opis = l.Opis;
             db.SaveChanges();
             return Redirect("Lijekovi");
+        }
+
+        public IActionResult SelectLijek(int LijekId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Lijekovi l = db.Lijekovi.Find(LijekId);
+            return View("LijekoviOdabir", l);
         }
     }
 }

@@ -10,6 +10,10 @@
     <partial name="LijekoviPartial" />
 </div>
 
+<div id="AjaxPrikazOdabranogLijeka">
+
+</div>
+
 <div id="PretraziDiv">
     <form style="margin-left:1%">
         <label>Pretraži lijekove:</label>
@@ -25,8 +29,7 @@
             <th scope="col">Šifra</th>
             <th scope="col">Naziv</th>
             <th scope="col">Opis</th>
-            <th scope="col">Obriši</th>
-            <th scope="col">Uredi</th>
+            <th scope="col">Odaberi</th>
         </tr>
     </thead>
     <tbody>
@@ -37,8 +40,9 @@
             <td>@s.Id</td>
             <td>@s.Naziv</td>
             <td>@s.Opis</td>
-            <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>
-            <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>
+            @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+            @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+            <td><button class="badge-danger" onclick="OpenOdabraniLijek(@s.Id)">Select</button></td>
         </tr>
         }
 
@@ -71,5 +75,22 @@
         margin-left: 18.1%;
         margin-top: -2%;
     }
+    #AjaxPrikazOdabranogLijeka {
+        color: white;
+        background-color: #343a40;
+        width: 80.6%;
+        margin-left: 18.1%;
+        border:1px solid red;
+    }
 
 </style>
+
+<script>
+    function OpenOdabraniLijek(LijekId)
+    {
+        var url = "/Lijekovi/SelectLijek?LijekId=" + LijekId;
+        $.get(url, function (d) {
+            $("#AjaxPrikazOdabranogLijeka").html(d);
+        });
+    }
+</script>

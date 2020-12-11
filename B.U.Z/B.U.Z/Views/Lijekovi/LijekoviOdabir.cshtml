@@ -1,0 +1,26 @@
+﻿@using B.U.Z.Models
+@{ Layout = null;}
+@model Lijekovi
+<div>
+    <div>
+        <label>Odabrani lijek:</label>
+    </div>
+    <form asp-controller="Lijekovi" asp-action="SpasiNoviStariLijek">
+        <label>Šifra:</label>
+        <input type="text" asp-for="@Model.Id" />
+
+
+        <label>Naziv:</label>
+        <input type="text" asp-for="@Model.Naziv" />
+
+        <label>Opis:</label>
+        <input type="text" asp-for="@Model.Opis" />
+
+        <input class="badge-danger" type="submit" class="badge-danger" value="Uredi" />
+
+        <button class="badge-danger"><a style="text-decoration:none; color:white;" href="/Lijekovi/ObrisiLijek?LijekId=@Model.Id">Obriši</a></button>
+    </form>
+
+    
+
+</div>
