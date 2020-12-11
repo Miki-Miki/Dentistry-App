@@ -594,12 +594,8 @@ C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAz
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Home\Dijagnoze.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Home\Pacijenti.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Home\Recepti.cshtml.g.cs
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Home\Termini.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\RoleManager\Index.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -627,3 +623,10 @@ C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Recepti\Recepti.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\Termini.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\scopedcss\bundle\B.U.Z.styles.css
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Dijagnoze\Dijagnoze.cshtml.g.cs
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Lijekovi\Lijekovi.cshtml.g.cs
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Lijekovi\LijekoviPartial.cshtml.g.cs
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Lijekovi\NoviLijek.cshtml.g.cs
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\Pacijenti.cshtml.g.cs
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Recepti\Recepti.cshtml.g.cs
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\Termini.cshtml.g.cs
