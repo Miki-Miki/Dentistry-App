@@ -10,30 +10,44 @@
     <partial name="LijekoviPartial" />
 </div>
 
-<table class="table table-dark" style="width:80.7%">
+<div id="PretraziDiv">
+    <form style="margin-left:1%">
+        <label>Pretraži lijekove:</label>
+        <input type="text" name="filter" />
+        <input type="submit" value="Pretraži" />
+    </form>
+</div>
+
+<table class="table table-dark" style="width:80.7%;">
     <thead>
         <tr>
             <th scope="col">Redni broj</th>
             <th scope="col">Šifra</th>
             <th scope="col">Naziv</th>
             <th scope="col">Opis</th>
-            <th scope="col">Akcija</th>
+            <th scope="col">Obriši</th>
+            <th scope="col">Uredi</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var s in Model)
         {
-            <tr>
-                <td></td>
-                <td>@s.Id</td>
-                <td>@s.Naziv</td>
-                <td>@s.Opis</td>
-                <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>
-            </tr>
+        <tr>
+            <td></td>
+            <td>@s.Id</td>
+            <td>@s.Naziv</td>
+            <td>@s.Opis</td>
+            <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>
+            <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>
+        </tr>
         }
 
     </tbody>
 </table>
+
+<div id="BrojDostupnihLijekova">
+    <label style="margin-left:1%">Broj dostupnih lijekova:</label>@Model.Count()
+</div>
 
 <style>
     body {
@@ -44,4 +58,18 @@
         counter-increment: Serial; /* Increment the Serial counter */
         content: counter(Serial); /* Display the counter */
     }
+    #PretraziDiv {
+        color: white;
+        background-color: #343a40;
+        width: 80.6%;
+        margin-left: 18.1%;
+    }
+    #BrojDostupnihLijekova {
+        color: white;
+        background-color: #343a40;
+        width: 80.6%;
+        margin-left: 18.1%;
+        margin-top: -2%;
+    }
+
 </style>
