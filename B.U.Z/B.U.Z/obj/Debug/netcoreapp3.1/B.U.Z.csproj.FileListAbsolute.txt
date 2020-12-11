@@ -206,9 +206,6 @@ C:\Users\PC\source\repos\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\UserRol
 C:\Users\PC\source\repos\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\UserRoles\Manage.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
-C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\B.U.Z.StaticWebAssets.xml
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\B.U.Z.exe
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\B.U.Z.deps.json
@@ -629,3 +626,4 @@ C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\Pacijenti.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Recepti\Recepti.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\Termini.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\scopedcss\bundle\B.U.Z.styles.css
