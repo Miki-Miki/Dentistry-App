@@ -1,0 +1,35 @@
+﻿@model int
+<div style="float:left; height:1000px; width:200px;">
+    <partial name="../Home/Index" />
+</div>
+<h1>Lijekovi</h1>
+<div>
+    <partial name="LijekoviPartial" />
+</div>
+<div id="formaDiv">
+<form asp-action="SpasiNoviLijek">
+    <div>
+        <label>Redni broj</label>
+        <input type="text" name="RedniBroj" value="@Model"/>
+    </div>
+    <div>
+        <label>Naziv lijeka</label>
+        <input type="text" name="Naziv"/>
+    </div>
+    <div>
+        <label>Opis lijeka</label>
+        <input type="text" name="Opis" />
+    </div>
+    <div>
+        <input type="submit" name="Spasi" value="Snimi"/>
+    </div>
+</form>
+</div>
+<style>
+    #formaDiv {
+        color: white;
+        background-color: #343a40;
+        width:80.6%;
+        margin-left:18.1%;
+    }
+</style>
