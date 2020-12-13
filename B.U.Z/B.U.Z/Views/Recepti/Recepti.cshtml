@@ -1,24 +1,100 @@
-﻿<div>
-    <div style="float:left; height:1000px;">
-        <partial name="../Home/Index" />
-    </div>
-    <div>
-        <h1 style="overflow: hidden;">Recepti View</h1>
-        <p style="color:green";>
-            What is Lorem Ipsum?
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+﻿@model List<Recepti>
 
-            Why do we use it?
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
-
-            Where does it come from?
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-            Where can I get some?
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-        </p>
-    </div>
+<div style="float:left; height:1000px; width:200px;">
+    <partial name="../Home/Index" />
 </div>
+
+<h1>Recepti</h1>
+
+<div>
+    <partial name="ReceptiPartial" />
+</div>
+
+<div id="AjaxPrikazOdabranogRecepta">
+
+</div>
+
+<div id="PretraziDiv">
+    <form style="margin-left:1%">
+        <label>Pretraži recepte:</label>
+        <input type="text" name="filter" />
+        <input type="submit" value="Pretraži" />
+    </form>
+</div>
+
+<table class="table table-dark" style="width:80.7%;">
+    <thead>
+        <tr>
+            <th scope="col">Redni broj</th>
+            <th scope="col">Šifra</th>
+            <th scope="col">Naziv</th>
+            <th scope="col">Opis</th>
+            <th scope="col">Preporuka</th>
+            <th scope="col">Odaberi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td></td>
+                <td>@s.Id</td>
+                <td>@s.Naziv</td>
+                <td>@s.Opis</td>
+                <td>@s.Preporuka</td>
+                @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+                @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                <td><button class="badge-danger" onclick="OpenOdabraniRecept(@s.Id)">Select</button></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<div id="BrojDostupnihRecepata">
+    <label style="margin-left:1%">Broj dostupnih recepata:</label>@Model.Count()
+</div>
+
+<style>
+    body {
+        counter-reset: Serial; /* Set the Serial counter to 0 */
+    }
+
+    tr td:first-child:before {
+        counter-increment: Serial; /* Increment the Serial counter */
+        content: counter(Serial); /* Display the counter */
+    }
+
+    #PretraziDiv {
+        color: white;
+        background-color: #343a40;
+        width: 80.6%;
+        margin-left: 18.1%;
+    }
+
+    #BrojDostupnihRecepata {
+        color: white;
+        background-color: #343a40;
+        width: 80.6%;
+        margin-left: 18.1%;
+        margin-top: -2%;
+    }
+
+    #AjaxPrikazOdabranogRecepta {
+        color: white;
+        background-color: #343a40;
+        width: 80.6%;
+        margin-left: 18.1%;
+        border: 1px solid red;
+    }
+</style>
+
+<script>
+    function OpenOdabraniRecept(ReceptId)
+    {
+        var url = "/Recepti/SelectRecept?ReceptId=" + ReceptId;
+        $.get(url, function (d) {
+            $("#AjaxPrikazOdabranogRecepta").html(d);
+        });
+    }
+</script>

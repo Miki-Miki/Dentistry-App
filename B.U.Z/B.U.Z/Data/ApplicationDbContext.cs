@@ -27,5 +27,7 @@ namespace B.U.Z.Data
                                             MultipleActiveResultSets=true;    ");
         }
         public DbSet<Lijekovi> Lijekovi { get; set; }
+        public DbSet<Recepti> Recepti { get; set; }
+        public DbSet<Dijagnoze> Dijagnoze { get; set; }
     }
 }

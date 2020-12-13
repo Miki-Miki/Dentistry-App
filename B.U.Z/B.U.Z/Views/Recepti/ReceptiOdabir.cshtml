@@ -1,0 +1,29 @@
+﻿@using B.U.Z.Models
+@{ Layout = null;}
+@model Recepti
+<div>
+    <div>
+        <label>Odabrani recept:</label>
+    </div>
+    <form asp-controller="Recepti" asp-action="SpasiNoviStariRecept">
+        <label>Šifra:</label>
+        <input type="text" asp-for="@Model.Id" />
+
+
+        <label>Naziv:</label>
+        <input type="text" asp-for="@Model.Naziv" />
+
+        <label>Opis:</label>
+        <input type="text" asp-for="@Model.Opis" />
+
+        <label>Preporuka:</label>
+        <input type="text" asp-for="@Model.Preporuka" />
+
+        <input class="badge-danger" type="submit" class="badge-danger" value="Uredi" />
+
+        <button class="badge-danger"><a style="text-decoration:none; color:white;" href="/Recepti/ObrisiRecept?ReceptId=@Model.Id">Obriši</a></button>
+    </form>
+
+    
+
+</div>
