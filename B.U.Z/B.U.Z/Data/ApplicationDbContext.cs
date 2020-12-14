@@ -26,8 +26,28 @@ namespace B.U.Z.Data
                                             Password=SamirMumic3#;
                                             MultipleActiveResultSets=true;    ");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
+        }
+
         public DbSet<Lijekovi> Lijekovi { get; set; }
         public DbSet<Recepti> Recepti { get; set; }
         public DbSet<Dijagnoze> Dijagnoze { get; set; }
+        
+        public DbSet<Grad> Grad { get; set; }
+        public DbSet<Spol> Spol { get; set; }
+        public DbSet<Kanton> Kanton { get; set; }
+
+        //public DbSet<Korisnik> Korisnici { get; set; }
+        public DbSet<Pacijent> Pacijenti { get; set; }
+        public DbSet<Asistent> Asistenti { get; set; }
+
+        public DbSet<Termini> Termini { get; set; }
+
+
+
     }
 }

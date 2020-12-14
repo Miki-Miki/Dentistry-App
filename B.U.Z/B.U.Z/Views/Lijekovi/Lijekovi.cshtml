@@ -29,20 +29,20 @@
             <th scope="col">Šifra</th>
             <th scope="col">Naziv</th>
             <th scope="col">Opis</th>
-            <th scope="col">Odaberi</th>
+            @*<th scope="col">Odaberi</th>*@
         </tr>
     </thead>
     <tbody>
         @foreach (var s in Model)
         {
-        <tr>
+        <tr id="lijekoviRed"  onclick="OpenOdabraniLijek(@s.Id)">
             <td></td>
             <td>@s.Id</td>
             <td>@s.Naziv</td>
             <td>@s.Opis</td>
             @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
             @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
-            <td><button class="badge-danger" onclick="OpenOdabraniLijek(@s.Id)">Select</button></td>
+            @*<td><button class="badge-danger">Select</button></td>*@
         </tr>
         }
 
@@ -81,6 +81,10 @@
         width: 80.6%;
         margin-left: 18.1%;
         border:1px solid red;
+    }
+
+    #lijekoviRed:hover {
+        background-color: aqua;
     }
 
 </style>
