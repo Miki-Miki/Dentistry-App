@@ -27,11 +27,11 @@ namespace B.U.Z.Data
                                             MultipleActiveResultSets=true;    ");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    //modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
+        //}
 
         public DbSet<Lijekovi> Lijekovi { get; set; }
         public DbSet<Recepti> Recepti { get; set; }
@@ -41,7 +41,6 @@ namespace B.U.Z.Data
         public DbSet<Spol> Spol { get; set; }
         public DbSet<Kanton> Kanton { get; set; }
 
-        //public DbSet<Korisnik> Korisnici { get; set; }
         public DbSet<Pacijent> Pacijenti { get; set; }
         public DbSet<Asistent> Asistenti { get; set; }
 

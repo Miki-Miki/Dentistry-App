@@ -9,8 +9,6 @@ namespace B.U.Z.Models
 {
     public class Pacijent : ApplicationUser
     {
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int BrojKartona { get; set; }
     }
 }

@@ -4,16 +4,14 @@ using B.U.Z.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace B.U.Z.Data.Migrations
+namespace B.U.Z.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201211141017_DodaniLijekovi")]
-    partial class DodaniLijekovi
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,6 +31,10 @@ namespace B.U.Z.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -42,6 +44,12 @@ namespace B.U.Z.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("GodinaRodjenja")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GradId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -72,6 +80,9 @@ namespace B.U.Z.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SpolId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -81,6 +92,8 @@ namespace B.U.Z.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GradId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -89,7 +102,67 @@ namespace B.U.Z.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("SpolId");
+
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Dijagnoze", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Preporuka")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Dijagnoze");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Grad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("KantonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KantonId");
+
+                    b.ToTable("Grad");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Kanton", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Kanton");
                 });
 
             modelBuilder.Entity("B.U.Z.Models.Lijekovi", b =>
@@ -108,6 +181,72 @@ namespace B.U.Z.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lijekovi");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Recepti", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Preporuka")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Recepti");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Spol", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Spol");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Termini", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BrojProtokola")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TerminEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TerminStart")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId1");
+
+                    b.ToTable("Termini");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -239,6 +378,57 @@ namespace B.U.Z.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Asistent", b =>
+                {
+                    b.HasBaseType("B.U.Z.Models.ApplicationUser");
+
+                    b.Property<string>("Titula")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Asistent");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Pacijent", b =>
+                {
+                    b.HasBaseType("B.U.Z.Models.ApplicationUser");
+
+                    b.Property<int>("BrojKartona")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("Pacijent");
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("B.U.Z.Models.Grad", "Grad")
+                        .WithMany()
+                        .HasForeignKey("GradId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("B.U.Z.Models.Spol", "Spol")
+                        .WithMany()
+                        .HasForeignKey("SpolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Grad", b =>
+                {
+                    b.HasOne("B.U.Z.Models.Kanton", "Kanton")
+                        .WithMany()
+                        .HasForeignKey("KantonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Termini", b =>
+                {
+                    b.HasOne("B.U.Z.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
