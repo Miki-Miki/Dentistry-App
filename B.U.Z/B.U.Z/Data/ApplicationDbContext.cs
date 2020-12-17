@@ -45,8 +45,6 @@ namespace B.U.Z.Data
         public DbSet<Asistent> Asistenti { get; set; }
 
         public DbSet<Termini> Termini { get; set; }
-
-
-
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

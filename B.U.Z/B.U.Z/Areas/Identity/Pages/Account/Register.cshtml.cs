@@ -115,7 +115,8 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
+                var user = new Pacijent 
+                { 
                     UserName = Input.Email, 
                     Email = Input.Email, 
                     FirstName = Input.FirstName,
@@ -123,7 +124,6 @@ namespace B.U.Z.Areas.Identity.Pages.Account
                     GodinaRodjenja = Input.GodinaRodjenja,
                     SpolId = Input.Spol,
                     GradId = Input.Grad
-
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

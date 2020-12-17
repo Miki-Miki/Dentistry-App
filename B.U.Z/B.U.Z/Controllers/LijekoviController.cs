@@ -6,15 +6,19 @@ using B.U.Z.Data;
 using B.U.Z.Models;
 using B.U.Z.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace B.U.Z.Controllers
 {
     public class LijekoviController : Controller
     {
-        public IActionResult Lijekovi(string filter)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public async Task<IActionResult> Lijekovi(string filter)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            List<Lijekovi> m = db.Lijekovi.Where(s => filter == null || s.Naziv.ToLower().StartsWith(filter)).ToList();
+            List < Lijekovi > m = db.Lijekovi.Where(s => filter == null || s.Naziv.ToLower().StartsWith(filter)).ToList();
             return View(m);
         }
         public IActionResult NoviLijek()
