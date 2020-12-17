@@ -63,6 +63,7 @@ namespace B.U.Z.Controllers
             };
             return View(model);
         }
+
         public async Task<IActionResult> SpasiNoviStomatolog(StomatologRegistracijaVM s,string returnUrl=null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -113,8 +114,9 @@ namespace B.U.Z.Controllers
                 }
             }
 
+            s.modelState = ModelState;
             // If we got this far, something failed, redisplay form
-            return Redirect("UserAccounts");
+            return View("NoviUserAccountStomatolog", s);
         }
         public IActionResult NoviUserAccountAsistent()
         {
@@ -176,7 +178,7 @@ namespace B.U.Z.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return Redirect("UserAccounts");
+            return Redirect("/UserAccounts/NoviUserAccountAsistent");
         }
     }
     

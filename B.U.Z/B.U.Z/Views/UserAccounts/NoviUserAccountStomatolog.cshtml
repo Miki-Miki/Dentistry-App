@@ -13,10 +13,12 @@
         <div>
             <label>First name</label>
             <input type="text" name="FirstName" />
+            <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
         </div>
         <div>
             <label>Last name</label>
             <input type="text" name="LastName" />
+            <span asp-validation-for="@Model.LastName" class="text-danger"></span>
         </div>
         <div>
             <label>E-mail</label>
@@ -39,10 +41,12 @@
         <div>
             <label>Titula</label>
             <input type="text" name="Titula" />
+            <span asp-validation-for="@Model.Titula" class="text-danger"></span>
         </div>
         <div>
             <label>Specijalizacija</label>
             <input type="text" name="Specijalizacija" />
+            <span asp-validation-for="@Model.Specijalizacija" class="text-danger"></span>
         </div>
         <div>
             <input type="submit" name="Spasi" value="Snimi" />
