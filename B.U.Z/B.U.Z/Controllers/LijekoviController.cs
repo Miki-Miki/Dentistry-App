@@ -18,7 +18,7 @@ namespace B.U.Z.Controllers
         public async Task<IActionResult> Lijekovi(string filter)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            List < Lijekovi > m = db.Lijekovi.Where(s => filter == null || s.Naziv.ToLower().StartsWith(filter)).ToList();
+            List <Lijekovi> m = db.Lijekovi.Where(s => filter == null || s.Naziv.ToLower().StartsWith(filter)).ToList();
             return View(m);
         }
         public IActionResult NoviLijek()

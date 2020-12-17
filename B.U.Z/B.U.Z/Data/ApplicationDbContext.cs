@@ -40,6 +40,7 @@ namespace B.U.Z.Data
         public DbSet<Grad> Grad { get; set; }
         public DbSet<Spol> Spol { get; set; }
         public DbSet<Kanton> Kanton { get; set; }
+        public DbSet<Stomatolog> Stomatolozi { get; set; }
 
         public DbSet<Pacijent> Pacijenti { get; set; }
         public DbSet<Asistent> Asistenti { get; set; }
