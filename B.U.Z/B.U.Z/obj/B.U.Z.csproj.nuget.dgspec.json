@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive - Faculty of Information Technologies\\FIT\\III godina\\I semstar\\Razvoj softvera I\\fit_2049_azure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj": {}
+    "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive - Faculty of Information Technologies\\FIT\\III godina\\I semstar\\Razvoj softvera I\\fit_2049_azure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj": {
+    "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive - Faculty of Information Technologies\\FIT\\III godina\\I semstar\\Razvoj softvera I\\fit_2049_azure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
+        "projectUniqueName": "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
         "projectName": "B.U.Z",
-        "projectPath": "D:\\OneDrive - Faculty of Information Technologies\\FIT\\III godina\\I semstar\\Razvoj softvera I\\fit_2049_azure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
+        "projectPath": "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
         "packagesPath": "C:\\Users\\Velid\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive - Faculty of Information Technologies\\FIT\\III godina\\I semstar\\Razvoj softvera I\\fit_2049_azure\\webapp\\B.U.Z\\B.U.Z\\obj\\",
+        "outputPath": "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Velid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -29,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -40,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
@@ -90,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

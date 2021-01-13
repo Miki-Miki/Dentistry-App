@@ -2,7 +2,7 @@
 
 namespace B.U.Z.Migrations
 {
-    public partial class dodanaSpecijalizacija : Migration
+    public partial class svesve : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

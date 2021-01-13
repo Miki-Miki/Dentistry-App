@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210113171613_terminiIzmjenjeni.cs" />
+    <Compile Remove="Migrations\20210113171613_terminiIzmjenjeni.Designer.cs" />
+    <Compile Remove="Migrations\20210113172155_iymjenjeniTermini.cs" />
+    <Compile Remove="Migrations\20210113172155_iymjenjeniTermini.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Dijagnoze\Dijagnoze.cshtml" />
     <None Include="Views\Recepti\Recepti.cshtml" />
   </ItemGroup>

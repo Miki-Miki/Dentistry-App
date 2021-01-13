@@ -11,13 +11,15 @@ namespace B.U.Z.Models
     {
         public int Id { get; set; }
         
-        public int ApplicationUserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public string PacijentId { get; set; }
+        public Pacijent Pacijent { get; set; }
+
+        public string AsistentId { get; set; }
+        public Asistent Asistent { get; set; }
 
         public DateTime TerminStart { get; set; }
         public DateTime TerminEnd { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public string BrojProtokola { get; set; }
+        public double basePrice { get; set; }
     }
 }

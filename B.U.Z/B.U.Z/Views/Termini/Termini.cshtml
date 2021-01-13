@@ -1,4 +1,6 @@
-﻿<head>
+﻿@model List<Termini>
+
+<head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -7,11 +9,72 @@
 
 
 <div>
-    <div style="float:left; height:1000px;">
-        <partial name="../Home/Index" />
-    </div>    
-</div>
+    <div style="float:left; width: 20%; background-color:#00A8A8">
+        <div style="float:left; height:1000px;">
+            <partial name="../Home/Index" />
+        </div>
+    </div>
 
+    <div id="main_body" style="float:left; width: 80%; background-color:#C4DBE0; padding: 30px; height:100%">
+        <div id="slj_termin" style="background-color: #0C6980; width:90%; height:70px; margin-left:auto; margin-right: auto;">
+
+        </div>
+        <br />
+        <div id="termini" style="background-color: #0C6980;width:90%; height:500px; margin-left:auto; margin-right: auto;">
+            <div>
+                <partial name="TerminiPartial" />
+            </div>
+            <div id="header">
+                <form style="float: left">
+                    <label>Search:</label>
+                    <input type="text" name="Ime i prezime" />
+                </form>
+                <form style="float: left">
+                    <label>Datum:</label>
+                    <input type="date" name="Datum" />
+                </form>
+                <form style="float: left">
+                    <label>Sort by:</label>
+                    <select>
+                        <option>Vrijeme - uzlazno</option>
+                        <option>Vrijeme - silazno</option>
+                        <option>Ime - abecedno</option>
+                        <option>Usluga - abecedno</option>
+                    </select>
+                </form>
+            </div>
+            <div id="podaci">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Redni broj</th>
+                            <th scope="col">Ime i prezime</th>
+                            <th scope="col">Datum</th>
+                            <th scope="col">Termin</th>
+                            <th scope="col">Naziv usluge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var s in Model)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@s.Id</td>
+                                <td>"@s.Pacijent.FirstName" + " " + "@s.Pacijent.LastName"</td>
+                                <td>@s.TerminStart.Date</td>
+                                <td>@s.TerminStart.ToLocalTime()</td>
+                                @*<td>@s.OdabranaUsluga</td>*@
+                                <td><button class="badge-danger" onclick="OpenOdabraniTermin(@s.Id)">Odaberi</button></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(function () {
         $("#tabs").tabs();

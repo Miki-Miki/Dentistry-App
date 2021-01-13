@@ -2,8 +2,7 @@
   "runtimeOptions": {
     "additionalProbingPaths": [
       "C:\\Users\\Velid\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Velid\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "C:\\Users\\Velid\\.nuget\\packages"
     ]
   }
 }

@@ -47,5 +47,16 @@ namespace B.U.Z.Data
 
         public DbSet<Termini> Termini { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public DbSet<CTNalaz> CTNalaz { get; set; }
+        public DbSet<DentalnaPomagala> DentalnaPomagala { get; set; }
+        public DbSet<DentalnoPomagaloNaSesiji> DentalnoPomagaloNaSesiji { get; set; }
+        public DbSet<DijagnozaNaSesiji> DijagnozaNaSesiji { get; set; }
+        public DbSet<Sesija> Sesija { get; set; }
+        public DbSet<Racun> Racun { get; set; }
+        public DbSet<TerapijaNaSesiji> TerapijaNaSesiji { get; set; }
+        public DbSet<Terapije> Terapije { get; set; }
+        public DbSet<Usluga> Usluga { get; set; }
+        public DbSet<ZakazanaUsluga> ZakazanaUsluga { get; set; }
     }
 }

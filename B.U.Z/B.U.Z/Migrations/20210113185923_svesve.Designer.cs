@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B.U.Z.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201217184733_dodanaSpec")]
-    partial class dodanaSpec
+    [Migration("20210113185923_svesve")]
+    partial class svesve
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -228,15 +228,11 @@ namespace B.U.Z.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationUserId1")
+                    b.Property<string>("AsistentId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("BrojProtokola")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("PacijentId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("TerminEnd")
                         .HasColumnType("datetime2");
@@ -244,9 +240,14 @@ namespace B.U.Z.Migrations
                     b.Property<DateTime>("TerminStart")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("basePrice")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("AsistentId");
+
+                    b.HasIndex("PacijentId");
 
                     b.ToTable("Termini");
                 });
@@ -438,9 +439,13 @@ namespace B.U.Z.Migrations
 
             modelBuilder.Entity("B.U.Z.Models.Termini", b =>
                 {
-                    b.HasOne("B.U.Z.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("B.U.Z.Models.Asistent", "Asistent")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("AsistentId");
+
+                    b.HasOne("B.U.Z.Models.Pacijent", "Pacijent")
+                        .WithMany()
+                        .HasForeignKey("PacijentId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

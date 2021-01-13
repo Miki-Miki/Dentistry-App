@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace B.U.Z.Migrations
 {
-    public partial class init : Migration
+    public partial class sve : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -109,7 +109,7 @@ namespace B.U.Z.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -129,7 +129,7 @@ namespace B.U.Z.Migrations
                         column: x => x.KantonId,
                         principalTable: "Kanton",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -158,6 +158,7 @@ namespace B.U.Z.Migrations
                     GradId = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Titula = table.Column<string>(nullable: true),
+                    Specijalizacija = table.Column<string>(nullable: true),
                     BrojKartona = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -168,13 +169,13 @@ namespace B.U.Z.Migrations
                         column: x => x.GradId,
                         principalTable: "Grad",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_AspNetUsers_Spol_SpolId",
                         column: x => x.SpolId,
                         principalTable: "Spol",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,7 +196,7 @@ namespace B.U.Z.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -215,7 +216,7 @@ namespace B.U.Z.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,13 +234,13 @@ namespace B.U.Z.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -259,7 +260,7 @@ namespace B.U.Z.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -268,21 +269,27 @@ namespace B.U.Z.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicationUserId = table.Column<int>(nullable: false),
-                    ApplicationUserId1 = table.Column<string>(nullable: true),
+                    PacijentId = table.Column<string>(nullable: true),
+                    AsistentId = table.Column<string>(nullable: true),
                     TerminStart = table.Column<DateTime>(nullable: false),
                     TerminEnd = table.Column<DateTime>(nullable: false),
-                    BrojProtokola = table.Column<string>(nullable: true)
+                    OdabranaUsluga = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Termini", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Termini_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_Termini_AspNetUsers_AsistentId",
+                        column: x => x.AsistentId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Termini_AspNetUsers_PacijentId",
+                        column: x => x.PacijentId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
@@ -340,9 +347,14 @@ namespace B.U.Z.Migrations
                 column: "KantonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Termini_ApplicationUserId1",
+                name: "IX_Termini_AsistentId",
                 table: "Termini",
-                column: "ApplicationUserId1");
+                column: "AsistentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Termini_PacijentId",
+                table: "Termini",
+                column: "PacijentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
