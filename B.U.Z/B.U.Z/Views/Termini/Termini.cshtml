@@ -16,8 +16,10 @@
     </div>
 
     <div id="main_body" style="float:left; width: 80%; background-color:#C4DBE0; padding: 30px; height:100%">
-        <div id="slj_termin" style="background-color: #0C6980; width:90%; height:70px; margin-left:auto; margin-right: auto;">
+        <div style="background-color: #0C6980; width:90%; height:70px; margin-left:auto; margin-right: auto;">
+            <div id="TerminOdabir">
 
+            </div>
         </div>
         <br />
         <div id="termini" style="background-color: #0C6980;width:90%; height:500px; margin-left:auto; margin-right: auto;">
@@ -44,27 +46,23 @@
                 </form>
             </div>
             <div id="podaci">
-                <table class="table table-dark">
+                <table class="table" style="background-color:#C4DBE0; width:90%; margin-left:auto; margin-right:auto">
                     <thead>
                         <tr>
-                            <th scope="col">Redni broj</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Ime i prezime</th>
-                            <th scope="col">Datum</th>
-                            <th scope="col">Termin</th>
-                            <th scope="col">Naziv usluge</th>
+                            <th scope="col">Termin pocetak</th>
+                            <th scope="col">Termin kraj</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var s in Model)
                         {
-                            <tr>
-                                <td></td>
+                            <tr id="red" onclick="odaberiTermin('@s.Id')" >
                                 <td>@s.Id</td>
-                                <td>"@s.Pacijent.FirstName" + " " + "@s.Pacijent.LastName"</td>
+                                <td>@s.Pacijent.FirstName @s.Pacijent.LastName</td>
                                 <td>@s.TerminStart.Date</td>
-                                <td>@s.TerminStart.ToLocalTime()</td>
-                                @*<td>@s.OdabranaUsluga</td>*@
-                                <td><button class="badge-danger" onclick="OpenOdabraniTermin(@s.Id)">Odaberi</button></td>
+                                <td>@s.TerminEnd.Date</td>
                             </tr>
                         }
 
@@ -76,7 +74,26 @@
     </div>
 </div>
 <script>
-    $(function () {
-        $("#tabs").tabs();
-    });
+    //$(function () {
+    //    $("#tabs").tabs();
+    //});
+
+    function odaberiTermin(TerminId) {
+        var url = "/Termini/OdaberiTermin?t=" + TerminId;
+        $.get(url, function (d) {
+            $("#TerminOdabir").html(d);
+        })
+    }
 </script>
+<style>
+    #red:hover {
+        background-color: #507881;
+        color:white;
+    }
+    #red:active {
+        background-color: #00A8A8;
+    }
+    #red{
+        cursor:pointer;
+    }
+</style>

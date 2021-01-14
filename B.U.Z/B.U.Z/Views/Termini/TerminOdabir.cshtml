@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "TerminOdabir";
+    Layout = null;
+    }
+@using B.U.Z.ViewModels;
+
+@model TerminiVM;
+
+<table class="table table-dark">
+    <tbody>
+        <tr>
+            <td>@Model.pacijent.FirstName @Model.pacijent.LastName</td>
+            <td>@Model.TerminStart</td>
+            <td>@Model.TerminEnd</td>
+            <td>@Model.basePrice</td>
+        </tr>
+    </tbody>
+</table>
+

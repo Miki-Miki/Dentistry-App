@@ -1109,3 +1109,6 @@ D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.pdb
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.genruntimeconfig.cache
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\NovaUsluga\NovaUsluga.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\TerminiPartial.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\NoviTermin.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\PacijentOdabir.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\TerminOdabir.cshtml.g.cs
