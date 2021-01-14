@@ -45,3 +45,21 @@ else if (User.IsInRole("Asistent"))
         </nav>
     </div>
 }
+else if (User.IsInRole("Pacijent"))
+{
+    <div class="container">
+        <nav class="navbar navbar-light">
+            <ul class="navbar-nav">
+                <li data-toggle="tooltip" title="Termini opis" class="nav-item>">
+                    <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link">Termini</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>   

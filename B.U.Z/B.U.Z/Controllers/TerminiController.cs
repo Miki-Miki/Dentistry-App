@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace B.U.Z.Controllers
 {
+    [Route("Termini")]
     public class TerminiController : Controller
     {
         public IActionResult Termini()
@@ -71,6 +72,47 @@ namespace B.U.Z.Controllers
             };
            
             return View("TerminOdabir", terminVM);
+        }
+
+        [Route("Kalendar")]
+        public IActionResult OtvoriKalendar()
+        {
+            return View("PacijentKalendar");
+        }
+
+        [Route("FindAll")]
+        public IActionResult FindAllTermini()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            List<Termini> terminiDB = db.Termini.ToList();
+            List<TerminiVM> termini = new List<TerminiVM>();
+
+            foreach(var t in terminiDB)
+            {
+                Pacijent _pacijent = db.Pacijenti.Find(t.PacijentId);
+                ZakazanaUsluga zakazanaUsluga = db.ZakazanaUsluga.Single(x => x.TerminId == t.Id);
+                Usluga _usluga = db.Usluga.Single(x => x.Id == zakazanaUsluga.UslugaId);
+                termini.Add(new TerminiVM()
+                {
+                    basePrice = t.basePrice,
+                    TerminStart = t.TerminStart,
+                    TerminEnd = t.TerminEnd,
+                    pacijent = _pacijent,
+                    usluga = _usluga
+                });
+            }
+
+            var terminiJSON = termini.Select(t => new
+            {
+                //id = t.Id,
+                title = t.pacijent.FirstName + " " + t.pacijent.LastName,
+                description = t.usluga.Naziv,
+                start = t.TerminStart,
+                end = t.TerminEnd
+            });
+
+            return new JsonResult(terminiJSON);
         }
    
     }
