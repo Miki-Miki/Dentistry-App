@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <None Include="Views\Dijagnoze\Dijagnoze.cshtml" />
+    <None Include="Views\Pacijenti\Pacijenti.cshtml" />
     <None Include="Views\Recepti\Recepti.cshtml" />
   </ItemGroup>
 

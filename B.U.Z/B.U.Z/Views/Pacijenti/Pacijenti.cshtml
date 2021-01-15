@@ -1,24 +1,100 @@
-﻿<div>
-    <div style="float:left; height:1000px;">
-        <partial name="../Home/Index" />
-    </div>
-    <div>
-        <h1 style="overflow: hidden;">Pacijenti View</h1>
-        <p style="color:blue;">
-            What is Lorem Ipsum?
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+﻿@model List<Pacijent>
 
-            Why do we use it?
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
-
-            Where does it come from?
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-
-            Where can I get some?
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-        </p>
-    </div>
+<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
+    <partial name="../Home/Index" />
 </div>
+
+
+<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
+    <h1 style="color: #0C6980">Pacijenti</h1>
+    <div class="primarydark">
+        <div class="primary" style="width:100%; padding-left:9%;" >
+            <partial name="PacijentiPartial" />
+        </div>
+
+        <div id="AjaxPrikazOdabranogPacijenta">
+
+        </div>
+
+        <div id="PretraziDiv" class="primarydark">
+            <form style="padding-left:10px;">
+                <label>Pretraži pacijente:</label>
+                <input type="text" name="filter" />
+                <input type="submit" value="Pretraži" />
+            </form>
+        </div>
+
+        <table class="table primarydark">
+            <thead>
+                <tr>
+                    <th scope="col">Redni broj</th>
+                    <th scope="col">Ime</th>
+                    <th scope="col">Prezime</th>
+                    <th scope="col">Datum rodjenja</th>
+                    <th scope="col">Broj telefona</th>
+                    @*<th scope="col">Odaberi</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr id="pacijentiRed" onclick="OpenOdabraniPacijent('@s.Id')">
+                        <td></td>
+                        <td>@s.FirstName</td>
+                        <td>@s.LastName</td>
+                        <td>@s.GodinaRodjenja</td>
+                        <td>@s.PhoneNumber</td>
+                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                        @*<td><button class="badge-danger">Select</button></td>*@
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        <div id="BrojPacijenata" class="primarydark">
+            <label style="margin-left:1%">Broj pacijenata:</label>@Model.Count()
+        </div>
+    </div>
+    <style>
+        body {
+            counter-reset: Serial; /* Set the Serial counter to 0 */
+        }
+
+        tr td:first-child:before {
+            counter-increment: Serial; /* Increment the Serial counter */
+            content: counter(Serial); /* Display the counter */
+        }
+
+        #PretraziDiv {
+            width: 100%;
+        }
+
+        #BrojDostupnihLijekova {
+            width: 100%;
+        }
+
+        #AjaxPrikazOdabranogPacijenta {
+            color: white;
+            background-color: #343a40;
+            width: 100%;
+        }
+
+        #pacijentiRed:hover {
+            background-color: aqua;
+        }
+    </style>
+
+
+</div>
+
+<script>
+    function OpenOdabraniPacijent(PacijentId) {
+        var url = "/Pacijenti/SelectPacijent?PacijentId=" + PacijentId;
+        $.get(url, function (d) {
+            $("#AjaxPrikazOdabranogPacijenta").html(d);
+        });
+    };
+</script>
+

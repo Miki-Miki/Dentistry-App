@@ -1,0 +1,31 @@
+﻿@using B.U.Z.Models
+@{ Layout = null;}
+@model Pacijent
+<div class="primarydark">
+    <div>
+        <label style="padding-left:10px;">Odabrani pacijent:</label>
+    </div>
+    <form asp-controller="Pacijenti" asp-action="SpasiNovogStarogPacijenta">
+        <label style="padding-left:10px;">Id:</label>
+        <input type="text" asp-for="@Model.Id" />
+
+        <label>Ime:</label>
+        <input type="text" asp-for="@Model.FirstName" />
+
+        <label>Prezime:</label>
+        <input type="text" asp-for="@Model.LastName" />
+
+        <label>Datum rodjenja:</label>
+        <input type="text" asp-for="@Model.GodinaRodjenja" />
+
+        <label>Broj telefona:</label>
+        <input type="text" asp-for="@Model.PhoneNumber" />
+
+        <input class="badge-danger" type="submit" value="Uredi" />
+
+        <button class="badge-danger"><a href="/Pacijenti/ObrisiPacijenta?PacijentId=@Model.Id" style="text-decoration:none; color:white;">Obriši</a></button>
+    </form>
+
+    
+
+</div>
