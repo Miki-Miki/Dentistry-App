@@ -42,6 +42,10 @@
                     <input type="text" asp-for="BrojTelefona" />
                 </div>
                 <div>
+                    <label>Lozinka</label>
+                    <input type="text" asp-for="PasswordHash" value="@Model.PasswordHash"/>
+                </div>
+                <div>
                     <input type="submit" name="Spasi" value="Snimi" />
                 </div>
             </form>
