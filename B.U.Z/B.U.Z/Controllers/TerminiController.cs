@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using B.U.Z.Data;
 using B.U.Z.Models;
 using B.U.Z.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +15,13 @@ namespace B.U.Z.Controllers
     [Route("Termini")]
     public class TerminiController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;        
+
+        public TerminiController(UserManager<ApplicationUser> userManager,)
+        {
+            _userManager = userManager;            
+        }
+
         public IActionResult Termini()
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -75,13 +84,22 @@ namespace B.U.Z.Controllers
         }
 
         [Route("Kalendar")]
-        public IActionResult OtvoriKalendar()
+        public async Task<IActionResult> OtvoriKalendar()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            ApplicationDbContext db = new ApplicationDbContext();
+            var aspUser = db.ApplicationUsers.Find(user.Id);
+            //OVJDE SI STAOOOOO
+            //!!!!
+            //!!!!
+            //!!!!
+
             return View("PacijentKalendar");
         }
 
-        [Route("FindAll")]
-        public IActionResult FindAllTermini()
+        [Route("SFindAll")]
+        public IActionResult SFindAllTermini()
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
@@ -114,6 +132,41 @@ namespace B.U.Z.Controllers
 
             return new JsonResult(terminiJSON);
         }
-   
+
+        [Route("PFindAll")]
+        public IActionResult PFindAllTermini()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            List<Termini> terminiDB = db.Termini.ToList();
+            List<TerminiVM> termini = new List<TerminiVM>();
+
+            foreach (var t in terminiDB)
+            {
+                Pacijent _pacijent = db.Pacijenti.Find(t.PacijentId);
+                ZakazanaUsluga zakazanaUsluga = db.ZakazanaUsluga.Single(x => x.TerminId == t.Id);
+                Usluga _usluga = db.Usluga.Single(x => x.Id == zakazanaUsluga.UslugaId);
+                termini.Add(new TerminiVM()
+                {
+                    basePrice = t.basePrice,
+                    TerminStart = t.TerminStart,
+                    TerminEnd = t.TerminEnd,
+                    pacijent = _pacijent,
+                    usluga = _usluga
+                });
+            }
+
+            var terminiJSON = termini.Select(t => new
+            {
+                //id = t.Id,
+                title = "Zauzeto",
+                description = t.usluga.Naziv,
+                start = t.TerminStart,
+                end = t.TerminEnd
+            });
+
+            return new JsonResult(terminiJSON);
+        }
+
     }
 }

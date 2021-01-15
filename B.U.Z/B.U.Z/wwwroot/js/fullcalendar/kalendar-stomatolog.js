@@ -1,5 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    var calendarEl = document.getElementById('calendar');
+    var calendarEl = document.getElementById('calendar-stomatolog');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         timeZone: 'UTC',
@@ -20,7 +20,7 @@
                 container: "body"
             });
         },
-        events: '/Termini/FindAll'        
+        events: '/Termini/SFindAll'        
     });
 
     calendar.render();
