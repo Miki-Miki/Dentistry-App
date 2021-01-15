@@ -21,7 +21,6 @@
             });
         },
         events: '/Termini/PFindAll',
-        eventColor: '#cc2d2d',
     });
 
     calendar.render();

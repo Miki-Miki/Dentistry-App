@@ -17,7 +17,7 @@ namespace B.U.Z.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;        
 
-        public TerminiController(UserManager<ApplicationUser> userManager,)
+        public TerminiController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;            
         }
@@ -90,16 +90,19 @@ namespace B.U.Z.Controllers
 
             ApplicationDbContext db = new ApplicationDbContext();
             var aspUser = db.ApplicationUsers.Find(user.Id);
-            //OVJDE SI STAOOOOO
-            //!!!!
-            //!!!!
-            //!!!!
-
-            return View("PacijentKalendar");
+            
+            if(aspUser is Pacijent)
+            {
+                return View("PacijentKalendar");
+            }
+            else
+            {
+                return View("Termini");
+            }
         }
 
-        [Route("SFindAll")]
-        public IActionResult SFindAllTermini()
+        [Route("PFindAll")]
+        public IActionResult PFindAllTermini()
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
@@ -111,6 +114,7 @@ namespace B.U.Z.Controllers
                 Pacijent _pacijent = db.Pacijenti.Find(t.PacijentId);
                 ZakazanaUsluga zakazanaUsluga = db.ZakazanaUsluga.Single(x => x.TerminId == t.Id);
                 Usluga _usluga = db.Usluga.Single(x => x.Id == zakazanaUsluga.UslugaId);
+
                 termini.Add(new TerminiVM()
                 {
                     basePrice = t.basePrice,
@@ -133,8 +137,8 @@ namespace B.U.Z.Controllers
             return new JsonResult(terminiJSON);
         }
 
-        [Route("PFindAll")]
-        public IActionResult PFindAllTermini()
+        [Route("SFindAll")]
+        public IActionResult SFindAllTermini()
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
@@ -144,22 +148,34 @@ namespace B.U.Z.Controllers
             foreach (var t in terminiDB)
             {
                 Pacijent _pacijent = db.Pacijenti.Find(t.PacijentId);
-                ZakazanaUsluga zakazanaUsluga = db.ZakazanaUsluga.Single(x => x.TerminId == t.Id);
-                Usluga _usluga = db.Usluga.Single(x => x.Id == zakazanaUsluga.UslugaId);
+
+                var _usluga = from zU in db.ZakazanaUsluga
+                                  join U in db.Usluga
+                                  on zU.UslugaId equals U.Id
+                                  where zU.TerminId == t.Id
+                                  select new Usluga
+                                  {
+                                      Id = U.Id,
+                                      Cijena = U.Cijena,
+                                      Naziv = U.Naziv,
+                                      Opis = U.Opis
+                                  };
+
+
                 termini.Add(new TerminiVM()
                 {
                     basePrice = t.basePrice,
                     TerminStart = t.TerminStart,
                     TerminEnd = t.TerminEnd,
                     pacijent = _pacijent,
-                    usluga = _usluga
-                });
+                    usluga = _usluga.FirstOrDefault()
+                }) ;
             }
 
             var terminiJSON = termini.Select(t => new
             {
                 //id = t.Id,
-                title = "Zauzeto",
+                title = t.pacijent.FirstName + " " + t.pacijent.LastName,
                 description = t.usluga.Naziv,
                 start = t.TerminStart,
                 end = t.TerminEnd
