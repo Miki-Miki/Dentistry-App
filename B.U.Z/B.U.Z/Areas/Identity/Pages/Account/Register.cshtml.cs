@@ -85,6 +85,10 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             public int Spol { get; set; }
 
             [Required]
+            [Display(Name = "Broj telefona")]
+            public string BrojTelefona { get; set; }
+
+            [Required]
             [Display(Name = "Grad")]
             public int Grad { get; set; }
         }
@@ -117,7 +121,7 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             {
                 var user = new Pacijent 
                 { 
-                    UserName = Input.Email, 
+                    UserName = Input.BrojTelefona, 
                     Email = Input.Email, 
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,

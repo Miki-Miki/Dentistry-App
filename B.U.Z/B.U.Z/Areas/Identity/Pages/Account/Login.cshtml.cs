@@ -44,7 +44,7 @@ namespace B.U.Z.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            public string EmailOrPhoneNumber { get; set; }
+            public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
@@ -70,7 +70,6 @@ namespace B.U.Z.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
         }
-
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -79,12 +78,30 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.EmailOrPhoneNumber, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var user1 = await _userManager.FindByNameAsync(Input.Email);
+                var user= await _userManager.FindByEmailAsync(Input.Email);
+                if(user1!=null)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    user = user1;
                 }
+                if (user1!=null || user!=null)
+                {
+                    //sign in
+
+
+                    var signInResult = await _signInManager.PasswordSignInAsync(user, Input.Password, false, false);
+                    if (signInResult.Succeeded)
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return LocalRedirect(returnUrl);
+                    }
+                }
+                //if (result.Succeeded)
+                //{
+                //    _logger.LogInformation("User logged in.");
+                //    return LocalRedirect(returnUrl);
+                //}
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
