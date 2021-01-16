@@ -38,6 +38,10 @@ namespace B.U.Z.ViewModels
         public string Titula { get; set; }
 
         [Required]
+        [Display(Name = "Broj telefona")]
+        public string BrojTelefona { get; set; }
+
+        [Required]
         [Display(Name = "Specijalizacija")]
         public string Specijalizacija { get; set; }
         public int SpolId { get; set; }

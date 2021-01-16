@@ -73,7 +73,8 @@ namespace B.U.Z.Controllers
             {
                 var user = new Stomatolog
                 {
-                    UserName = s.Email,
+                    UserName = s.BrojTelefona,
+                    PhoneNumber=s.BrojTelefona,
                     Email = s.Email,
                     FirstName = s.FirstName,
                     LastName = s.LastName,
@@ -137,7 +138,8 @@ namespace B.U.Z.Controllers
             {
                 var user = new Asistent
                 {
-                    UserName = s.Email,
+                    UserName = s.BrojTelefona,
+                    PhoneNumber=s.BrojTelefona,
                     Email = s.Email,
                     FirstName = s.FirstName,
                     LastName = s.LastName,
