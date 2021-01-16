@@ -76,5 +76,19 @@ namespace B.U.Z.Controllers
             Dijagnoze l = db.Dijagnoze.Find(DijagnozaId);
             return View("DijagnozaOdabir", l);
         }
+
+        public String getOpis(int dijagnozaId)
+        {
+            ApplicationDbContext dbContext = new ApplicationDbContext();
+            Dijagnoze dijagnoza = dbContext.Dijagnoze.Find(dijagnozaId);
+            return dijagnoza.Opis;
+        }
+
+        public String getPreporuka(int dijagnozaId)
+        {
+            ApplicationDbContext dbContext = new ApplicationDbContext();
+            Dijagnoze dijagnoza = dbContext.Dijagnoze.Find(dijagnozaId);
+            return dijagnoza.Preporuka;
+        }
     }
 }

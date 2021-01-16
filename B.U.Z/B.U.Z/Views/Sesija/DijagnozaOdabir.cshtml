@@ -7,17 +7,24 @@
 }
 @model SesijaVM
 
-<div id="mainAjax">
+<div id="mainAjax" onload="findOpis(); findPreporuka()">
     <div>
         <form>
             <div>
                 <label>Dijagnoza:</label>
-                <select asp-for="DijagnozaId" asp-items="Model.Dijagnoze"></select>
-            
+                <select asp-for="DijagnozaId" asp-items="Model.Dijagnoze" id="dijagnoze" onchange="findOpis(); findPreporuka()" ></select>
+            </div>
+            <div>
+                <label>Opis:</label>
+                <input type="text" readonly id="Opis" />
+            </div>
+            <div>
+                <label>Preporuka:</label>
+                <input type="text" readonly id="Preporuka" />
             </div>
             <div>
                 <label>Napomena:</label>
-                <input type ="text" />
+                <input type="text" />
             </div>
         </form>
     </div>
@@ -29,3 +36,25 @@
         padding: 30px;
     }
 </style>
+
+<script>
+    function findOpis() {
+
+        console.log("pozvana");
+        var dijagnozaId = $("#dijagnoze").val();
+        var url = '/Dijagnoze/getOpis?dijagnozaId=' + dijagnozaId;
+
+        $.get(url, function (d) {
+            $("#Opis").val(d);
+        })
+    }
+    function findPreporuka() {
+
+        var dijagnozaId = $("#dijagnoze").val();
+        var url = '/Dijagnoze/getPreporuka?dijagnozaId=' + dijagnozaId;
+
+        $.get(url, function (d) {
+            $("#Preporuka").val(d);
+        })
+    }
+</script>

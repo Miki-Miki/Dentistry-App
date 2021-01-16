@@ -2,7 +2,9 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+   
 }
+@model Sesija;
 
 <div id="main">
     <div id="header">
@@ -19,17 +21,17 @@
                 <div class="container">
                     <nav id="SesijaNav" class="navbar navbar-light navbar-expand-sm">
                         <ul class="navbar-nav" style="margin-left:-1.5%;">
-                            <li class="nav-item>">
-                                <a class="nav-link navbar-light" style="color:white;" onclick="odaberiDijagnozu()">Dijagnoza</a>
+                            <li class="nav-item>" id="opcija">
+                                <a class="nav-link navbar-light" style="color:white;" onclick="odaberiDijagnozu(@Model.Id)">Dijagnoza</a>
                             </li>
-                            <li class="nav-item>">
-                                <a class="nav-link" style="color:white;" onclick="odaberiTerapiju()">Terapija</a>
+                            <li class="nav-item>" id="opcija">
+                                <a class="nav-link" style="color:white;" onclick="odaberiTerapiju(@Model.Id)">Terapija</a>
                             </li>
-                            <li class="nav-item>">
-                                <a class="nav-link navbar-light" style="color:white;" onclick="odaberiLijek()">Lijek</a>
+                            <li class="nav-item>" id="opcija">
+                                <a class="nav-link navbar-light" style="color:white;" onclick="odaberiLijek(@Model.Id)">Lijek</a>
                             </li>
-                            <li class="nav-item>">
-                                <a class="nav-link" style="color:white;" onclick="odaberiCTSnimak()">CT snimak</a>
+                            <li class="nav-item>" id="opcija">
+                                <a class="nav-link" style="color:white;" onclick="odaberiCTSnimak(@Model.Id)">CT snimak</a>
                             </li>
                         </ul>
                     </nav>
@@ -51,8 +53,8 @@
 
 <script>
 
-    function odaberiDijagnozu() {
-        var url = "/Sesija/NovaDijagnoza";
+    function odaberiDijagnozu (sesija) {
+        var url = "/Sesija/NovaDijagnoza?sesijaId=" + sesija;
 
         $.get(url, function (d) {
             $("#ajaxPrikazOdabraneOpcije").html(d);
@@ -60,8 +62,8 @@
     }
 
 
-    function odaberiTerapiju() {
-        var url = "/Sesija/NovaTerapija";
+    function odaberiTerapiju(sesija) {
+        var url = "/Sesija/NovaTerapija?sesijaId=" + sesija;
 
         $.get(url, function (d) {
             $("#ajaxPrikazOdabraneOpcije").html(d);
@@ -69,8 +71,8 @@
     }
 
 
-    function odaberiLijek() {
-        var url = "/Sesija/NoviLijek";
+    function odaberiLijek(sesija) {
+        var url = "/Sesija/NoviLijek?sesijaId=" + sesija;
 
         $.get(url, function (d) {
             $("#ajaxPrikazOdabraneOpcije").html(d);
@@ -78,8 +80,8 @@
     }
 
 
-    function odaberiCTSnimak() {
-        var url = "/Sesija/NoviCTSnimak";
+    function odaberiCTSnimak(sesija) {
+        var url = "/Sesija/NoviCTSnimak?sesijaId=" + sesija;
 
         $.get(url, function (d) {
             $("#ajaxPrikazOdabraneOpcije").html(d);
@@ -110,7 +112,10 @@
         background-color: #C4DBE0;
         color: #0C6980;
     }
-    .nav-item:hover{
-       cursor:pointer;
+    .navbar-nav:hover {
+        cursor: pointer;
+    }
+    #opcija:active {
+        background-color: #0C6980;
     }
 </style>
