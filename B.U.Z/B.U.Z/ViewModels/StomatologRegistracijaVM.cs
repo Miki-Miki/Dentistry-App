@@ -40,6 +40,8 @@ namespace B.U.Z.ViewModels
         [Required]
         [Display(Name = "Specijalizacija")]
         public string Specijalizacija { get; set; }
+
+
         public int SpolId { get; set; }
         public int GradId { get; set; }
         public List<SelectListItem> spolovi { get; set; }

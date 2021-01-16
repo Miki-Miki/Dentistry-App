@@ -1,0 +1,31 @@
+﻿@using B.U.Z.ViewModels
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@model SesijaVM
+
+<div id="mainAjax">
+    <div>
+        <form>
+            <div>
+                <label>Dijagnoza:</label>
+                <select asp-for="DijagnozaId" asp-items="Model.Dijagnoze"></select>
+            
+            </div>
+            <div>
+                <label>Napomena:</label>
+                <input type ="text" />
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    #mainAjax {
+        background-color: #0C6980;
+        color: white;
+        padding: 30px;
+    }
+</style>

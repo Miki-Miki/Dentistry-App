@@ -1,0 +1,24 @@
+﻿<div class="container">
+    <nav id="LijekoviNav" class="navbar navbar-light navbar-expand-sm">
+        <ul class="navbar-nav" style="margin-left:-1.5%;">
+            <li class="nav-item>">
+                <a asp-controller="Sesija" asp-action="NovaDijagnoza" class="nav-link navbar-light" style="color:white;">Dijagnoza</a>
+            </li>
+            <li class="nav-item>">
+                <a asp-controller="Sesija" asp-action="NovaTerapija" class="nav-link" style="color:white;">Terapija</a>
+            </li>
+            <li class="nav-item>">
+                <a asp-controller="Sesija" asp-action="NoviLijek" class="nav-link navbar-light" style="color:white;">Lijek</a>
+            </li>
+            <li class="nav-item>">
+                <a asp-controller="Sesija" asp-action="NoviCTSnimak" class="nav-link" style="color:white;">CT snimak</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<style>
+    #LijekoviNav {
+        background-color: #343a40;
+    }
+</style>

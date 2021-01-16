@@ -1,0 +1,116 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div id="main">
+    <div id="header">
+        <div id="pacijent">
+            <div id="pacijentSlika"></div>
+            <div id="pacijentInfo"></div>
+        </div>
+        <div id="logo"></div>
+    </div>
+    <div id="body">
+        <div id="trenutniTremin"></div>
+        <div id="sesijaInfo">
+            <div id="navbar">
+                <div class="container">
+                    <nav id="SesijaNav" class="navbar navbar-light navbar-expand-sm">
+                        <ul class="navbar-nav" style="margin-left:-1.5%;">
+                            <li class="nav-item>">
+                                <a class="nav-link navbar-light" style="color:white;" onclick="odaberiDijagnozu()">Dijagnoza</a>
+                            </li>
+                            <li class="nav-item>">
+                                <a class="nav-link" style="color:white;" onclick="odaberiTerapiju()">Terapija</a>
+                            </li>
+                            <li class="nav-item>">
+                                <a class="nav-link navbar-light" style="color:white;" onclick="odaberiLijek()">Lijek</a>
+                            </li>
+                            <li class="nav-item>">
+                                <a class="nav-link" style="color:white;" onclick="odaberiCTSnimak()">CT snimak</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="ajaxPrikazOdabraneOpcije">
+
+            </div>
+            <div id="buttons">
+                <form>
+                        <input type="submit" name="Odustani" value="Odustani" class="btn"/>
+                        <input type="submit" name="ZakaziNoviTermin" value="Zakazi novi termin" class="btn" />
+                        <input type="submit" name="ZavrsiUslugu" value="Zavrsi uslugu"class="btn" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function odaberiDijagnozu() {
+        var url = "/Sesija/NovaDijagnoza";
+
+        $.get(url, function (d) {
+            $("#ajaxPrikazOdabraneOpcije").html(d);
+        })
+    }
+
+
+    function odaberiTerapiju() {
+        var url = "/Sesija/NovaTerapija";
+
+        $.get(url, function (d) {
+            $("#ajaxPrikazOdabraneOpcije").html(d);
+        })
+    }
+
+
+    function odaberiLijek() {
+        var url = "/Sesija/NoviLijek";
+
+        $.get(url, function (d) {
+            $("#ajaxPrikazOdabraneOpcije").html(d);
+        })
+    }
+
+
+    function odaberiCTSnimak() {
+        var url = "/Sesija/NoviCTSnimak";
+
+        $.get(url, function (d) {
+            $("#ajaxPrikazOdabraneOpcije").html(d);
+        })
+    }
+
+</script>
+
+<style>
+    #main {
+        background-color: #00A8A8;
+        height: 100%;
+        width: 100%;
+    }
+    #header {
+        width: 100%;
+        height: 200px;
+        margin-left: auto;
+        margin-right: auto
+    }
+    #sesijaInfo {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #0C6980;
+    }
+    .btn {
+        background-color: #C4DBE0;
+        color: #0C6980;
+    }
+    .nav-item:hover{
+       cursor:pointer;
+    }
+</style>
