@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using B.U.Z.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using SignalRChat.Hubs;
 
 namespace B.U.Z
 {
@@ -43,6 +44,7 @@ namespace B.U.Z
             //    .RequireAuthenticatedUser().Build();
             //    options.Filters.Add(new AuthorizeFilter(policy));
             //}).AddXmlSerializerFormatters();
+            services.AddSignalR();
 
         }
 
@@ -74,7 +76,9 @@ namespace B.U.Z
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chathub");
             });
+            
         }
     }
 }

@@ -7,29 +7,34 @@
     <partial name="LijekoviPartial" />
 </div>
 <div id="formaDiv">
-<form asp-action="SpasiNoviLijek">
-    <div>
-        <label>Redni broj</label>
-        <input type="text" value="@Model"/>
-    </div>
-    <div>
-        <label>Naziv lijeka</label>
-        <input type="text" name="Naziv"/>
-    </div>
-    <div>
-        <label>Opis lijeka</label>
-        <input type="text" name="Opis" />
-    </div>
-    <div>
-        <input type="submit" name="Spasi" value="Snimi"/>
-    </div>
-</form>
+    <form asp-action="SpasiNoviLijek">
+        <div>
+            <label>Redni broj</label>
+            <input type="text" value="@Model" />
+        </div>
+        <div>
+            <label>Naziv lijeka</label>
+            <input type="text" name="Naziv" />
+        </div>
+        <div>
+            <label>Opis lijeka</label>
+            <input type="text" name="Opis" />
+        </div>
+        <div>
+            <input type="submit" id="sendButton" name="Spasi" value="Snimi" />
+        </div>
+    </form>
 </div>
+<div id="samir"></div>
+<input type="text" id="userInput" value="Naziv" />
+<input type="text" id="messageInput" value="Opis" />
 <style>
     #formaDiv {
         color: white;
         background-color: #343a40;
-        width:80.6%;
-        margin-left:18.1%;
+        width: 80.6%;
+        margin-left: 18.1%;
     }
 </style>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

@@ -610,7 +610,6 @@ C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAz
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.dll
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.pdb
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.genruntimeconfig.cache
-C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csprojAssemblyReference.cache
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Dijagnoze\Dijagnoze.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Lijekovi\Lijekovi.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Lijekovi\LijekoviPartial.cshtml.g.cs
@@ -1125,3 +1124,23 @@ D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\Pacij
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\UrediPacijenta.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\PacijentKalendar.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\StomatologKalendar.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\NovaUsluga\NovaUsluga.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\NoviPacijent.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\PacijentiOdabir.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\PacijentiPartial.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\UrediPacijenta.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\CTSnimakOdabir.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\DijagnozaOdabir.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\LijekOdabir.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\Sesija.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\SesijaPartial.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\TerapijaOdabir.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\NoviTermin.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\PacijentKalendar.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\PacijentOdabir.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\StomatologKalendar.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\TerminiPartial.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\TerminOdabir.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Obavijesti\Obavijesti.cshtml.g.cs

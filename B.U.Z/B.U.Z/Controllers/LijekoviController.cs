@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using SignalRChat.Hubs;
 
 namespace B.U.Z.Controllers
 {
@@ -36,6 +37,12 @@ namespace B.U.Z.Controllers
                 Opis = l.Opis,
             };
             db.Lijekovi.Add(novi);
+            Obavijesti nova = new Obavijesti
+            {
+                Sadržaj = "Dodan novi lijek u bazu podataka",
+                Vrijeme = System.DateTime.Now
+            };
+            db.Obavijesti.Add(nova);
             db.SaveChanges();
             return Redirect("Lijekovi");
         }
