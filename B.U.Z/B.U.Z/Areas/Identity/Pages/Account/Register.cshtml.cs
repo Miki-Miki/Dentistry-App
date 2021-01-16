@@ -122,6 +122,7 @@ namespace B.U.Z.Areas.Identity.Pages.Account
                 var user = new Pacijent 
                 { 
                     UserName = Input.BrojTelefona, 
+                    PhoneNumber=Input.BrojTelefona,
                     Email = Input.Email, 
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
