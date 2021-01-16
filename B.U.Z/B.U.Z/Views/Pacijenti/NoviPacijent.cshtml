@@ -1,0 +1,59 @@
+﻿@using B.U.Z.ViewModels
+@model PacijentiDodajVM
+<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
+    <partial name="../Home/Index" />
+</div>
+
+
+<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
+    <h1 style="color: #0C6980">Nova dijagnoza</h1>
+    <div class="primarydark">
+        <div class="primary" style="width:100%;">
+            <partial name="PacijentiPartial" />
+        </div>
+        <div id="formaDiv" class="primarydark">
+            <form asp-action="SpasiNovogPacijenta">
+                <div>
+                    <label>Redni broj</label>
+                    <input type="text" value="@Model.UkupnoPacijenata" />
+                </div>
+                <div>
+                    <label>Ime</label>
+                    <input type="text"  asp-for="Ime" />
+                </div>
+                <div>
+                    <label>Prezime</label>
+                    <input type="text"  asp-for="Prezime"/>
+                </div>
+                <div>
+                    <label>Datum rodjenja</label>
+                    <input type="text"  asp-for="DatumRodjenja"/>
+                </div>
+                <div>
+                    <label>Grad</label>
+                    <select asp-for="GradId" asp-items="@Model.Gradovi"></select>
+                </div>
+                <div>
+                    <label>Spol</label>
+                    <select asp-for="SpolId" asp-items="@Model.Spolovi"></select>
+                </div>
+                <div>
+                    <label>Broj telefona</label>
+                    <input type="text" asp-for="BrojTelefona" />
+                </div>
+                <div>
+                    <label>Lozinka</label>
+                    <input type="text" asp-for="PasswordHash" value="@Model.PasswordHash"/>
+                </div>
+                <div>
+                    <input type="submit" name="Spasi" value="Snimi" />
+                </div>
+            </form>
+        </div>
+        <style>
+            #formaDiv {
+            }
+        </style>
+    </div>
+</div>
+

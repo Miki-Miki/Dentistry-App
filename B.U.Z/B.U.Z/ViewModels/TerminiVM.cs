@@ -13,6 +13,7 @@ namespace B.U.Z.ViewModels
         public DateTime TerminEnd { get; set; }
 
         public Pacijent pacijent { get; set; }
+        public Usluga usluga { get; set; }
 
     }
 }

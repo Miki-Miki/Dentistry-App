@@ -1,0 +1,46 @@
+﻿@using B.U.Z.ViewModels;
+@model PacijentiUrediVM
+<div style="float:left; height:1000px; width:200px;">
+    <partial name="../Home/Index" />
+</div>
+<h1>Pacijenti</h1>
+<div>
+    <partial name="PacijentiPartial" />
+</div>
+<div id="formaDiv">
+    <form asp-action="SpasiNovogStarogPacijenta">
+        <div>
+            <input type="hidden" asp-for="@Model.pacijent_id" />
+        </div>
+        <div>
+            <label>Redni broj</label>
+            <input type="text" asp-for="@Model.RedniBroj" />
+        </div>
+        <div>
+            <label>Ime</label>
+            <input type="text" asp-for="@Model.Ime" />
+        </div>
+        <div>
+            <label>Prezime</label>
+            <input type="text" asp-for="@Model.Prezime" />
+        </div>
+        <div>
+            <label>Datum rodjenja</label>
+            <input type="text" asp-for="@Model.DatumRodjenja" />
+        </div>        <div>
+            <label>Broj telefona</label>
+            <input type="text" asp-for="@Model.BrojTelefona" />
+        </div>
+        <div>
+            <input type="submit" name="Spasi" value="Snimi" />
+        </div>
+    </form>
+</div>
+<style>
+    #formaDiv {
+        color: white;
+        background-color: #343a40;
+        width: 80.6%;
+        margin-left: 18.1%;
+    }
+</style>

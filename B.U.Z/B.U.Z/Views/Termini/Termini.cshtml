@@ -3,6 +3,9 @@
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="~/js/popper/popper.min.js"></script>
+    <link href="~/css/fullcalendar/main.css" rel="stylesheet" />
+    <script src="~/js/fullcalendar/main.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
@@ -46,7 +49,7 @@
                 </form>
             </div>
             <div id="podaci">
-                <table class="table" style="background-color:#C4DBE0; width:90%; margin-left:auto; margin-right:auto">
+                @*<table class="table" style="background-color:#C4DBE0; width:90%; margin-left:auto; margin-right:auto">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -67,12 +70,13 @@
                         }
 
                     </tbody>
-                </table>
-
+                </table>*@
             </div>
         </div>
+                <div id="calendar-stomatolog"></div>
     </div>
 </div>
+<script src="~/js/fullcalendar/kalendar-stomatolog.js"></script>
 <script>
     //$(function () {
     //    $("#tabs").tabs();
