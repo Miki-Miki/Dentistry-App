@@ -1,0 +1,40 @@
+﻿@using B.U.Z.ViewModels;
+@model NovoDentalnoPomagaloVM
+<div style="float:left; height:1000px; width:200px;">
+    <partial name="../Home/Index" />
+</div>
+<h1>Novo dentalno pomagalo</h1>
+<div>
+    <partial name="DentalnaPomagalaPartial" />
+</div>
+<div id="formaDiv">
+    <form asp-action="SpasiNovoDentalnoPomagalo">
+        <div>
+            <label>Redni broj</label>
+            <input type="text" value="@Model.BrojDentalnihPomagala" />
+        </div>
+        <div>
+            <label>Naziv dentalnog pomagala</label>
+            <input type="text" asp-for="Naziv" />
+        </div>
+        <div>
+            <label>Opis dentalnog pomagala</label>
+            <input type="text" asp-for="Opis" />
+        </div>
+        <div>
+            <label>Pacijent</label>
+            <select asp-for="PacijentId" asp-items="@Model.pacijenti"></select>
+        </div>
+        <div>
+            <input type="submit" name="Spasi" value="Snimi" />
+        </div>
+    </form>
+</div>
+<style>
+    #formaDiv {
+        color: white;
+        background-color: #343a40;
+        width:80.6%;
+        margin-left:18.1%;
+    }
+</style>

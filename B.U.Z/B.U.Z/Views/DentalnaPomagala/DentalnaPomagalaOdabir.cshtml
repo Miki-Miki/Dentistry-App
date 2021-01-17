@@ -1,0 +1,27 @@
+﻿@using B.U.Z.ViewModels
+@{ Layout = null;}
+@model NovoDentalnoPomagaloVM
+<div>
+    <div>
+        <label>Odabrano dentalno pomagalo:</label>
+    </div>
+    <form asp-controller="DentalnaPomagala" asp-action="SpasiNovoStaroDentalnoPomagalo">
+        <label>Šifra:</label>
+        <input type="text" asp-for="@Model.DentalnoPomagaloId" />
+
+        <label>Naziv:</label>
+        <input type="text" asp-for="@Model.Naziv" />
+
+        <label>Opis:</label>
+        <input type="text" asp-for="@Model.Opis" />
+
+        <label>Pacijent:</label>
+        <select asp-for="PacijentId" asp-items="@Model.pacijenti"></select>
+        <input class="badge-danger" type="submit" class="badge-danger" value="Uredi" />
+
+        <button class="badge-danger"><a style="text-decoration:none; color:white;" href="/DentalnaPomagala/ObrisiDentalnoPomagalo?DentalnoPomagaloId=@Model.DentalnoPomagaloId">Obriši</a></button>
+    </form>
+
+    
+
+</div>

@@ -137,10 +137,15 @@ namespace B.U.Z.Migrations
                     b.Property<string>("Naziv")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Vrsta")
+                    b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PacijentId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PacijentId");
 
                     b.ToTable("DentalnaPomagala");
                 });
@@ -663,6 +668,13 @@ namespace B.U.Z.Migrations
                         .HasForeignKey("SpolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.DentalnaPomagala", b =>
+                {
+                    b.HasOne("B.U.Z.Models.Pacijent", "Pacijent")
+                        .WithMany()
+                        .HasForeignKey("PacijentId");
                 });
 
             modelBuilder.Entity("B.U.Z.Models.DentalnoPomagaloNaSesiji", b =>
