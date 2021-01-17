@@ -164,6 +164,7 @@ namespace B.U.Z.Controllers
 
                 termini.Add(new TerminiVM()
                 {
+                    TerminId = t.Id,
                     basePrice = t.basePrice,
                     TerminStart = t.TerminStart,
                     TerminEnd = t.TerminEnd,
@@ -174,15 +175,24 @@ namespace B.U.Z.Controllers
 
             var terminiJSON = termini.Select(t => new
             {
-                //id = t.Id,
+                id = t.TerminId,
                 title = t.pacijent.FirstName + " " + t.pacijent.LastName,
                 description = t.usluga.Naziv,
                 start = t.TerminStart,
-                end = t.TerminEnd
+                end = t.TerminEnd,
+                basePrice = t.basePrice,
+                pacijent = t.pacijent,
+                usluga = t.usluga
             });
 
             return new JsonResult(terminiJSON);
         }
 
+        [HttpPost]
+        public JsonResult ZapocniSesiju(string _odabraniTermin)
+        {
+
+
+        }
     }
 }
