@@ -8,6 +8,7 @@ namespace B.U.Z.ViewModels
 {
     public class TerminiVM
     {
+        public int TerminId { get; set; }
         public double basePrice { get; set; }
         public DateTime TerminStart { get; set; }
         public DateTime TerminEnd { get; set; }

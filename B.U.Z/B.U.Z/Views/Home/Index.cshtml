@@ -24,6 +24,9 @@
                     <a asp-controller="Lijekovi" asp-action="Lijekovi" class="nav-link">Lijekovi</a>
                 </li>
                 <li class="nav-item>">
+                    <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link">Dentalna pomagala</a>
+                </li>
+                <li class="nav-item>">
                     <a asp-controller="UserAccounts" asp-action="UserAccounts" class="nav-link">User Accounts</a>
                 </li>
             </ul>
@@ -40,6 +43,9 @@ else if (User.IsInRole("Asistent"))
                 </li>
                 <li class="nav-item>">
                     <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link">Pacijenti</a>
+                </li>
+                <li class="nav-item>">
+                    <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link">Dentalna pomagala</a>
                 </li>
             </ul>
         </nav>

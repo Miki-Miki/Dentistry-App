@@ -9,6 +9,8 @@ namespace B.U.Z.Models
     {
         public int Id { get; set; }
         public string Naziv { get; set; }
-        public string Vrsta { get; set; }
+        public string Opis { get; set; }
+        public string ? PacijentId { get; set; }
+        public Pacijent Pacijent { get; set; }
     }
 }
