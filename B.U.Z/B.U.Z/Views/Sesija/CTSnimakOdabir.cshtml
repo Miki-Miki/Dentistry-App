@@ -1,29 +1,85 @@
-﻿@*
+﻿@using B.U.Z.ViewModels
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     Layout= null;
 }
+@model  SesijaVM
 
 <div id="mainAjax">
     <div>
-        <form>
-            <div>
-                <label>CT Snimak:</label>
-
+        <div id="leftColumn" class="form-group">
+            <div id="imgDiv">
+                <img src="~/Images/@Model.CTNalazSlikaPutanja" id="img" onclick="otvoriSliku()"/>
             </div>
-            <div>
-                <label>Opis:</label>
-                <input type="text" />
-            </div>
-        </form>
+            <form asp-action="NoviCTSnimak" enctype="multipart/form-data" id="forma">
+                <div>
+                    <input asp-for="SesijaId" hidden />
+                </div>
+                <div>
+                    <input asp-for="CTNalazSlika" />
+                </div>
+                <input type="submit" value="upload" class="btn"/>
+            </form>
+        </div>
+        <div id="rightColumn" class="form-group">
+            <label>Napomena:</label>
+            <textarea class="form-control" rows="7"></textarea>
+        </div>
     </div>
 </div>
 
 <style>
+    #img{
+        height:50%;
+        display:block;
+        margin:auto;
+    }
+    #imgDiv {
+        width:100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom:20px;
+    }
     #mainAjax {
         background-color: #0C6980;
         color:white;
         padding:30px;
     }
+    #leftColumn {
+        float: left;
+        width: 50%;
+        padding-left: 5px;
+        padding-right: 10px;
+    }
+
+    #rightColumn {
+        float: left;
+        width: 50%;
+        padding-left: 10px;
+        padding-right: 5px;
+    }
+
+    #forma {
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 </style>
+<script>
+    function otvoriSliku() {
+        var image = document.getElementById("img");
+        image.style.position = 'absolute';
+        image.style.top = 0;
+        image.style.height = '90%';
+        image.style.left = '50%';
+        image.style.marginLeft = (image.offsetWidth / -2) + 'px';
+        image.style.top = '50%';
+        image.style.marginTop = (image.offsetHeight / -2) + 'px';
+
+        $("#img").appendTo("#SesijaBody");
+
+    }
+
+</script>

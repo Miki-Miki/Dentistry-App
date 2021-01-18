@@ -116,11 +116,11 @@ namespace B.U.Z.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Nalaz")
+                    b.Property<string>("CTNalazSlika")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Snimak")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Nalaz")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -251,6 +251,28 @@ namespace B.U.Z.Migrations
                     b.ToTable("Kanton");
                 });
 
+            modelBuilder.Entity("B.U.Z.Models.LijekNaSesiji", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LijekId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SesijaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LijekId");
+
+                    b.HasIndex("SesijaId");
+
+                    b.ToTable("LijekNaSesiji");
+                });
+
             modelBuilder.Entity("B.U.Z.Models.Lijekovi", b =>
                 {
                     b.Property<int>("Id")
@@ -327,12 +349,6 @@ namespace B.U.Z.Migrations
                     b.Property<int?>("CTNalazId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DentalnoPomagaloId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LijekId")
-                        .HasColumnType("int");
-
                     b.Property<string>("StomatologId")
                         .HasColumnType("nvarchar(450)");
 
@@ -342,10 +358,6 @@ namespace B.U.Z.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CTNalazId");
-
-                    b.HasIndex("DentalnoPomagaloId");
-
-                    b.HasIndex("LijekId");
 
                     b.HasIndex("StomatologId");
 
@@ -704,19 +716,26 @@ namespace B.U.Z.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("B.U.Z.Models.LijekNaSesiji", b =>
+                {
+                    b.HasOne("B.U.Z.Models.Lijekovi", "Lijek")
+                        .WithMany()
+                        .HasForeignKey("LijekId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("B.U.Z.Models.Sesija", "Sesija")
+                        .WithMany()
+                        .HasForeignKey("SesijaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("B.U.Z.Models.Sesija", b =>
                 {
                     b.HasOne("B.U.Z.Models.CTNalaz", "CTNalaz")
                         .WithMany()
                         .HasForeignKey("CTNalazId");
-
-                    b.HasOne("B.U.Z.Models.DentalnaPomagala", "DentalnoPomagalo")
-                        .WithMany()
-                        .HasForeignKey("DentalnoPomagaloId");
-
-                    b.HasOne("B.U.Z.Models.Lijekovi", "Lijek")
-                        .WithMany()
-                        .HasForeignKey("LijekId");
 
                     b.HasOne("B.U.Z.Models.Stomatolog", "Stomatolog")
                         .WithMany()

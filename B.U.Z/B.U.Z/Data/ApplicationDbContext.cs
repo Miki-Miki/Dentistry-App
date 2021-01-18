@@ -34,6 +34,7 @@ namespace B.U.Z.Data
         //}
 
         public DbSet<Lijekovi> Lijekovi { get; set; }
+        public DbSet<LijekNaSesiji> LijekNaSesiji { get; set; }
         public DbSet<Recepti> Recepti { get; set; }
         public DbSet<Dijagnoze> Dijagnoze { get; set; }
         

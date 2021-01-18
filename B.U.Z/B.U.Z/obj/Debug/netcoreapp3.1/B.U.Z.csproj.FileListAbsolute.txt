@@ -1125,3 +1125,12 @@ D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\Pacij
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\UrediPacijenta.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\PacijentKalendar.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\StomatologKalendar.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Web.Helpers.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\WebMatrix.Data.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\WebMatrix.WebData.dll

@@ -9,6 +9,8 @@ namespace B.U.Z.Models
     {
         public int Id { get; set; }
         public string Nalaz { get; set; }
-        public byte[] Snimak { get; set; }
+
+        public string CTNalazSlika { get; set; }
+
     }
 }

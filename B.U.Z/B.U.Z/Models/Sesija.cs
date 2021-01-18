@@ -9,9 +9,6 @@ namespace B.U.Z.Models
     {
         public int Id { get; set; }
 
-        public int? LijekId { get; set; }
-        public Lijekovi Lijek { get; set; }
-
         public int? CTNalazId { get; set; }
         public CTNalaz CTNalaz { get; set; }
 
@@ -20,9 +17,6 @@ namespace B.U.Z.Models
 
         public string StomatologId { get; set; }
         public Stomatolog Stomatolog { get; set; }
-
-        public int? DentalnoPomagaloId { get; set; }
-        public DentalnaPomagala DentalnoPomagalo { get; set; }
 
     }
 }

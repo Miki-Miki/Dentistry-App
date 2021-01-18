@@ -77,5 +77,12 @@ namespace B.U.Z.Controllers
             Lijekovi l = db.Lijekovi.Find(LijekId);
             return View("LijekoviOdabir", l);
         }
+
+        public String getOpis(int lijekId)
+        {
+            ApplicationDbContext dbContext = new ApplicationDbContext();
+            Lijekovi lijek = dbContext.Lijekovi.Find(lijekId);
+            return lijek.Opis;
+        }
     }
 }

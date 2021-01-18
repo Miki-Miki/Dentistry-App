@@ -7,40 +7,74 @@
 }
 @model SesijaVM
 
-<div id="mainAjax" onload="findOpis(); findPreporuka()">
+<div id="mainAjax">
     <div>
-        <form>
-            <div>
-                <label>Dijagnoza:</label>
-                <select asp-for="DijagnozaId" asp-items="Model.Dijagnoze" id="dijagnoze" onchange="findOpis(); findPreporuka()" ></select>
+        <form id="forma">
+            <div id="leftColumn">
+                <div>
+                    <input type="text" hidden value="@Model.SesijaId" id="sesijaId" />
+                </div>
+                <div class="form-group">
+                    <label>Dijagnoza:</label>
+                    <select asp-for="DijagnozaId" asp-items="Model.Dijagnoze" id="dijagnoze" onchange="findOpis(); findPreporuka(); saveDijagnoza(@Model.SesijaId)" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label>Opis:</label>
+                    <input type="text" readonly id="Opis" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label>Preporuka:</label>
+                    <input type="text" readonly id="Preporuka" class="form-control"/>
+                </div>
             </div>
-            <div>
-                <label>Opis:</label>
-                <input type="text" readonly id="Opis" />
+            <div id="rightColumn">
+                <div class="form-group">
+                    <label for="comment">Napomena:</label>
+                    <textarea class="form-control" rows="7"></textarea>
+                </div>
             </div>
-            <div>
-                <label>Preporuka:</label>
-                <input type="text" readonly id="Preporuka" />
-            </div>
-            <div>
-                <label>Napomena:</label>
-                <input type="text" />
-            </div>
+            
         </form>
     </div>
 </div>
 <style>
-    #mainAjax {
-        background-color: #0C6980;
+    #leftColumn {
+        float: left;
+        width: 50%;
+        padding-left: 5px;
+        padding-right: 10px;
+    }
+    #rightColumn {
+        float: left;
+        width: 50%;
+        padding-left: 10px;
+        padding-right: 5px;
+    }
+    #forma {
         color: white;
-        padding: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 </style>
 
 <script>
+    $(document).ready(function () {
+        loadDijagnoza();
+    })
+
+    function loadDijagnoza() {
+        var sesija = $("#sesijaId").val();
+        var url = '/Sesija/GetDijagnoza?SesijaId=' + sesija;
+
+        $.get(url, function (d) {
+            $("#dijagnoze").val(d);
+            findOpis();
+            findPreporuka();
+        })
+    }
+
     function findOpis() {
 
-        console.log("pozvana");
         var dijagnozaId = $("#dijagnoze").val();
         var url = '/Dijagnoze/getOpis?dijagnozaId=' + dijagnozaId;
 
@@ -57,4 +91,13 @@
             $("#Preporuka").val(d);
         })
     }
+    function saveDijagnoza(seijsaId) {
+
+        var dijagnozaId = $("#dijagnoze").val();
+        var url = "/Sesija/SaveDijagnoza?SesijaId=" + seijsaId + "&DijagnozaId=" + dijagnozaId;
+
+        $.get(url, function (d) {
+        })
+    }
+
 </script>

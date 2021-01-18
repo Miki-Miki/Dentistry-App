@@ -8,6 +8,7 @@ namespace B.U.Z.Models
     public class DijagnozaNaSesiji
     {
         public int Id { get; set; }
+
         public int DijagnozaId { get; set; }
         public Dijagnoze Dijagnoza { get; set; }
 

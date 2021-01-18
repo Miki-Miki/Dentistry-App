@@ -1,121 +1,165 @@
-﻿@*
+﻿@using B.U.Z.ViewModels
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-   
+    Layout = null;
 }
-@model Sesija;
+@model SesijaVM;
 
-<div id="main">
-    <div id="header">
-        <div id="pacijent">
-            <div id="pacijentSlika"></div>
-            <div id="pacijentInfo"></div>
-        </div>
-        <div id="logo"></div>
-    </div>
-    <div id="body">
-        <div id="trenutniTremin"></div>
-        <div id="sesijaInfo">
-            <div id="navbar">
-                <div class="container">
-                    <nav id="SesijaNav" class="navbar navbar-light navbar-expand-sm">
-                        <ul class="navbar-nav" style="margin-left:-1.5%;">
-                            <li class="nav-item>" id="opcija">
-                                <a class="nav-link navbar-light" style="color:white;" onclick="odaberiDijagnozu(@Model.Id)">Dijagnoza</a>
-                            </li>
-                            <li class="nav-item>" id="opcija">
-                                <a class="nav-link" style="color:white;" onclick="odaberiTerapiju(@Model.Id)">Terapija</a>
-                            </li>
-                            <li class="nav-item>" id="opcija">
-                                <a class="nav-link navbar-light" style="color:white;" onclick="odaberiLijek(@Model.Id)">Lijek</a>
-                            </li>
-                            <li class="nav-item>" id="opcija">
-                                <a class="nav-link" style="color:white;" onclick="odaberiCTSnimak(@Model.Id)">CT snimak</a>
-                            </li>
-                        </ul>
-                    </nav>
+
+    <head>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <script src="~/js/popper/popper.min.js"></script>
+    </head>
+    <body id="SesijaBody">
+            <div id="main">
+                <div id="header">
+                    <div id="pacijent">
+                        <div id="pacijentSlika"></div>
+                        <div id="pacijentInfo"></div>
+                    </div>
+                    <div id="logo"></div>
                 </div>
-            </div>
-            <div id="ajaxPrikazOdabraneOpcije">
+                <div id="body">
+                    <div id="trenutniTremin"></div>
+                    <div id="sesijaInfo">
+                        <div id="navbar">
+                            <div class="container">
+                                <nav id="SesijaNav" class="navbar navbar-light navbar-expand-sm">
+                                    <ul class="navbar-nav" style="margin-left:-1.5%;">
+                                        <li class="nav-item>" id="opcija">
+                                            <a class="nav-link navbar-light" style="color:white;" onclick="odaberiDijagnozu(@Model.SesijaId)">Dijagnoza</a>
+                                        </li>
+                                        <li class="nav-item>" id="opcija">
+                                            <a class="nav-link" style="color:white;" onclick="odaberiTerapiju(@Model.SesijaId)">Terapija</a>
+                                        </li>
+                                        <li class="nav-item>" id="opcija">
+                                            <a class="nav-link navbar-light" style="color:white;" onclick="odaberiLijek(@Model.SesijaId)">Lijek</a>
+                                        </li>
+                                        <li class="nav-item>" id="opcija">
+                                            <a class="nav-link" style="color:white;" onclick="odaberiCTSnimak(@Model.SesijaId)">CT snimak</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div id="opcije">
+                            <div id="ajaxPrikazOdabraneOpcije">
 
-            </div>
-            <div id="buttons">
-                <form>
-                        <input type="submit" name="Odustani" value="Odustani" class="btn"/>
-                        <input type="submit" name="ZakaziNoviTermin" value="Zakazi novi termin" class="btn" />
-                        <input type="submit" name="ZavrsiUslugu" value="Zavrsi uslugu"class="btn" />
-                </form>
-            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="buttons">
+                        <form>
+                            <input type="submit" name="Odustani" value="Odustani" class="btn" id="odustaniBtn" />
+                            <input type="submit" name="ZakaziNoviTermin" value="Zakazi novi termin" class="btn" id="zakaziBtn"/>
+                            <input type="submit" name="ZavrsiUslugu" value="Zavrsi uslugu" class="btn" id="zavrsiBtn"/>
+                        </form>
+                    </div>
+                </div>
         </div>
-    </div>
-</div>
+    </body>
+    <footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
+    <script>
 
-<script>
+        function odaberiDijagnozu(sesija) {
+            var url = "/Sesija/NovaDijagnoza?sesijaId=" + sesija;
 
-    function odaberiDijagnozu (sesija) {
-        var url = "/Sesija/NovaDijagnoza?sesijaId=" + sesija;
-
-        $.get(url, function (d) {
-            $("#ajaxPrikazOdabraneOpcije").html(d);
-        })
-    }
-
-
-    function odaberiTerapiju(sesija) {
-        var url = "/Sesija/NovaTerapija?sesijaId=" + sesija;
-
-        $.get(url, function (d) {
-            $("#ajaxPrikazOdabraneOpcije").html(d);
-        })
-    }
+            $.get(url, function (d) {
+                $("#ajaxPrikazOdabraneOpcije").html(d);
+            })
+        }
 
 
-    function odaberiLijek(sesija) {
-        var url = "/Sesija/NoviLijek?sesijaId=" + sesija;
+        function odaberiTerapiju(sesija) {
+            var url = "/Sesija/NovaTerapija?sesijaId=" + sesija;
 
-        $.get(url, function (d) {
-            $("#ajaxPrikazOdabraneOpcije").html(d);
-        })
-    }
+            $.get(url, function (d) {
+                $("#ajaxPrikazOdabraneOpcije").html(d);
+            })
+        }
 
 
-    function odaberiCTSnimak(sesija) {
-        var url = "/Sesija/NoviCTSnimak?sesijaId=" + sesija;
+        function odaberiLijek(sesija) {
+            var url = "/Sesija/NoviLijek?sesijaId=" + sesija;
 
-        $.get(url, function (d) {
-            $("#ajaxPrikazOdabraneOpcije").html(d);
-        })
-    }
+            $.get(url, function (d) {
+                $("#ajaxPrikazOdabraneOpcije").html(d);
+            })
+        }
 
-</script>
 
-<style>
-    #main {
-        background-color: #00A8A8;
-        height: 100%;
-        width: 100%;
-    }
-    #header {
-        width: 100%;
-        height: 200px;
-        margin-left: auto;
-        margin-right: auto
-    }
-    #sesijaInfo {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: #0C6980;
-    }
-    .btn {
-        background-color: #C4DBE0;
-        color: #0C6980;
-    }
-    .navbar-nav:hover {
-        cursor: pointer;
-    }
-    #opcija:active {
-        background-color: #0C6980;
-    }
-</style>
+        function odaberiCTSnimak(sesija) {
+            var url = "/Sesija/NoviCTNalaz?sesijaId=" + sesija;
+
+            $.get(url, function (d) {
+                $("#ajaxPrikazOdabraneOpcije").html(d);
+            })
+        }
+
+    </script>
+
+    <style>
+        #body {
+            background-color: #00A8A8;
+            width: 100%;
+            margin: 0;
+        }
+
+        #main {
+            background-color: #00A8A8;
+            height: 100%;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #header {
+            width: 100%;
+            height: 200px;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        #sesijaInfo {
+            width: 90%;
+            height: 47%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #0C6980;
+        }
+
+        .btn {
+            background-color: #C4DBE0;
+            color: #0C6980;
+            margin:10px;
+        }
+
+        .navbar-nav:hover {
+            cursor: pointer;
+        }
+
+        #opcija:active {
+            background-color: #0C6980;
+        }
+        #buttons {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #odustaniBtn{
+            float:left;
+        }
+        #zakaziBtn{
+            float:right;
+        }
+        #zavrsiBtn{
+            float:right;
+        }
+
+    </style>
