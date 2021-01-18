@@ -1,0 +1,128 @@
+﻿#body {
+    background-color: #00A8A8;
+    width: 100%;
+    margin: 0;
+}
+
+#main {
+    background-color: #00A8A8;
+    height: 100%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header {
+    width: 100%;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#sesijaInfo {
+    width: 90%;
+    height: 47%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #0C6980;
+}
+
+.btn {
+    background-color: #C4DBE0;
+    color: #0C6980;
+    margin: 10px;
+}
+
+.navbar-nav:hover {
+    cursor: pointer;
+}
+
+#opcija:active {
+    background-color: #0C6980;
+}
+
+#buttons {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#odustaniBtn {
+    float: left;
+}
+
+#zakaziBtn {
+    float: right;
+}
+
+#zavrsiBtn {
+    float: right;
+}
+
+#header {
+    width: 90%;
+    height: 27.4%;
+    margin-left: auto;
+    margin-right: auto;
+    /*border: solid red 2px;*/
+}
+
+#trenutniTermin {
+    width: 90%;
+    /*border: solid blue 2px;*/
+    margin-left: auto;
+    margin-right: auto;
+    height: 20%;  
+}
+
+#header {
+    padding: 10px;
+    height: 30%;
+}
+
+#body {
+    height: 50%;
+    /*border: solid green 2px;*/
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pacijentSlika {    
+    height: 100%;
+    width: 22%;
+    float: left;    
+}
+
+#pacijentInfo {
+    height: 100%;
+    width: 40%;
+    float: left;
+    /*border: 3px solid purple;*/
+}
+
+#logo {
+    height: 100%;
+    width: 37%;
+    float: left;
+}
+
+#logoSlika {
+    position: relative;
+    top: 15%;
+    height: auto;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#pacijentSlikaSlika {
+    height: 100%;
+    width: auto;
+}
+
+body {
+    background-image: url("background-image.png");
+    background-size: 300px 300px;
+    background-repeat: repeat;
+}

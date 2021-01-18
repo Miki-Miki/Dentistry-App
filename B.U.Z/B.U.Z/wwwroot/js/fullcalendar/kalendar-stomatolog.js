@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 terminId: info.event.id,
                 basePrice: info.event.extendedProps.basePrice,
                 start: info.event.startStr,
-                end: info.event.endStr,                
+                end: info.event.endStr,
                 pacijent: info.event.extendedProps.pacijent,
                 usluga: info.event.extendedProps.usluga
             }
@@ -45,18 +45,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             //Empty text
             trmPocetak.innerText = "";
-            trmKraj.innerText ="";
+            trmKraj.innerText = "";
             trmImePacijenta.innerText = "";
             trmUsluga.innerText = "";
-            trmBasePrice.innerText ="";
+            trmBasePrice.innerText = "";
 
             //Initialize session
-           trmPocetak.innerText += selectedSesija.start;
-           trmKraj.innerText += selectedSesija.end;
-           trmImePacijenta.innerText += selectedSesija.pacijent.firstName + ' ' + selectedSesija.pacijent.lastName;
-           trmUsluga.innerText += selectedSesija.usluga.naziv;
-           trmBasePrice.innerText += selectedSesija.basePrice;
-           
+            trmPocetak.innerText += selectedSesija.start;
+            trmKraj.innerText += selectedSesija.end;
+            trmImePacijenta.innerText += selectedSesija.pacijent.firstName + ' ' + selectedSesija.pacijent.lastName;
+            trmUsluga.innerText += selectedSesija.usluga.naziv;
+            trmBasePrice.innerText += selectedSesija.basePrice;
+
 
             console.log(selectedSesijaDiv);
             console.log(selectedSesija);
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 container: "body"
             });
         },
-        events: '/Termini/SFindAll'        
+        events: '/Termini/SFindAll'
     });
 
     calendar.render();
@@ -78,16 +78,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function sendSesija() {
-    $.ajax({
-        url: "/Termini/ZapocniSesiju",
-        type: "POST",
-        data: JSON.stringify(selectedSesija),
-        contentType: 'appliaction/json; charset=utf-8',
+    //var URL = "../Sesija/Sesija?terminId=" + selectedSesija.terminId;
+    //$.get(URL, function (d) {
+    //    console.log('sendSesija: ');
+    //})
 
-        success: function (result) {
-            console.log("poslano");
-        }
-    })
+    $.ajax({
+        type: "POST",
+        url: "/Sesija/Sesija",
+        data: { terminId: selectedSesija.terminId },
+
+        success: function (data) {
+            window.location.href = "/Sesija/Sesija?terminId=" + selectedSesija.terminId;
+        },
+
+        error: function (data) {
+            window.location.href = "/Sesija/Sesija?terminId=" + selectedSesija.terminId;
+        },
+
+        failure: function (data) {
+            window.location.href = "/Sesija/Sesija";
+        },
+    });
+
 }
 
 function odaberiTermin(TerminId) {

@@ -80,10 +80,6 @@
             "System.Linq": {
               "target": "Package",
               "version": "[4.3.0, )"
-            },
-            "jQuery.Fullcalendar": {
-              "target": "Package",
-              "version": "[3.9.0, )"
             }
           },
           "imports": [

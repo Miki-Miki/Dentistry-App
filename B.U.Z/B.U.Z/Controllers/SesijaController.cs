@@ -16,12 +16,14 @@ namespace B.U.Z.Controllers
     {
 
         private readonly IWebHostEnvironment webHostEnviroment;
-        public SesijaController(IWebHostEnvironment _webHostEnvironment)
+
+       
+        public SesijaController(IWebHostEnvironment _webHostEnvironment = null)
         {
             webHostEnviroment = _webHostEnvironment;
         }
 
-        public IActionResult Sesija(Sesija sesija) //treba se poslati termin za koji se radi sesija
+        public IActionResult Sesija(Sesija sesija, int terminId) //treba se poslati termin za koji se radi sesija
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
@@ -33,7 +35,8 @@ namespace B.U.Z.Controllers
 
                 SesijaVM sesijavm2 = new SesijaVM
                 {
-                    SesijaId = novaSesija.Id
+                    SesijaId = novaSesija.Id,
+                    TerminId = terminId
                 };
 
                 return View(sesijavm2);

@@ -11,6 +11,7 @@ namespace B.U.Z.ViewModels
     public class SesijaVM
     {
         public int SesijaId { get; set; }
+        public int TerminId { get; set; }
 
         public int DijagnozaId { get; set; }
         public List<SelectListItem> Dijagnoze { get; set; }

@@ -188,11 +188,21 @@ namespace B.U.Z.Controllers
             return new JsonResult(terminiJSON);
         }
 
-        [HttpPost]
-        public JsonResult ZapocniSesiju(string _odabraniTermin)
-        {
+        //[Route("ZapocniSesiju")]
+        //[HttpPost]
+        //public IActionResult ZapocniSesiju(int _terminId)
+        //{
+        //    var _sesijaController = new SesijaController();
+        //    _sesijaController.ControllerContext = ControllerContext;
 
+        //    return _sesijaController.Sesija(new Sesija(), _terminId);
 
-        }
+        //    //return RedirectToAction("Sesija", "Sesija", new
+        //    //{
+        //    //    sesija = new Sesija(),
+        //    //    terminId = _terminId
+        //    //});
+        //}
+        
     }
 }
