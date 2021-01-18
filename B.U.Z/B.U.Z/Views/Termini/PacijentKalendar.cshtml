@@ -4,9 +4,7 @@
 @{
 }
 
-<div style="float:left; height:1000px; width:200px;">
-    <partial name="../Home/Index" />
-</div>
+
 
 
 <head>
@@ -15,11 +13,30 @@
     <script src="~/js/fullcalendar/main.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="~/css/termini/pacijent-kalendar-style.css" />
 </head>
 
-<h1>KALENDAR</h1>
+<div id="kontejner">
+    <div id="partialHome">
+        <partial name="../Home/Index" />
+    </div>
 
-<div id="calendar-pacijent"></div>
+    
+    <div id="calendar-container">
+        <div id="frmZakazivanjeTermina">
+            <input type="text" placeholder="text" />
+        </div>
+        <div id="calendar-pacijent-container-u-picku-materinu">
+            <div id="calendar-pacijent"></div>
+        </div>
+        
+    </div>
+
+
+</div>
+
+
+
 
 <script src="~/js/fullcalendar/kalendar-pacijent.js"></script>
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="~/css/termini/noviTermin.css" />
 </head>
 
 
@@ -21,8 +22,8 @@
         </div>
     </div>
 
-    <div id="main_body" style="float:left; width: 80%; background-color:#C4DBE0; padding: 30px;">
-        <div style="background-color: #0C6980; width:90%; height:300px; margin-left:auto; margin-right: auto;">
+    <div id="main_body">
+        <div id="frmZakazivanjeTermina">
      
             <div id="noviTermin">
                 <form asp-action="DodajTermin">
@@ -51,7 +52,7 @@
             </div>
         </div>
         <br />
-        <div id="termini" style="background-color: #0C6980;width:90%; height:500px; margin-left:auto; margin-right: auto;">
+        <div id="termini">
             <div>
                 <partial name="TerminiPartial" />
             </div>
@@ -72,7 +73,7 @@
                     </thead>
                     @foreach (var p in Model)
                     {
-                        <tr onclick="odaberiPacijenta('@p.Id')">
+                        <tr class="pacijentiRow" onclick="odaberiPacijenta('@p.Id')">
                             <td>@p.Id</td>
                             <td>@p.FirstName</td>
                             <td>@p.LastName</td>

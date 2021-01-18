@@ -19,65 +19,24 @@
         </div>
     </div>
 
-    <div id="main_body" style="float:left; width: 80%; background-color:#C4DBE0; padding: 30px; height:100%">
-        <div style="background-color: #0C6980; width:90%; height:70px; margin-left:auto; margin-right: auto;">
-            <div id="TerminOdabir">
-
-            </div>
-        </div>
-        <br />
+    <div id="main_body">        
         <div id="termini">
             <div>
                 <partial name="TerminiPartial" />
             </div>
-            <div id="header">
-                @*<form style="float: left">
-                        <label>Search:</label>
-                        <input type="text" name="Ime i prezime" />
-                    </form>
-                    <form style="float: left">
-                        <label>Datum:</label>
-                        <input type="date" name="Datum" />
-                    </form>
-                    <form style="float: left">
-                        <label>Sort by:</label>
-                        <select>
-                            <option>Vrijeme - uzlazno</option>
-                            <option>Vrijeme - silazno</option>
-                            <option>Ime - abecedno</option>
-                            <option>Usluga - abecedno</option>
-                        </select>
-                    </form>*@
+
+            <div id="header">                
                 <div id="calendar-stomatolog"></div>
             </div>
-            <div id="podaci">
-                @*<table class="table" style="background-color:#C4DBE0; width:90%; margin-left:auto; margin-right:auto">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Ime i prezime</th>
-                                <th scope="col">Termin pocetak</th>
-                                <th scope="col">Termin kraj</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var s in Model)
-                            {
-                                <tr id="red" onclick="odaberiTermin('@s.Id')" >
-                                    <td>@s.Id</td>
-                                    <td>@s.Pacijent.FirstName @s.Pacijent.LastName</td>
-                                    <td>@s.TerminStart.Date</td>
-                                    <td>@s.TerminEnd.Date</td>
-                                </tr>
-                            }
 
-                        </tbody>
-                    </table>*@
+            <div id="podaci">
+               
             </div>
         </div>
 
     </div>
 </div>
+
 <div id="selectedSesija">
     <a id="btnNazad" onclick="unSelectSesija()">X</a>
     <h4 style="color: #0C6980;">Termin</h4>
@@ -132,17 +91,3 @@
         })
     }
 </script>
-<style>
-    #red:hover {
-        background-color: #507881;
-        color: white;
-    }
-
-    #red:active {
-        background-color: #00A8A8;
-    }
-
-    #red {
-        cursor: pointer;
-    }
-</style>

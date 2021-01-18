@@ -1,0 +1,33 @@
+﻿body {
+}
+
+#main_body {
+    float: left;
+    width: 80%;
+    background-color: #C4DBE0;
+    padding: 30px;
+}
+
+#frmZakazivanjeTermina {
+    background-color: #0C6980;
+    width: 90%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+}
+
+#termini {
+    background-color: #0C6980;
+    width: 90%;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pacijentiRow {
+}
+
+.pacijentiRow:hover {
+    background-color: #7a8795;
+}
