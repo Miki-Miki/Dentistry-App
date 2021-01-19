@@ -1,3 +1,6 @@
+#net core files
+*.cshtml.g.cs
+
 *.swp
 *.*~
 project.lock.json
