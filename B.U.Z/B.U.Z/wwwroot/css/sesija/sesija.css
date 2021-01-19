@@ -21,7 +21,7 @@
 
 #sesijaInfo {
     width: 90%;
-    height: 47%;
+    height: 80%;
     margin-left: auto;
     margin-right: auto;
     background-color: #0C6980;
@@ -37,14 +37,26 @@
     cursor: pointer;
 }
 
-#opcija:active {
-    background-color: #0C6980;
+#opcije {
+    height: 88%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar {
+    height: 12%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #buttons {
     width: 90%;
+    height: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 0;
 }
 
 #odustaniBtn {
@@ -72,7 +84,8 @@
     /*border: solid blue 2px;*/
     margin-left: auto;
     margin-right: auto;
-    height: 20%;  
+    padding-top: 20px;
+    height: 17%;
 }
 
 #header {
@@ -81,17 +94,17 @@
 }
 
 #body {
-    height: 50%;
+    height: 53%;
     /*border: solid green 2px;*/
     width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
 
-#pacijentSlika {    
+#pacijentSlika {
     height: 100%;
     width: 22%;
-    float: left;    
+    float: left;
 }
 
 #pacijentInfo {
@@ -117,12 +130,90 @@
 }
 
 #pacijentSlikaSlika {
-    height: 100%;
+    height: 70%;
     width: auto;
+}
+
+#pacijentInfoText {
+    color: white;
+    position: relative;
+    top: 25%;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 20px;
+    height: 70%;
+    width: 100%;
+}
+
+#terminTable {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+}
+
+#tableHead {
+    background-color: #C4DBE0;
+    color: #0C6980;
+    border: none;
+}
+
+#textTrenutniTermin {
+    position: relative;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+#tableId {
+    background-color: #0C6980;
+    color: white
+}
+
+.table {
+    border: none;
 }
 
 body {
     background-image: url("background-image.png");
     background-size: 300px 300px;
     background-repeat: repeat;
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+
+
+#leftColumn {
+    float: left;
+    width: 50%;
+    padding-left: 5px;
+    padding-right: 10px;
+    border: none;
+}
+
+#rightColumn {
+    float: left;
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: white;
+    border: none;
+}
+
+#forma {
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#mainAjax {
+    height: 100%;
+    width: 100%;
+}
+
+.form-group {
+    padding: 0;
+    margin: 0;
 }

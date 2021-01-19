@@ -6,27 +6,50 @@
     Layout = null;
 }
 @model SesijaVM;
+
+<head>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/sesija/sesija.css" />
+</head>
 <body>
-    <head>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <script src="~/js/popper/popper.min.js"></script>
-        <link rel="stylesheet" href="~/css/sesija/sesija.css" />
-    </head>
     <div id="SesijaBody">
+        <input hidden value="@Model.loadajCTNalaz" id="loadajCTNalaz" />
+        <input hidden value="@Model.SesijaId" id="sesijaId" />
         <div id="main">
             <div id="header">
                 <div id="pacijent">
                     <div id="pacijentSlika">
                         <img id="pacijentSlikaSlika" src="~/Images/media/male_avatar-512.webp" />
                     </div>
-                    <div id="pacijentInfo"></div>
+                    <div id="pacijentInfo">
+                        <div id="pacijentInfoText">
+                            <h4>Broj Kartona: @Model.Pacijent.BrojKartona</h4>
+                            <h4>Ime i prezime: @Model.Pacijent.FirstName @Model.Pacijent.LastName</h4>
+                            <h4>Br. tel.: @Model.Pacijent.PhoneNumber</h4>
+                        </div>
+                    </div>
                     <div id="logo">
                         <img id="logoSlika" src="~/Images/media/buz_logo.png" />
                     </div>
                 </div>
             </div>
-            <div id="trenutniTermin"></div>
+            <div id="trenutniTermin">
+                <div id="textTrenutniTermin">
+                    <h4>Trenutni termin:</h4>
+                </div>
+                <table class="table" id="terminTable">
+                    <thead id="tableHead">
+                        <tr>
+                            <td style="background-color:#0C6980; color:white">@Model.TerminId</td>
+                            <td>@Model.Pacijent.FirstName @Model.Pacijent.LastName</td>
+                            <td>@Model.Termin.TerminStart.Day/@Model.Termin.TerminStart.ToString("MMMM")/@Model.Termin.TerminStart.Year </td>
+                            <td>@Model.Termin.TerminStart.ToString("HH:mm tt") </td>
+                            <td>@Model.Usluga.Naziv</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
             <div id="body">
                 <div id="sesijaInfo">
                     <div id="navbar">
@@ -56,12 +79,10 @@
                     </div>
                 </div>
                 <div id="buttons">
-                    <form>
-                        <input type="submit" name="Odustani" value="Odustani" class="btn" id="odustaniBtn" />
-                        <input type="submit" name="ZakaziNoviTermin" value="Zakazi novi termin" class="btn" id="zakaziBtn" />
-                        <input type="submit" name="ZavrsiUslugu" value="Zavrsi uslugu" class="btn" id="zavrsiBtn" />
-                    </form>
-                </div>
+                    <button value="Odustani" class="btn" id="odustaniBtn" onclick="Odustani(@Model.SesijaId)">Odustani</button>
+                    <button value="Zakazi novi termin" class="btn" id="zakaziBtn">Zakazi novi termin</button>
+                    <button name="ZavrsiUslugu" value="Zavrsi uslugu" class="btn" id="zavrsiBtn">Zavrsi uslugu</button>
+</div>
             </div>
         </div>
     </div>
@@ -69,42 +90,90 @@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     </footer>
+</body>
+
     <script>
 
-        function odaberiDijagnozu(sesija) {
-            var url = "/Sesija/NovaDijagnoza?sesijaId=" + sesija;
-
-            $.get(url, function (d) {
-                $("#ajaxPrikazOdabraneOpcije").html(d);
+            $(document).ready(function () {
+                daLiTrebaCTNalazUcivati();
             })
+
+            function daLiTrebaCTNalazUcivati() {
+                var bool = $("#loadajCTNalaz").val();
+                console.log(bool);
+                if (bool != "") {
+                    var sesijaId = $("#sesijaId").val();
+                    odaberiCTSnimak(sesijaId);
+                }
+            }
+
+            function zatvoriSliku() {
+                var imageDiv = document.getElementById("CTimgDiv");
+                var image = document.getElementById("CTimg");
+                var close = document.getElementById("close");
+
+                $("#CTimgDiv").prependTo("#leftColumn");
+
+                close.style.display = 'none';
+
+                imageDiv.style.position = 'relative';
+                imageDiv.style.top = 0;
+                imageDiv.style.height = 'auto';
+                imageDiv.style.width = '100%';
+                imageDiv.style.left = '0%';
+                imageDiv.style.marginLeft = 'auto';
+                imageDiv.style.marginRight = 'auto';
+                imageDiv.style.top = '0%';
+                imageDiv.style.marginTop = '0px';
+                imageDiv.style.paddingTop = '5%';
+                imageDiv.style.paddingBottom = '20px';
+
+                image.style.height = '50%';
+                image.style.margin = 'auto';
         }
 
-
-        function odaberiTerapiju(sesija) {
-            var url = "/Sesija/NovaTerapija?sesijaId=" + sesija;
-
-            $.get(url, function (d) {
-                $("#ajaxPrikazOdabraneOpcije").html(d);
-            })
+        function Odustani(sesija) {
+            if (window.confirm("Jeste sigurni da zelite odustati? Sav napredak ce biti izgubljen!")) {
+                 var url = "Odustani?SesijaId=" + sesija;
+                $.get(url, function (d) {
+                    window.location.href = "/Termini/Kalendar";
+                })
+            }
         }
 
+            function odaberiDijagnozu(sesija) {
+                var url = "/Sesija/NovaDijagnoza?sesijaId=" + sesija;
 
-        function odaberiLijek(sesija) {
-            var url = "/Sesija/NoviLijek?sesijaId=" + sesija;
-
-            $.get(url, function (d) {
-                $("#ajaxPrikazOdabraneOpcije").html(d);
-            })
-        }
+                $.get(url, function (d) {
+                    $("#ajaxPrikazOdabraneOpcije").html(d);
+                })
+            }
 
 
-        function odaberiCTSnimak(sesija) {
-            var url = "/Sesija/NoviCTNalaz?sesijaId=" + sesija;
+            function odaberiTerapiju(sesija) {
+                var url = "/Sesija/NovaTerapija?sesijaId=" + sesija;
 
-            $.get(url, function (d) {
-                $("#ajaxPrikazOdabraneOpcije").html(d);
-            })
-        }
+                $.get(url, function (d) {
+                    $("#ajaxPrikazOdabraneOpcije").html(d);
+                })
+            }
+
+
+            function odaberiLijek(sesija) {
+                var url = "/Sesija/NoviLijek?sesijaId=" + sesija;
+
+                $.get(url, function (d) {
+                    $("#ajaxPrikazOdabraneOpcije").html(d);
+                })
+            }
+
+
+            function odaberiCTSnimak(sesija) {
+                var url = "/Sesija/NoviCTNalaz?sesijaId=" + sesija;
+
+                $.get(url, function (d) {
+                    $("#ajaxPrikazOdabraneOpcije").html(d);
+                })
+            }
 
     </script>
-    </body> 

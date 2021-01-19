@@ -7,84 +7,70 @@
 }
 @model SesijaVM
 
-<div id="mainAjax">
-    <div>
-        <form id="forma">
-            <div id="leftColumn">
-                <div>
-                    <input type="text" hidden value="@Model.SesijaId" id="sesijaId" />
-                </div>
-                <div class="form-group">
-                    <label>Lijekovi:</label>
-                    <select asp-for="LijekId" asp-items="Model.Lijekovi" id="lijekovi" onchange="findOpis(); saveLijek(@Model.SesijaId)" class="form-control"></select>
-                </div>
-                <div class="form-group">
-                    <label>Opis:</label>
-                    <input type="text" id="Opis" readonly  class="form-control" />
-                </div>
+    <head>
+        <link rel="stylesheet" href="~/css/sesija/sesija.css" />
+    </head>
+    <body>
+
+        <div id="mainAjax">
+            <div>
+                <form id="forma">
+                    <div id="leftColumn">
+                        <div>
+                            <input type="text" hidden value="@Model.SesijaId" id="sesijaId" />
+                        </div>
+                        <div class="form-group">
+                            <label>Lijekovi:</label>
+                            <select asp-for="LijekId" asp-items="Model.Lijekovi" id="lijekovi" onchange="findOpis(); saveLijek(@Model.SesijaId)" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Opis:</label>
+                            <input type="text" id="Opis" readonly class="form-control" />
+                        </div>
+                    </div>
+                    <div id="rightColumn">
+                        <div class="form-group">
+                            <label>Napomena:</label>
+                            <textarea id="Napomena" rows="7" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div id="rightColumn">
-                <div class="form-group">
-                    <label>Napomena:</label>
-                    <textarea id="Napomena" rows="7" class="form-control"></textarea>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<style>
-    #leftColumn {
-        float: left;
-        width: 50%;
-        padding-left: 5px;
-        padding-right: 10px;
-    }
+        </div>
+    </body>
 
-    #rightColumn {
-        float: left;
-        width: 50%;
-        padding-left: 10px;
-        padding-right: 5px;
-    }
-
-    #forma {
-        color: white;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-</style>
-<script>
-    $(document).ready(function () {
-        loadLijek();
-    })
-
-    function loadLijek() {
-        var sesija = $("#sesijaId").val();
-        var url = '/Sesija/GetLijek?SesijaId=' + sesija;
-
-        $.get(url, function (d) {
-            $("#lijekovi").val(d);
-            findOpis();
+    <script>
+        $(document).ready(function () {
+            loadLijek();
         })
-    }
 
-    function findOpis() {
+        function loadLijek() {
+            var sesija = $("#sesijaId").val();
+            var url = '/Sesija/GetLijek?SesijaId=' + sesija;
 
-        var lijekId = $("#lijekovi").val();
-        var url = '/Lijekovi/getOpis?lijekId=' + lijekId;
+            $.get(url, function (d) {
+                $("#lijekovi").val(d);
+                findOpis();
+            })
+        }
 
-        $.get(url, function (d) {
-            $("#Opis").val(d);
-        })
-    }
+        function findOpis() {
 
-    function saveLijek(seijsaId) {
+            var lijekId = $("#lijekovi").val();
+            var url = '/Lijekovi/getOpis?lijekId=' + lijekId;
 
-        var lijekId = $("#lijekovi").val();
-        var url = "/Sesija/SaveLijek?SesijaId=" + seijsaId + "&LijekId=" + lijekId;
+            $.get(url, function (d) {
+                $("#Opis").val(d);
+            })
+        }
 
-        $.get(url, function (d) {
-        })
-    }
+        function saveLijek(seijsaId) {
 
-</script>
+            var lijekId = $("#lijekovi").val();
+            var url = "/Sesija/SaveLijek?SesijaId=" + seijsaId + "&LijekId=" + lijekId;
+
+            $.get(url, function (d) {
+            })
+        }
+
+    </script>

@@ -915,9 +915,6 @@ D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCo
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
-D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
-D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
@@ -1111,7 +1108,6 @@ D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\Termini
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\NoviTermin.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\PacijentOdabir.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\TerminOdabir.cshtml.g.cs
-D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csprojAssemblyReference.cache
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\Sesija.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\SesijaPartial.cshtml.g.cs
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Sesija\CTSnimakOdabir.cshtml.g.cs
@@ -1169,3 +1165,10 @@ C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAz
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\UserAccounts\UserAccounts.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\UserAccounts\UserAccountsPartial.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csprojAssemblyReference.cache
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\DentalnaPomagala\DentalnaPomagala.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\DentalnaPomagala\DentalnaPomagalaOdabir.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\DentalnaPomagala\DentalnaPomagalaPartial.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\DentalnaPomagala\NovoDentalnoPomagalo.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\DentalnaPomagala\UrediDentalnoPomagalo.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll

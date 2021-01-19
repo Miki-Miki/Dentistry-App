@@ -7,8 +7,12 @@
 }
 @model SesijaVM
 
-<div id="mainAjax">
-    <div>
+<head>
+    <link rel="stylesheet" href="~/css/sesija/sesija.css" />
+</head>
+
+<body>
+    <div id="mainAjax">
         <form id="forma">
             <div id="leftColumn">
                 <div>
@@ -20,11 +24,11 @@
                 </div>
                 <div class="form-group">
                     <label>Opis:</label>
-                    <input type="text" readonly id="Opis" class="form-control"/>
+                    <input type="text" readonly id="Opis" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label>Preporuka:</label>
-                    <input type="text" readonly id="Preporuka" class="form-control"/>
+                    <input type="text" readonly id="Preporuka" class="form-control" />
                 </div>
             </div>
             <div id="rightColumn">
@@ -33,29 +37,10 @@
                     <textarea class="form-control" rows="7"></textarea>
                 </div>
             </div>
-            
+
         </form>
     </div>
-</div>
-<style>
-    #leftColumn {
-        float: left;
-        width: 50%;
-        padding-left: 5px;
-        padding-right: 10px;
-    }
-    #rightColumn {
-        float: left;
-        width: 50%;
-        padding-left: 10px;
-        padding-right: 5px;
-    }
-    #forma {
-        color: white;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-</style>
+</body>
 
 <script>
     $(document).ready(function () {

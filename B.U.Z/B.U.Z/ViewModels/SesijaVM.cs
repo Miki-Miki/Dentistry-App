@@ -12,6 +12,7 @@ namespace B.U.Z.ViewModels
     {
         public int SesijaId { get; set; }
         public int TerminId { get; set; }
+        public Termini Termin { get; set; }
 
         public int DijagnozaId { get; set; }
         public List<SelectListItem> Dijagnoze { get; set; }
@@ -27,5 +28,15 @@ namespace B.U.Z.ViewModels
 
         public IFormFile CTNalazSlika { get; set; }
         public string CTNalazSlikaPutanja { get; set; }
+
+        public string PacijentId { get; set; }
+        public Pacijent Pacijent { get; set; }
+
+        public int ZakazanaUslugaId { get; set; }
+        public ZakazanaUsluga ZakazanaUsluga{ get; set; }
+
+        public Usluga Usluga { get; set; }
+
+        public bool loadajCTNalaz { get; set; }
     }
 }

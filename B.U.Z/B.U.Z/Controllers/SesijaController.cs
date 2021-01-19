@@ -1,7 +1,9 @@
 ﻿using B.U.Z.Data;
 using B.U.Z.Models;
 using B.U.Z.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -27,16 +29,37 @@ namespace B.U.Z.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
+            Termini termin = db.Termini.Find(terminId);
+            Pacijent pacijentNaTerminu = db.Pacijenti.Find(termin.PacijentId);
+            ZakazanaUsluga ZakazanaUsluga = db.ZakazanaUsluga.Where(a => a.TerminId == terminId).FirstOrDefault();
+             Usluga usluga = db.Usluga.Find(ZakazanaUsluga.UslugaId);
+
             if (sesija.Id == 0)
             {
                 Sesija novaSesija = new Sesija();
+                novaSesija.TerminId = terminId;
+                novaSesija.Termin = termin;
+                Stomatolog stomatolog = db.Stomatolozi.Find(User.Identity.GetUserId());
+
+                if (stomatolog != null)
+                {
+                    novaSesija.Stomatolog = stomatolog;
+                    novaSesija.StomatologId = stomatolog.Id;
+                }
                 db.Sesija.Add(novaSesija);
                 db.SaveChanges();
 
                 SesijaVM sesijavm2 = new SesijaVM
                 {
                     SesijaId = novaSesija.Id,
-                    TerminId = terminId
+                    TerminId = terminId,
+                    Termin = termin,
+                    PacijentId = termin.PacijentId,
+                    Pacijent = pacijentNaTerminu,
+                    ZakazanaUsluga = ZakazanaUsluga,
+                    ZakazanaUslugaId = ZakazanaUsluga.Id,
+                    Usluga = usluga,
+                    loadajCTNalaz = false
                 };
 
                 return View(sesijavm2);
@@ -47,11 +70,41 @@ namespace B.U.Z.Controllers
             SesijaVM sesijavm = new SesijaVM
             {
                 SesijaId = sesija.Id,
+                TerminId = terminId,
+                Termin = termin,
                 CTNalazId = ctnalaz.Id,
-                CTNalaz = ctnalaz
+                CTNalaz = ctnalaz,
+                PacijentId = termin.PacijentId,
+                Pacijent = pacijentNaTerminu,
+                ZakazanaUsluga = ZakazanaUsluga,
+                ZakazanaUslugaId = ZakazanaUsluga.Id,
+                Usluga = usluga,
+                loadajCTNalaz = true
             };
 
             return View(sesijavm);
+        }
+
+        public void Odustani(int SesijaId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Sesija sesija = db.Sesija.Find(SesijaId);
+
+            DijagnozaNaSesiji dijagnoza = db.DijagnozaNaSesiji.Where(a => a.SesijaId == SesijaId).FirstOrDefault();
+            LijekNaSesiji lijek = db.LijekNaSesiji.Where(a => a.SesijaId == SesijaId).FirstOrDefault();
+            TerapijaNaSesiji terapija = db.TerapijaNaSesiji.Where(a => a.SesijaId == SesijaId).FirstOrDefault();
+
+            if(dijagnoza != null)
+                db.DijagnozaNaSesiji.Remove(dijagnoza);
+            if (lijek != null)
+                db.LijekNaSesiji.Remove(lijek);
+            if (terapija != null)
+                db.TerapijaNaSesiji.Remove(terapija);
+
+            db.Sesija.Remove(sesija);
+
+            db.SaveChanges();
+
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////

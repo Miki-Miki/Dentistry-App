@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
         },
+        initialView:'listMonth',
         weekNumbers: true,
         dayMaxEvents: true, // allow "more" link when too many events
 
@@ -83,24 +84,7 @@ function sendSesija() {
     //    console.log('sendSesija: ');
     //})
 
-    $.ajax({
-        type: "POST",
-        url: "/Sesija/Sesija",
-        data: { terminId: selectedSesija.terminId },
-
-        success: function (data) {
-            window.location.href = "/Sesija/Sesija?terminId=" + selectedSesija.terminId;
-        },
-
-        error: function (data) {
-            window.location.href = "/Sesija/Sesija?terminId=" + selectedSesija.terminId;
-        },
-
-        failure: function (data) {
-            window.location.href = "/Sesija/Sesija";
-        },
-    });
-
+    window.location.href = "/Sesija/Sesija?terminId=" + selectedSesija.terminId;
 }
 
 function odaberiTermin(TerminId) {
