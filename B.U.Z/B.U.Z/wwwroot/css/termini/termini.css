@@ -81,3 +81,25 @@ td {
 #btnZapocniSesiju:active {
     background-color: #90CDDB;
 }
+
+#main_body {
+    float: left;
+    width: 80%;
+    background-color: #C4DBE0;
+    padding: 30px;
+    height: 100%
+}
+
+#red:hover {
+    background-color: #507881;
+    color: white;
+}
+
+#red:active {
+    background-color: #00A8A8;
+}
+
+#red {
+    cursor: pointer;
+}
+

@@ -1,0 +1,27 @@
+﻿#frmZakazivanjeTermina {
+    height: auto;
+    width: 100%;
+    border: solid purple 3px;   
+}
+
+#partialHome {
+    height: 100%;
+    width: 20%;
+    float: left;
+}
+
+#kontejner {
+    height: 20vh;
+    width: 100%;
+}
+
+#calendar-container {
+    width: 80%;
+    height: auto;
+    float: right;
+}
+
+#calendar-pacijent-container {
+    width: 100%;
+    height: 50%;
+}

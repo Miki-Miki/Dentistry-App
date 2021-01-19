@@ -22,6 +22,7 @@ namespace B.U.Z.Controllers
             _userManager = userManager;            
         }
 
+        [Route("Termini")]
         public IActionResult Termini()
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -49,7 +50,7 @@ namespace B.U.Z.Controllers
             return View("Termini", termini);
         }
 
-
+        [Route("NoviTermin")]
         public IActionResult NoviTermin()
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -128,7 +129,7 @@ namespace B.U.Z.Controllers
             var terminiJSON = termini.Select(t => new
             {
                 //id = t.Id,
-                title = t.pacijent.FirstName + " " + t.pacijent.LastName,
+                title = "Zauzeto",
                 description = t.usluga.Naziv,
                 start = t.TerminStart,
                 end = t.TerminEnd

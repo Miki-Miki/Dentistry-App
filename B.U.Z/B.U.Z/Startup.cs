@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using B.U.Z.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using ShieldUI.AspNetCore.Mvc;
 
 namespace B.U.Z
 {
@@ -33,7 +34,12 @@ namespace B.U.Z
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(opt=>
+            {
+                opt.User.RequireUniqueEmail = true;
+                opt.SignIn.RequireConfirmedEmail = true;
+                opt.SignIn.RequireConfirmedAccount = true;
+            })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
@@ -43,6 +49,8 @@ namespace B.U.Z
             //    .RequireAuthenticatedUser().Build();
             //    options.Filters.Add(new AuthorizeFilter(policy));
             //}).AddXmlSerializerFormatters();
+
+            services.AddShieldUI();
 
         }
 
@@ -67,6 +75,7 @@ namespace B.U.Z
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseShieldUI();
 
             app.UseEndpoints(endpoints =>
             {

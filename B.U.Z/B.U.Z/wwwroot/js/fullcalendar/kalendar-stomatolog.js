@@ -26,6 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
         weekNumbers: true,
         dayMaxEvents: true, // allow "more" link when too many events
 
+        dateClick: function (info) {
+            info.dayEl.style.backgroundColor = 'red';
+            console.log('day clicked' + info.date)
+            calendar.changeView('timeGridDay', info.date)
+        },
+        
+
         eventClick: function (info) {
             //alert('clicked on date ' + info.dateStr);
             console.log('clicked on event ' + info);
