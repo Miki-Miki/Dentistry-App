@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using B.U.Z.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using ShieldUI.AspNetCore.Mvc;
 
 namespace B.U.Z
 {
@@ -44,6 +45,8 @@ namespace B.U.Z
             //    options.Filters.Add(new AuthorizeFilter(policy));
             //}).AddXmlSerializerFormatters();
 
+            services.AddShieldUI();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +70,7 @@ namespace B.U.Z
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseShieldUI();
 
             app.UseEndpoints(endpoints =>
             {

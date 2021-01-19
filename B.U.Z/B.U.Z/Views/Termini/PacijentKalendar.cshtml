@@ -14,6 +14,11 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="~/css/termini/pacijent-kalendar-style.css" />
+    <script type="text/javascript" src="~/lib/shieldui/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="~/lib/shieldui/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="~/lib/shieldui/js/jszip.min.js"></script>
+    <link rel="stylesheet" href="~/css/dateTimePicker/dateTimePickerStyle.css" />
+    @*<script src="~/js/termini/dateTimePicker.js"></script>*@
 </head>
 
 <div id="kontejner">
@@ -21,15 +26,50 @@
         <partial name="../Home/Index" />
     </div>
 
-    
+
     <div id="calendar-container">
         <div id="frmZakazivanjeTermina">
-            <input type="text" placeholder="text" />
+            <div class="theme-light">
+                <div class="mainDiv">
+                    <div class="demoDiv">
+                        @(Html.ShieldTimePicker()
+                            .Name("picker")
+                            .OpenOnFocus(false)
+                            .ShowButton(true)
+                            .Editable(true)
+                            .Min(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0))
+                            .Max(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 17, 0, 0))
+                            )
+                    </div>
+                    @*<div class="demoDiv demoDivRight">
+                        <div class="grp">
+                            <button id="button1" class="btn-custom" onclick="enable(); return false;">Enable</button>
+                            <button id="button2" class="btn-custom" onclick="disable(); return false;">Disable</button>
+                        </div>
+                        <div class="grp">
+                            <button id="button3" class="btn-custom" onclick="javascript: show(); return false;">Show</button>
+                            <button id="button4" class="btn-custom" onclick="javascript: hide(); return false;">Hide</button>
+                        </div>
+                        <div class="grp">
+                            <button id="button5" class="btn-custom" onclick=getSelected(); return false;">Get Selected</button>
+                            <button id="button6" class="btn-custom" onclick="javascript: setSelectedDate(); return false;">Set Selected</button>
+                        </div>
+                        <div class="grp">
+                            <button id="button7" class="btn-custom" onclick="javascript: showCalendar(); return false;">Show Calendar</button>
+                            <button id="button8" class="btn-custom" onclick="javascript: hideCalendar(); return false;">Hide Calendar</button>
+                        </div>
+                        <div class="grp">
+                            <button id="button9" class="btn-custom" onclick="javascript: showCalendar1(); return false;">Show TimeView</button>
+                            <button id="button10" class="btn-custom" onclick="javascript: hideCalendar1(); return false;">Hide TimeView</button>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
         </div>
-        <div id="calendar-pacijent-container-u-picku-materinu">
+        <div id="calendar-pacijent-container">
             <div id="calendar-pacijent"></div>
         </div>
-        
+        <input id="datum" onchange="setSelectedDate(this.value)"/>
     </div>
 
 
@@ -39,4 +79,50 @@
 
 
 <script src="~/js/fullcalendar/kalendar-pacijent.js"></script>
+<script src="~/lib/shieldui/js/dateTimePicker.js"></script>
 
+@*<script type="text/javascript">
+        function destroyPicker() {
+            $("#picker").swidget().destroy();
+        }
+
+        function enable() {
+            $("#picker").swidget().enabled(true);
+        }
+
+        function disable() {
+            $("#picker").swidget().enabled(false);
+        }
+
+        function show() {
+            $("#picker").swidget().visible(true);
+        }
+
+        function hide() {
+            $("#picker").swidget().visible(false);
+        }
+
+        function getSelected() {
+            alert($("#picker").swidget().value());
+        }
+
+        function setSelectedDate() {
+            $("#picker").swidget().value(new Date(1900, 1, 1, 22, 0));
+        }
+
+        function showCalendar() {
+            $("#picker").swidget().open("calendar");
+        }
+
+        function hideCalendar() {
+            $("#picker").swidget().close("calendar");
+        }
+
+        function showCalendar1() {
+            $("#picker").swidget().open("timeview");
+        }
+
+        function hideCalendar1() {
+            $("#picker").swidget().close("timeview");
+        }
+    </script>*@

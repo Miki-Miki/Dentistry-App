@@ -16,6 +16,31 @@
     <None Include="Views\Dijagnoze\Dijagnoze.cshtml" />
     <None Include="Views\Pacijenti\Pacijenti.cshtml" />
     <None Include="Views\Recepti\Recepti.cshtml" />
+    <None Include="wwwroot\lib\shieldui\js\jquery-1.11.1.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\jszip.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-all.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-barcode.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-calendar.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-chart.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-colorpicker.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-core.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-editor.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-grid.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-input.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-layout.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-loadingpanel.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-menu.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-pager.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-progressbar.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-qrcode.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-rating.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-slider.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-tagcloud.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-timeline.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-treemap.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-treeview.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-upload.min.js" />
+    <None Include="wwwroot\lib\shieldui\js\shieldui-window.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,11 +55,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="ShieldUI.AspNetCore.Mvc" Version="1.7.34" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\js\termini\" />
   </ItemGroup>
 
 </Project>

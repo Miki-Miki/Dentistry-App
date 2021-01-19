@@ -1,4 +1,7 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿var dateClickedOn = false;
+var selectedDayTermin;
+
+document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar-pacijent');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -16,8 +19,25 @@
         slotMinTime: '08:00',
         slotMaxTime: '18:00',
         dateClick: function (info) {
-            console.log('day clicked' + info.date)
-            calendar.changeView('timeGridDay', info.date)
+            //calendar.changeView('timeGridDay', info.date)
+            if (!dateClickedOn) {
+                info.dayEl.style.backgroundColor = '#00A8A8'
+                dateClickedOn = true;
+            }
+
+            if (dateClickedOn && selectedDayTermin != null && selectedDayTermin != info.dayEl ) {
+                selectedDayTermin.style.backgroundColor = '';
+                info.dayEl.style.backgroundColor = '#00A8A8'
+            }
+
+            if (dateClickedOn && selectedDayTermin != null &&
+                selectedDayTermin == info.dayEl) {
+                calendar.changeView('timeGridDay', info.date)
+            }
+
+            selectedDayTermin = info.dayEl;
+            document.getElementById('datum').value = info.date
+            setSelectedDate(info.date);
         },
 
         //eventDidMount: function (info) {

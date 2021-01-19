@@ -68,4 +68,30 @@ else if (User.IsInRole("Pacijent"))
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
-</script>   
+</script>
+
+@*@(Html.ShieldChart()
+    .Name("chart")
+    .Tooltip(tooltip => tooltip.AxisMarkers(axisMarkers => axisMarkers
+        .Enabled(true)
+        .Mode(ShieldUI.AspNetCore.Mvc.Chart.TooltipAxisMarkerMode.XY)
+        .Width(1)
+        .ZIndex(3)))
+    .Theme("light")
+    .PrimaryHeader(header => header.Text("Budget overview"))
+    .Export(false)
+    .AxisX(axis => axis.CategoricalValues(
+        "2000", "2001", "2002", "2003", "2004",
+        "2005", "2006", "2007", "2008", "2009",
+        "2010", "2011", "2012", "2013", "2014"
+    ))
+    .DataSeries(series =>
+        series.Area()
+              .Name("Budget in Thousands")
+              .Data(new object[] {
+                  100, 320, 453, 234, 553,
+                  665, 345, 123, 432, 545,
+                  654, 345, 332, 456, 234
+              })
+    )
+)*@
