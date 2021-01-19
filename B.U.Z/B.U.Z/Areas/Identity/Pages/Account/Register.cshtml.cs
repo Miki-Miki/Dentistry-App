@@ -146,9 +146,9 @@ namespace B.U.Z.Areas.Identity.Pages.Account
                     var message = new MailMessage();
                     var email = this.Input.Email;
                     message.To.Add(new MailAddress(email.ToString()));
-                    message.From = new MailAddress("ekorpa.business@gmail.com");
+                    message.From = new MailAddress("buz.stomatologija@gmail.com");
                     message.Subject = "Verifikacija e-maila";
-                    message.Body = string.Format(body, "eKorpa", "ekorpa.business@gmail.com", link);
+                    message.Body = string.Format(body, "B.U.Z", "buz.stomatologija@gmail.com", link);
 
                     message.IsBodyHtml = true;
 
@@ -156,8 +156,8 @@ namespace B.U.Z.Areas.Identity.Pages.Account
                     {
                         var credential = new NetworkCredential
                         {
-                            UserName = "ekorpa.business@gmail.com",
-                            Password = "Mostar2020!"
+                            UserName = "buz.stomatologija@gmail.com",
+                            Password = "vmhXPuAg2hTEdw3"
                         };
                         smtp.Credentials = credential;
                         smtp.Host = "smtp.gmail.com";

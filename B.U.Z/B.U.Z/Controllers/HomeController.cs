@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using B.U.Z.Models;
 using Microsoft.AspNetCore.Identity;
+using B.U.Z.ViewModels;
 
 namespace B.U.Z.Controllers
 {
@@ -51,5 +52,36 @@ namespace B.U.Z.Controllers
 
             return BadRequest();
         }
+        public IActionResult EmailVerification()
+        {
+            return View();
+        }
+        public IActionResult ResetPassword(string code, string email)
+        {
+
+
+            return View("ResetPassword");
+        }
+
+
+        public async Task<IActionResult> ResetujPassword(ResetPassVM resetPassVM)
+        {
+
+            var user = await _userManager.FindByEmailAsync(resetPassVM.Email);
+            if (user == null)
+                RedirectToAction("/Identity/Account/Login");
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, resetPassVM.Code, resetPassVM.Password);
+            if (!resetPassResult.Succeeded)
+            {
+                foreach (var error in resetPassResult.Errors)
+                {
+                    ModelState.TryAddModelError(error.Code, error.Description);
+                }
+                return Redirect("/Identity/Account/Login");
+            }
+            return RedirectToAction("ResetPasswordConfirmation");
+        }
+
+        public IActionResult ResetPasswordConfirmation() { return View(); }
     }
 }
