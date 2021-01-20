@@ -10,6 +10,7 @@ var trmImePacijenta = document.getElementById('trmImePacijenta');
 var trmUsluga = document.getElementById('trmUsluga');
 var trmBasePrice = document.getElementById('trmBasePrice');
 
+
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar-stomatolog');
 

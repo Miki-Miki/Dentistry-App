@@ -1,10 +1,15 @@
-﻿@*
+﻿@using B.U.Z.ViewModels
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 
-
+@model UslugaVM
 
 
 <head>
@@ -42,40 +47,68 @@
                             )
                     </div>
                     @*<div class="demoDiv demoDivRight">
-                        <div class="grp">
-                            <button id="button1" class="btn-custom" onclick="enable(); return false;">Enable</button>
-                            <button id="button2" class="btn-custom" onclick="disable(); return false;">Disable</button>
-                        </div>
-                        <div class="grp">
-                            <button id="button3" class="btn-custom" onclick="javascript: show(); return false;">Show</button>
-                            <button id="button4" class="btn-custom" onclick="javascript: hide(); return false;">Hide</button>
-                        </div>
-                        <div class="grp">
-                            <button id="button5" class="btn-custom" onclick=getSelected(); return false;">Get Selected</button>
-                            <button id="button6" class="btn-custom" onclick="javascript: setSelectedDate(); return false;">Set Selected</button>
-                        </div>
-                        <div class="grp">
-                            <button id="button7" class="btn-custom" onclick="javascript: showCalendar(); return false;">Show Calendar</button>
-                            <button id="button8" class="btn-custom" onclick="javascript: hideCalendar(); return false;">Hide Calendar</button>
-                        </div>
-                        <div class="grp">
-                            <button id="button9" class="btn-custom" onclick="javascript: showCalendar1(); return false;">Show TimeView</button>
-                            <button id="button10" class="btn-custom" onclick="javascript: hideCalendar1(); return false;">Hide TimeView</button>
-                        </div>
-                    </div>*@
+                            <div class="grp">
+                                <button id="button1" class="btn-custom" onclick="enable(); return false;">Enable</button>
+                                <button id="button2" class="btn-custom" onclick="disable(); return false;">Disable</button>
+                            </div>
+                            <div class="grp">
+                                <button id="button3" class="btn-custom" onclick="javascript: show(); return false;">Show</button>
+                                <button id="button4" class="btn-custom" onclick="javascript: hide(); return false;">Hide</button>
+                            </div>
+                            <div class="grp">
+                                <button id="button5" class="btn-custom" onclick=getSelected(); return false;">Get Selected</button>
+                                <button id="button6" class="btn-custom" onclick="javascript: setSelectedDate(); return false;">Set Selected</button>
+                            </div>
+                            <div class="grp">
+                                <button id="button7" class="btn-custom" onclick="javascript: showCalendar(); return false;">Show Calendar</button>
+                                <button id="button8" class="btn-custom" onclick="javascript: hideCalendar(); return false;">Hide Calendar</button>
+                            </div>
+                            <div class="grp">
+                                <button id="button9" class="btn-custom" onclick="javascript: showCalendar1(); return false;">Show TimeView</button>
+                                <button id="button10" class="btn-custom" onclick="javascript: hideCalendar1(); return false;">Hide TimeView</button>
+                            </div>
+                        </div>*@
                 </div>
             </div>
+            <button class="btn-primary" id="btnZakaziTermin" onclick="showTerminDetails()">Zakaži</button>
+            <select asp-for="UslugaId" asp-items="Model.Usluge" id="usluge"></select>
         </div>
         <div id="calendar-pacijent-container">
             <div id="calendar-pacijent"></div>
         </div>
-        <input id="datum" onchange="setSelectedDate(this.value)"/>
+        <input id="datum" onchange="setSelectedDate(this.value)" />
     </div>
 
 
 </div>
 
+<div id="selectedTermin">
+    <a id="btnNazad" onclick="unSelectTermin()">X</a>
+    <h4 style="color: #0C6980;">Termin</h4>
+    <a id="btnZapocniTermin" onclick="sendSesija()">Započni</a>
 
+    <table style="width:100%" id="tableTermin">
+        <tr>
+            <th><b>Početak: </b></th>
+            <td id="trmPocetak"></td>
+        </tr>
+        <tr>
+            <th><b>Pacijent: </b></th>
+            <td id="trmImePacijenta">@UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName @UserManager.FindByNameAsync(User.Identity.Name).Result.LastName</td>
+        </tr>
+        <tr>
+            <th><b>Usluga: </b></th>
+            <td id="trmUsluga"></td>
+        </tr>
+        <tr>
+            <th><b>Osnovna Cijena: </b></th>
+            <td id="trmBasePrice"></td>
+        </tr>
+    </table>
+
+</div>
+
+<input type="hidden" id="selectedUslugaId"/>
 
 
 <script src="~/js/fullcalendar/kalendar-pacijent.js"></script>

@@ -8,6 +8,7 @@ using B.U.Z.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace B.U.Z.Controllers
@@ -15,11 +16,14 @@ namespace B.U.Z.Controllers
     [Route("Termini")]
     public class TerminiController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;        
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public TerminiController(UserManager<ApplicationUser> userManager)
+        public TerminiController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
-            _userManager = userManager;            
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [Route("Termini")]
@@ -59,6 +63,12 @@ namespace B.U.Z.Controllers
             return View(pacijenti);
         }
 
+        [Route("MojiTermini")]
+        public IActionResult MojiTermini()
+        {
+            return View("PacijentMojiTermini");
+        }
+
         public IActionResult OdaberiPacijenta(string pacijentId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -91,10 +101,15 @@ namespace B.U.Z.Controllers
 
             ApplicationDbContext db = new ApplicationDbContext();
             var aspUser = db.ApplicationUsers.Find(user.Id);
-            
-            if(aspUser is Pacijent)
+
+            UslugaVM usluge = new UslugaVM
             {
-                return View("PacijentKalendar");
+                Usluge = db.Usluga.OrderBy(a => a.Id).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.Naziv }).ToList()                
+            };
+
+            if (aspUser is Pacijent)
+            {
+                return View("PacijentKalendar", usluge);
             }
             else
             {
@@ -189,6 +204,61 @@ namespace B.U.Z.Controllers
             return new JsonResult(terminiJSON);
         }
 
+
+        [Route("FindAllMojiTermini")]
+        public IActionResult FindAllMojiTermini()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            List<Termini> terminiDB = db.Termini.ToList();
+            List<TerminiVM> termini = new List<TerminiVM>();
+            Pacijent _pacijent = db.Pacijenti.Find(_userManager.FindByNameAsync(User.Identity.Name).Result.Id);
+
+            foreach (var t in terminiDB)
+            {
+                if (_pacijent.Id == t.PacijentId)
+                {
+                    var _usluga = from zU in db.ZakazanaUsluga
+                                  join U in db.Usluga
+                                  on zU.UslugaId equals U.Id
+                                  where zU.TerminId == t.Id
+                                  select new Usluga
+                                  {
+                                      Id = U.Id,
+                                      Cijena = U.Cijena,
+                                      Naziv = U.Naziv,
+                                      Opis = U.Opis
+                                  };
+
+                    termini.Add(new TerminiVM()
+                    {
+                        TerminId = t.Id,
+                        basePrice = t.basePrice,
+                        TerminStart = t.TerminStart,
+                        TerminEnd = t.TerminEnd,
+                        pacijent = _pacijent,
+                        usluga = _usluga.FirstOrDefault()
+                    });
+                }
+
+            }
+
+            var terminiJSON = termini.Select(t => new
+            {
+                id = t.TerminId,
+                title = t.pacijent.FirstName + " " + t.pacijent.LastName,
+                description = t.usluga.Naziv,
+                start = t.TerminStart,
+                end = t.TerminEnd,
+                basePrice = t.basePrice,
+                pacijent = t.pacijent,
+                usluga = t.usluga
+            });
+
+            return new JsonResult(terminiJSON);
+        }
+      
+
         //[Route("ZapocniSesiju")]
         //[HttpPost]
         //public IActionResult ZapocniSesiju(int _terminId)
@@ -204,6 +274,13 @@ namespace B.U.Z.Controllers
         //    //    terminId = _terminId
         //    //});
         //}
-        
+
+        [Route("FindCijena")]
+        public double FindCijena(int uslugaId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            return db.Usluga.Find(uslugaId).Cijena;
+        }
+
     }
 }

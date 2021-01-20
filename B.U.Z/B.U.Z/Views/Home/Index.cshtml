@@ -56,8 +56,11 @@ else if (User.IsInRole("Pacijent"))
     <div class="container">
         <nav class="navbar navbar-light">
             <ul class="navbar-nav">
-                <li data-toggle="tooltip" title="Termini opis" class="nav-item>">
+                <li class="nav-item>">
                     <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link">Termini</a>
+                </li>
+                <li class="nav-item>">
+                    <a asp-controller="Termini" asp-action="MojiTermini" class="nav-link">Moji Termini</a>
                 </li>
             </ul>
         </nav>
