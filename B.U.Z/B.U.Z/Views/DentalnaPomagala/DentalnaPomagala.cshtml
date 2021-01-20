@@ -1,59 +1,61 @@
 ﻿@model List<DentalnaPomagala>
 
-<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
-    <partial name="../Home/Index" />
-</div>
-<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
-    <h1 style="color: #0C6980">Dentalna pomagala</h1>
-    <div class="primarydark">
-        <div class="primary">
-            <partial name="DentalnaPomagalaPartial" />
+    <div id="DentalnaPomagalaContainer" style="width:100%;">
+        <div @*style="float:left; height:1000px; width:20%; float:left; margin:0;"*@ class="primary">
+            <partial name="../Home/Index" />
         </div>
+        <div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
+            <h1 style="color: #0C6980">Dentalna pomagala</h1>
+            <div class="primarydark">
+                <div class="primary">
+                    <partial name="DentalnaPomagalaPartial" />
+                </div>
 
-        <div id="AjaxPrikazOdabranogDentalnogPomagala">
+                <div id="AjaxPrikazOdabranogDentalnogPomagala">
 
-        </div>
+                </div>
 
-        <div id="PretraziDiv" class="primarydark">
-            <form style="margin-left:1%">
-                <label>Pretraži dentalna pomagala:</label>
-                <input type="text" name="filter" />
-                <input type="submit" value="Pretraži" />
-            </form>
-        </div>
-        <table class="table primarydark" style="width:100%;">
-            <thead>
-                <tr>
-                    <th scope="col">Redni broj</th>
-                    <th scope="col">Šifra</th>
-                    <th scope="col">Naziv</th>
-                    <th scope="col">Opis</th>
-                    <th scope="col">Pacijent</th>
-                    @*<th scope="col">Odaberi</th>*@
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var s in Model)
-                {
-                    <tr id="dentalnoRow" onclick="OpenOdabranoDentalnoPomagalo(@s.Id)">
-                        <td></td>
-                        <td>@s.Id</td>
-                        <td>@s.Naziv</td>
-                        <td>@s.Opis</td>
-                        <td>@s.Pacijent?.FirstName  @s.Pacijent?.LastName</td>
-                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>
-                            <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
-                        @*<td><button class="badge-danger" onclick="OpenOdabranoDentalnoPomagalo(@s.Id)">Select</button></td>*@
-                    </tr>
-                }
+                <div id="PretraziDiv" class="primarydark">
+                    <form style="margin-left:1%">
+                        <label>Pretraži dentalna pomagala:</label>
+                        <input type="text" name="filter" />
+                        <input type="submit" value="Pretraži" />
+                    </form>
+                </div>
+                <table class="table primarydark" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Redni broj</th>
+                            <th scope="col">Šifra</th>
+                            <th scope="col">Naziv</th>
+                            <th scope="col">Opis</th>
+                            <th scope="col">Pacijent</th>
+                            @*<th scope="col">Odaberi</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var s in Model)
+                        {
+                            <tr id="dentalnoRow" onclick="OpenOdabranoDentalnoPomagalo(@s.Id)">
+                                <td></td>
+                                <td>@s.Id</td>
+                                <td>@s.Naziv</td>
+                                <td>@s.Opis</td>
+                                <td>@s.Pacijent?.FirstName  @s.Pacijent?.LastName</td>
+                                @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>
+                                    <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                                @*<td><button class="badge-danger" onclick="OpenOdabranoDentalnoPomagalo(@s.Id)">Select</button></td>*@
+                            </tr>
+                        }
 
-            </tbody>
-        </table>
-        <div id="BrojDostupnihDentalnihPomagala" class="primarydark">
-            <label style="margin-left:1%">Broj dostupnih dentalnih pomagala:</label>@Model.Count()
+                    </tbody>
+                </table>
+                <div id="BrojDostupnihDentalnihPomagala" class="primarydark">
+                    <label style="margin-left:1%">Broj dostupnih dentalnih pomagala:</label>@Model.Count()
+                </div>
+            </div>
         </div>
     </div>
-</div>
     <style>
         body {
             counter-reset: Serial; /* Set the Serial counter to 0 */
@@ -70,7 +72,6 @@
 
         #BrojDostupnihDentalnihPomagala {
             color: white;
-
         }
 
         #AjaxPrikazOdabranogDentalnogPomagala {

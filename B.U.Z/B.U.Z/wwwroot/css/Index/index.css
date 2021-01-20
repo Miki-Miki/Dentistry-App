@@ -1,0 +1,40 @@
+﻿body
+{
+    margin:0;
+    padding:0;
+}
+#imageContainer
+{
+    width:100%;
+    height:700px;
+    margin:0;
+    padding:0;
+    background-image:url(/Images/media/background.jpg);
+    background-position:center;
+}
+#backgroundImage
+{
+    width:100%;
+    height:auto;
+}
+#layoutContainer {
+    margin:0;
+    width:100%;
+    padding:0;
+}
+#layoutNavBar {
+    margin: 0 !important;
+    border:none !important;
+}
+#layoutMain
+{
+    width:100%;
+}
+#textIndex
+{
+    color:white;
+    width:40%;
+    margin-left:8%;
+    padding-top:15%;
+    position:relative;
+}

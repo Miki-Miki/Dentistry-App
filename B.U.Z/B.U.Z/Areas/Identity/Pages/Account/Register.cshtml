@@ -5,13 +5,13 @@
     ViewData["Title"] = "Registracija";
 
 }
-
-<div style="padding-left:30%; padding-right:30%; padding-top:2%;">
+<link rel="stylesheet" href="~/css/LoginRegister/main.css" />
+<div id="registerDiv">
     <div style="text-align: center; color: #0C6980;">
         <h1>@ViewData["Title"]</h1>
     </div>
 
-    <div class="row">
+    <div>
         <div style="width:100%;">
             <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <div style="text-align: center; color: #0C6980;">
@@ -120,10 +120,10 @@
         background-color: #C4DBE0;
         color: white;
     }
+
     body {
         margin-bottom: 60px;
         background-color: #C4DBE0;
         padding: 0;
     }
-
 </style>
