@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label>Dijagnoza:</label>
-                    <select asp-for="DijagnozaId" asp-items="Model.Dijagnoze" id="dijagnoze" onchange="findOpis(); findPreporuka(); saveDijagnoza(@Model.SesijaId)" class="form-control"></select>
+                    <select asp-for="DijagnozaId" asp-items="Model.Dijagnoze" id="dijagnoze" onchange="findOpis(); findPreporuka(); saveDijagnoza()" class="form-control"></select>
                 </div>
                 <div class="form-group">
                     <label>Opis:</label>
@@ -34,7 +34,7 @@
             <div id="rightColumn">
                 <div class="form-group">
                     <label for="comment">Napomena:</label>
-                    <textarea class="form-control" rows="7"></textarea>
+                    <textarea class="form-control" rows="7" id="Napomena" onchange="saveDijagnoza()"></textarea>
                 </div>
             </div>
 
@@ -55,6 +55,17 @@
             $("#dijagnoze").val(d);
             findOpis();
             findPreporuka();
+            findNapomena();
+        })
+    }
+
+    function findNapomena() {
+        var sesijaId = $("#sesijaId").val();
+        var dijagnozaId = $("#dijagnoze").val();
+        var url = '/Sesija/getDijagnozaNapomena?dijagnozaId=' + dijagnozaId + '&sesijaId=' + sesijaId;
+
+        $.get(url, function (d) {
+            $("#Napomena").val(d);
         })
     }
 
@@ -76,10 +87,12 @@
             $("#Preporuka").val(d);
         })
     }
-    function saveDijagnoza(seijsaId) {
+    function saveDijagnoza() {
 
+        var sesijaId = $("#sesijaId").val();
         var dijagnozaId = $("#dijagnoze").val();
-        var url = "/Sesija/SaveDijagnoza?SesijaId=" + seijsaId + "&DijagnozaId=" + dijagnozaId;
+        var opis = $("#Napomena").val();
+        var url = "/Sesija/SaveDijagnoza?SesijaId=" + sesijaId + "&DijagnozaId=" + dijagnozaId + "&opis=" + opis;
 
         $.get(url, function (d) {
         })

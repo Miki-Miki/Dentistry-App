@@ -31,7 +31,7 @@
                     <div id="rightColumn">
                         <div class="form-group">
                             <label>Napomena:</label>
-                            <textarea id="Napomena" rows="7" class="form-control"></textarea>
+                            <textarea id="Napomena" rows="7" class="form-control" onchange="saveLijek(@Model.SesijaId)"></textarea>
                         </div>
                     </div>
                 </form>
@@ -51,6 +51,7 @@
             $.get(url, function (d) {
                 $("#lijekovi").val(d);
                 findOpis();
+                findNapomena();
             })
         }
 
@@ -67,9 +68,20 @@
         function saveLijek(seijsaId) {
 
             var lijekId = $("#lijekovi").val();
-            var url = "/Sesija/SaveLijek?SesijaId=" + seijsaId + "&LijekId=" + lijekId;
+            var napomena = $("#Napomena").val();
+            var url = "/Sesija/SaveLijek?SesijaId=" + seijsaId + "&LijekId=" + lijekId + "&napomena=" + napomena;
 
             $.get(url, function (d) {
+            })
+        }
+
+        function findNapomena() {
+            var sesijaId = $("#sesijaId").val();
+            var lijekId = $("#lijekovi").val();
+            var url = '/Sesija/getLijekNapomena?lijekId=' + lijekId + '&sesijaId=' + sesijaId;
+
+            $.get(url, function (d) {
+                $("#Napomena").val(d);
             })
         }
 

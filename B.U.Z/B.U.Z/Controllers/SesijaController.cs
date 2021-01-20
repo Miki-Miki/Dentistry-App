@@ -25,14 +25,14 @@ namespace B.U.Z.Controllers
             webHostEnviroment = _webHostEnvironment;
         }
 
-        public IActionResult Sesija(Sesija sesija, int terminId) //treba se poslati termin za koji se radi sesija
+        public IActionResult Sesija(Sesija sesija, int terminId) 
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
             Termini termin = db.Termini.Find(terminId);
             Pacijent pacijentNaTerminu = db.Pacijenti.Find(termin.PacijentId);
             ZakazanaUsluga ZakazanaUsluga = db.ZakazanaUsluga.Where(a => a.TerminId == terminId).FirstOrDefault();
-             Usluga usluga = db.Usluga.Find(ZakazanaUsluga.UslugaId);
+            Usluga usluga = db.Usluga.Find(ZakazanaUsluga.UslugaId);
 
             if (sesija.Id == 0)
             {
@@ -93,6 +93,7 @@ namespace B.U.Z.Controllers
             DijagnozaNaSesiji dijagnoza = db.DijagnozaNaSesiji.Where(a => a.SesijaId == SesijaId).FirstOrDefault();
             LijekNaSesiji lijek = db.LijekNaSesiji.Where(a => a.SesijaId == SesijaId).FirstOrDefault();
             TerapijaNaSesiji terapija = db.TerapijaNaSesiji.Where(a => a.SesijaId == SesijaId).FirstOrDefault();
+            CTNalaz ctNalaz = db.CTNalaz.Where(a => a.Id == sesija.CTNalazId).FirstOrDefault();
 
             if(dijagnoza != null)
                 db.DijagnozaNaSesiji.Remove(dijagnoza);
@@ -100,6 +101,8 @@ namespace B.U.Z.Controllers
                 db.LijekNaSesiji.Remove(lijek);
             if (terapija != null)
                 db.TerapijaNaSesiji.Remove(terapija);
+            if (ctNalaz != null)
+                db.CTNalaz.Remove(ctNalaz);
 
             db.Sesija.Remove(sesija);
 
@@ -123,7 +126,7 @@ namespace B.U.Z.Controllers
             return View("DijagnozaOdabir", sesijaVM); 
         }
 
-        public void SaveDijagnoza(int SesijaId, int DijagnozaId)
+        public void SaveDijagnoza(int SesijaId, int DijagnozaId, string opis)
         {
             ApplicationDbContext db = new ApplicationDbContext();
             Sesija sesija= db.Sesija.Find(SesijaId);
@@ -135,6 +138,7 @@ namespace B.U.Z.Controllers
             {
                 dijagnozaNaSesiji.Dijagnoza = dijagnoza;
                 dijagnozaNaSesiji.DijagnozaId = dijagnoza.Id;
+                dijagnozaNaSesiji.Opis = opis;
                 db.SaveChanges();
             }
             else
@@ -145,6 +149,7 @@ namespace B.U.Z.Controllers
                     SesijaId = sesija.Id,
                     Dijagnoza = dijagnoza,
                     DijagnozaId = dijagnoza.Id,
+                    Opis = opis
                 };
                 db.DijagnozaNaSesiji.Add(dijagnozaNaSesiji);
                 db.SaveChanges();
@@ -163,7 +168,15 @@ namespace B.U.Z.Controllers
             else
                 return 1;
         }
-      
+
+        public string getDijagnozaNapomena(int dijagnozaId, int sesijaId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            DijagnozaNaSesiji dijagnoza = db.DijagnozaNaSesiji.Where(a => a.DijagnozaId == dijagnozaId && a.SesijaId == sesijaId).FirstOrDefault();
+
+            return dijagnoza.Opis;
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////
 
         public IActionResult NovaTerapija(int sesijaId)
@@ -179,7 +192,7 @@ namespace B.U.Z.Controllers
 
             return View("TerapijaOdabir", sesijaVM);
         }
-        public void SaveTerapija(int SesijaId, int TerapijaId)
+        public void SaveTerapija(int SesijaId, int TerapijaId, string instrukcije)
         {
             ApplicationDbContext db = new ApplicationDbContext();
             Sesija sesija = db.Sesija.Find(SesijaId);
@@ -191,6 +204,7 @@ namespace B.U.Z.Controllers
             {
                 terapijaNaSesiji.Terapija = terapije;
                 terapijaNaSesiji.TerapijaId = terapije.Id;
+                terapijaNaSesiji.Instrukcije = instrukcije;
                 db.SaveChanges();
             }
             else
@@ -201,7 +215,8 @@ namespace B.U.Z.Controllers
                     SesijaId = sesija.Id,
                     Terapija = terapije,
                     TerapijaId = terapije.Id,
-                };
+                    Instrukcije = instrukcije
+            };
                 db.TerapijaNaSesiji.Add(terapijaNaSesiji);
                 db.SaveChanges();
             }
@@ -218,6 +233,14 @@ namespace B.U.Z.Controllers
                 return (int)terapijaNaSesiji.TerapijaId;
             else
                 return 1;
+        }
+
+        public string getTerapijaInstrukcije(int terapijaId, int sesijaId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            TerapijaNaSesiji dijagnoza = db.TerapijaNaSesiji.Where(a => a.TerapijaId == terapijaId && a.SesijaId == sesijaId).FirstOrDefault();
+
+            return dijagnoza.Instrukcije;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +260,7 @@ namespace B.U.Z.Controllers
 
 
         }
-        public void SaveLijek(int SesijaId, int LijekId)
+        public void SaveLijek(int SesijaId, int LijekId, string napomena)
         {
             ApplicationDbContext db = new ApplicationDbContext();
             Sesija sesija = db.Sesija.Find(SesijaId);
@@ -249,6 +272,7 @@ namespace B.U.Z.Controllers
             {
                 lijekNaSesiji.Lijek = lijek;
                 lijekNaSesiji.LijekId = lijek.Id;
+                lijekNaSesiji.Napomena = napomena;
                 db.SaveChanges();
             }
             else
@@ -259,7 +283,8 @@ namespace B.U.Z.Controllers
                     SesijaId = sesija.Id,
                     Lijek = lijek,
                     LijekId = lijek.Id,
-                };
+                    Napomena = napomena
+            };
                 db.LijekNaSesiji.Add(lijekNaSesiji);
                 db.SaveChanges();
             }
@@ -276,6 +301,14 @@ namespace B.U.Z.Controllers
                 return (int)lijekNaSesiji.LijekId;
             else
                 return 2;
+        }
+
+        public string getLijekNapomena(int lijekId, int sesijaId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            LijekNaSesiji lijek = db.LijekNaSesiji.Where(a => a.LijekId == lijekId && a.SesijaId == sesijaId).FirstOrDefault();
+
+            return lijek.Napomena;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -305,7 +338,7 @@ namespace B.U.Z.Controllers
 
             var CTNalaz = new CTNalaz
             {
-                CTNalazSlika = stringFileName
+                CTNalazSlika = stringFileName,
             };
            
             db.CTNalaz.Add(CTNalaz);
@@ -337,6 +370,25 @@ namespace B.U.Z.Controllers
                 }
             }
             return fileName;
+        }
+
+        public void saveCTNalaz(int sesijaId, string napomena)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Sesija sesija = db.Sesija.Find(sesijaId);
+            CTNalaz ctNalaz = db.CTNalaz.Where(a => sesija.CTNalazId == a.Id).FirstOrDefault();
+
+            ctNalaz.Nalaz = napomena;
+            db.SaveChanges();
+        }
+
+        public string getCTNalazNapomena(int sesijaId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Sesija sesija = db.Sesija.Find(sesijaId);
+            CTNalaz ctNalaz = db.CTNalaz.Where(a => sesija.CTNalazId == a.Id).FirstOrDefault();
+
+            return ctNalaz.Nalaz;
         }
 
 

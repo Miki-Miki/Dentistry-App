@@ -30,7 +30,7 @@
                     <div id="rightColumn">
                         <div class="form-group">
                             <label>Instrukcije:</label>
-                            <textarea class="form-control" rows="7"></textarea>
+                            <textarea class="form-control" rows="7" id="Instrukcije" onchange="saveTerapija(@Model.SesijaId)"></textarea>
                         </div>
                     </div>
                 </form>
@@ -49,6 +49,7 @@
             $.get(url, function (d) {
                 $("#terapije").val(d);
                 findOpis();
+                findTerapijaNapomena();
             })
         }
 
@@ -62,11 +63,21 @@
         }
         function saveTerapija(sesijaId) {
             var terapijaId = $("#terapije").val();
-            var url = "/Sesija/SaveTerapija?SesijaId=" + sesijaId + "&TerapijaId=" + terapijaId;
+            var instrukcije = $("#Instrukcije").val();
+            var url = "/Sesija/SaveTerapija?SesijaId=" + sesijaId + "&TerapijaId=" + terapijaId + "&instrukcije=" + instrukcije;
 
             $.get(url, function (d) {
             })
         }
 
+        function findTerapijaNapomena() {
+            var sesijaId = $("#sesijaId").val();
+            var terapijaId = $("#terapije").val();
+            var url = '/Sesija/getTerapijaInstrukcije?terapijaId=' + terapijaId + '&sesijaId=' + sesijaId;
+
+            $.get(url, function (d) {
+                $("#Instrukcije").val(d);
+            })
+        }
     </script>
 

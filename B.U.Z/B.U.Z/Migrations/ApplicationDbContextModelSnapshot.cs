@@ -266,6 +266,9 @@ namespace B.U.Z.Migrations
                     b.Property<int>("LijekId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Napomena")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SesijaId")
                         .HasColumnType("int");
 

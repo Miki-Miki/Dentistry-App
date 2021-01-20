@@ -14,5 +14,7 @@ namespace B.U.Z.Models
 
         public int LijekId { get; set; }
         public Lijekovi Lijek { get; set; }
+
+        public string Napomena { get; set; }
     }
 }

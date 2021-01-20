@@ -134,21 +134,22 @@
 
         function Odustani(sesija) {
             if (window.confirm("Jeste sigurni da zelite odustati? Sav napredak ce biti izgubljen!")) {
-                 var url = "Odustani?SesijaId=" + sesija;
+                 var url = "/Sesija/Odustani?SesijaId=" + sesija;
                 $.get(url, function (d) {
                     window.location.href = "/Termini/Kalendar";
                 })
             }
         }
 
-            function odaberiDijagnozu(sesija) {
-                var url = "/Sesija/NovaDijagnoza?sesijaId=" + sesija;
+        function odaberiDijagnozu(sesija) {
+             var url = "/Sesija/NovaDijagnoza?sesijaId=" + sesija;
 
-                $.get(url, function (d) {
-                    $("#ajaxPrikazOdabraneOpcije").html(d);
-                })
+            $.get(url, function (d) {
+             
+                $("#ajaxPrikazOdabraneOpcije").html(d);
+           
+             })
             }
-
 
             function odaberiTerapiju(sesija) {
                 var url = "/Sesija/NovaTerapija?sesijaId=" + sesija;
@@ -162,7 +163,7 @@
             function odaberiLijek(sesija) {
                 var url = "/Sesija/NoviLijek?sesijaId=" + sesija;
 
-                $.get(url, function (d) {
+                $.get(url,function (d) {
                     $("#ajaxPrikazOdabraneOpcije").html(d);
                 })
             }
@@ -171,7 +172,7 @@
             function odaberiCTSnimak(sesija) {
                 var url = "/Sesija/NoviCTNalaz?sesijaId=" + sesija;
 
-                $.get(url, function (d) {
+                $.get(url, 'change', function (d) {
                     $("#ajaxPrikazOdabraneOpcije").html(d);
                 })
             }
