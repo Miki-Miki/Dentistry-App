@@ -13,6 +13,7 @@
     <body>
         <div id="mainAjax">
             <form asp-action="NoviCTSnimak" enctype="multipart/form-data" id="forma">
+                <input type="text" hidden value="@Model.SesijaId" id="sesijaId"/>
                 <div id="leftColumn" class="form-group">
                     <div id="CTimgDiv">
                         <h4 id="close" onclick="zatvoriSliku()">x</h4>
@@ -32,7 +33,7 @@
                 </div>
                 <div id="rightColumn" class="form-group">
                     <label>Napomena:</label>
-                    <textarea class="form-control" rows="7"></textarea>
+                    <textarea class="form-control" rows="7" id="Napomena" onchange="saveCTNalaz()"></textarea>
                 </div>
             </form>
         </div>
@@ -90,6 +91,18 @@
         }
     </style>
     <script>
+        $(document).ready(function () {
+            loadCTNalaz();
+        })
+
+        function loadCTNalaz() {
+            var sesijaId = $("#sesijaId").val();
+            var url = "/Sesija/getCTNalazNapomena?sesijaId=" + sesijaId;
+
+            $.get(url, function (d) {
+                $("#Napomena").val(d);
+            })
+        }
         function otvoriSliku() {
             var imageDiv = document.getElementById("CTimgDiv");
             var image = document.getElementById("CTimg");
@@ -112,5 +125,13 @@
 
             $("#CTimgDiv").appendTo("#SesijaBody");
 
+        }
+        function saveCTNalaz() {
+            var sesijaId = $("#sesijaId").val();
+            var napomena = $("#Napomena").val();
+            var url = "/Sesija/saveCTNalaz?sesijaId=" + sesijaId + "&napomena=" + napomena;
+
+            $.get(url, function (d) {
+            })
         }
     </script>
