@@ -1,97 +1,94 @@
 ﻿@model List<Lijekovi>
 
-<div style="float:left; height:1000px; width:200px;">
+<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
     <partial name="../Home/Index" />
 </div>
 
-<h1>Lijekovi</h1>
 
-<div>
-    <partial name="LijekoviPartial" />
-</div>
+<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
+    <h1 style="color: #0C6980">Lijekovi</h1>
+    <div class="primarydark">
+        <div class="primary" style="width:100%; padding-left:9%;">
+            <partial name="LijekoviPartial" />
+        </div>
 
-<div id="AjaxPrikazOdabranogLijeka">
+        <div id="AjaxPrikazOdabranogLijeka">
 
-</div>
+        </div>
 
-<div id="PretraziDiv">
-    <form style="margin-left:1%">
-        <label>Pretraži lijekove:</label>
-        <input type="text" name="filter" />
-        <input type="submit" value="Pretraži" />
-    </form>
-</div>
+        <div id="PretraziDiv" class="primarydark">
+            <form style="padding-left:10px;">
+                <label>Pretraži lijekove:</label>
+                <input type="text" name="filter" />
+                <input type="submit" value="Pretraži" />
+            </form>
+        </div>
 
-<table class="table table-dark" style="width:80.7%;">
-    <thead>
-        <tr>
-            <th scope="col">Redni broj</th>
-            <th scope="col">Šifra</th>
-            <th scope="col">Naziv</th>
-            <th scope="col">Opis</th>
-            @*<th scope="col">Odaberi</th>*@
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var s in Model)
-        {
-        <tr id="lijekoviRed"  onclick="OpenOdabraniLijek(@s.Id)">
-            <td></td>
-            <td>@s.Id</td>
-            <td>@s.Naziv</td>
-            <td>@s.Opis</td>
-            @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
-            @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
-            @*<td><button class="badge-danger">Select</button></td>*@
-        </tr>
+        <table class="table primarydark">
+            <thead>
+                <tr>
+                    <th scope="col">Redni broj</th>
+                    <th scope="col">Šifra</th>
+                    <th scope="col">Naziv</th>
+                    <th scope="col">Opis</th>
+                    @*<th scope="col">Odaberi</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr id="lijekoviRed" onclick="OpenOdabraniLijek('@s.Id')">
+                        <td></td>
+                        <td>@s.Id</td>
+                        <td>@s.Naziv</td>
+                        <td>@s.Opis</td>
+                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                        @*<td><button class="badge-danger">Select</button></td>*@
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        <div id="BrojLijekova" class="primarydark">
+            <label style="margin-left:1%">Broj lijekova:</label>@Model.Count()
+        </div>
+    </div>
+    <style>
+        body {
+            counter-reset: Serial; /* Set the Serial counter to 0 */
         }
 
-    </tbody>
-</table>
+        tr td:first-child:before {
+            counter-increment: Serial; /* Increment the Serial counter */
+            content: counter(Serial); /* Display the counter */
+        }
 
-<div id="BrojDostupnihLijekova">
-    <label style="margin-left:1%">Broj dostupnih lijekova:</label>@Model.Count()
+        #PretraziDiv {
+            width: 100%;
+        }
+
+        #BrojDostupnihLijekova {
+            width: 100%;
+        }
+
+        #AjaxPrikazOdabranogLijeka {
+            color: white;
+            background-color: #343a40;
+            width: 100%;
+        }
+
+        #lijekoviRed:hover {
+            background-color: aqua;
+        }
+    </style>
+
+
 </div>
 
-<style>
-    body {
-        counter-reset: Serial; /* Set the Serial counter to 0 */
-    }
-
-    tr td:first-child:before {
-        counter-increment: Serial; /* Increment the Serial counter */
-        content: counter(Serial); /* Display the counter */
-    }
-    #PretraziDiv {
-        color: white;
-        background-color: #343a40;
-        width: 80.6%;
-        margin-left: 18.1%;
-    }
-    #BrojDostupnihLijekova {
-        color: white;
-        background-color: #343a40;
-        width: 80.6%;
-        margin-left: 18.1%;
-        margin-top: -2%;
-    }
-    #AjaxPrikazOdabranogLijeka {
-        color: white;
-        background-color: #343a40;
-        width: 80.6%;
-        margin-left: 18.1%;
-        border:1px solid red;
-    }
-
-    #lijekoviRed:hover {
-        background-color: aqua;
-    }
-
-</style>
-
 <script>
-    function OpenOdabraniLijek(LijekId)
-    {
+    function OpenOdabraniLijek(LijekId) {
         var url = "/Lijekovi/SelectLijek?LijekId=" + LijekId;
         $.get(url, function (d) {
             $("#AjaxPrikazOdabranogLijeka").html(d);

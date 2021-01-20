@@ -6,21 +6,37 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName @UserManager.FindByNameAsync(User.Identity.Name).Result.LastName!</a>
+        <a class="nav-link primarydark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName @UserManager.FindByNameAsync(User.Identity.Name).Result.LastName</a>
     </li>
     <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        <form  class="form-inline primarydark" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link primarydark">Odjavi se</button>
         </form>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="nav-link primarydark" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link primarydark" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>
+<style>
+    .primary {
+        background-color: #00A8A8;
+        color: white;
+    }
+
+    .primarydark {
+        background-color: #0C6980;
+        color: white;
+    }
+
+    .primarylight {
+        background-color: #C4DBE0;
+        color: white;
+    }
+</style>

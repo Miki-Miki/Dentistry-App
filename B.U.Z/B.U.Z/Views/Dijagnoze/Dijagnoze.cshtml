@@ -1,97 +1,91 @@
 ﻿@model List<Dijagnoze>
 
-<div style="float:left; height:1000px; width:200px;">
+<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
     <partial name="../Home/Index" />
 </div>
 
-<h1>Dijagnoze</h1>
 
-<div>
-    <partial name="DijagnozePartial" />
-</div>
+<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
+    <h1 style="color: #0C6980">Dijagnoze</h1>
+    <div class="primarydark">
+        <div class="primary" style="width:100%; padding-left:9%;">
+            <partial name="DijagnozePartial" />
+        </div>
 
-<div id="AjaxPrikazOdabraneDijagnoze">
+        <div id="AjaxPrikazOdabraneDijagnoze">
 
-</div>
+        </div>
 
-<div id="PretraziDiv">
-    <form style="margin-left:1%">
-        <label>Pretraži dijagnoze:</label>
-        <input type="text" name="filter" />
-        <input type="submit" value="Pretraži" />
-    </form>
-</div>
+        <div id="PretraziDiv" class="primarydark">
+            <form style="padding-left:10px;">
+                <label>Pretraži dijagnoze:</label>
+                <input type="text" name="filter" />
+                <input type="submit" value="Pretraži" />
+            </form>
+        </div>
 
-<table class="table table-dark" style="width:80.7%;">
-    <thead>
-        <tr>
-            <th scope="col">Redni broj</th>
-            <th scope="col">Šifra</th>
-            <th scope="col">Naziv</th>
-            <th scope="col">Opis</th>
-            <th scope="col">Preporuka</th>
-            <th scope="col">Odaberi</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var s in Model)
-        {
-            <tr>
-                <td></td>
-                <td>@s.Id</td>
-                <td>@s.Naziv</td>
-                <td>@s.Opis</td>
-                <td>@s.Preporuka</td>
-                @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
-                @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
-                <td><button class="badge-danger" onclick="OpenOdabranuDijagnozu(@s.Id)">Select</button></td>
-            </tr>
+        <table class="table primarydark">
+            <thead>
+                <tr>
+                    <th scope="col">Redni broj</th>
+                    <th scope="col">Šifra</th>
+                    <th scope="col">Naziv</th>
+                    <th scope="col">Opis</th>
+                    @*<th scope="col">Odaberi</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr id="lijekoviRed" onclick="OpenOdabranuDijagnozu('@s.Id')">
+                        <td></td>
+                        <td>@s.Id</td>
+                        <td>@s.Naziv</td>
+                        <td>@s.Opis</td>
+                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                        @*<td><button class="badge-danger">Select</button></td>*@
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        <div id="BrojDijagnoza" class="primarydark">
+            <label style="margin-left:1%">Broj dijagnoza:</label>@Model.Count()
+        </div>
+    </div>
+    <style>
+        body {
+            counter-reset: Serial; /* Set the Serial counter to 0 */
         }
 
-    </tbody>
-</table>
+        tr td:first-child:before {
+            counter-increment: Serial; /* Increment the Serial counter */
+            content: counter(Serial); /* Display the counter */
+        }
 
-<div id="BrojDostupnihDijagnoza">
-    <label style="margin-left:1%">Broj dostupnih dijagnoza:</label>@Model.Count()
+        #PretraziDiv {
+            width: 100%;
+        }
+
+        #BrojDijagnoza {
+            width: 100%;
+        }
+
+        #AjaxPrikazOdabraneDijagnoze {
+            color: white;
+        }
+
+        #lijekoviRed:hover {
+            background-color: aqua;
+        }
+    </style>
+
+
 </div>
-
-<style>
-    body {
-        counter-reset: Serial; /* Set the Serial counter to 0 */
-    }
-
-    tr td:first-child:before {
-        counter-increment: Serial; /* Increment the Serial counter */
-        content: counter(Serial); /* Display the counter */
-    }
-
-    #PretraziDiv {
-        color: white;
-        background-color: #343a40;
-        width: 80.6%;
-        margin-left: 18.1%;
-    }
-
-    #BrojDostupnihDijagnoza {
-        color: white;
-        background-color: #343a40;
-        width: 80.6%;
-        margin-left: 18.1%;
-        margin-top: -2%;
-    }
-
-    #AjaxPrikazOdabraneDijagnoze {
-        color: white;
-        background-color: #343a40;
-        width: 80.6%;
-        margin-left: 18.1%;
-        border: 1px solid red;
-    }
-</style>
-
 <script>
-    function OpenOdabranuDijagnozu(DijagnozaId)
-    {
+    function OpenOdabranuDijagnozu(DijagnozaId) {
         var url = "/Dijagnoze/SelectDijagnozu?DijagnozaId=" + DijagnozaId;
         $.get(url, function (d) {
             $("#AjaxPrikazOdabraneDijagnoze").html(d);

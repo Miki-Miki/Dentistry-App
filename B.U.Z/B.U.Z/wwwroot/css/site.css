@@ -59,8 +59,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #C4DBE0;
+    padding:0;
 }
 .footer {
   position: absolute;
@@ -69,3 +71,25 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.primary {
+    background-color: #00A8A8;
+    color: white;
+}
+.primarydark {
+    background-color: #0C6980;
+    color: white;
+}
+.primarylight {
+    background-color: #C4DBE0;
+    color: white;
+}
+.whitetext
+{
+    color:white;
+}
+.doc {
+    background-image: url("C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\wwwroot\doc.png");
+    width:100px;
+    height:100px;
+}
+

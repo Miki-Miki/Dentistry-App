@@ -1,53 +1,61 @@
 ﻿@using B.U.Z.ViewModels
 @model AsistentRegistracijaVM
 
-<div style="float:left; height:1000px; width:200px;">
+<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
     <partial name="../Home/Index" />
 </div>
-<h1>Recepti</h1>
-<div>
-    <partial name="UserAccountsPartial" />
-</div>
-<div id="formaDiv">
-    <form asp-action="SpasiNoviAsistent">
-        <div>
-            <label>First name</label>
-            <input type="text" name="FirstName" />
-        </div>
-        <div>
-            <label>Last name</label>
-            <input type="text" name="LastName" />
-        </div>
-        <div>
-            <label>E-mail</label>
-            <input type="text" name="Email" />
-        </div>
-        <div>
-            <label>Broj telefona</label>
-            <input type="text" asp-for="BrojTelefona" />
-        </div>
-        <div>
-            <label>Password</label>
-            <input type="text" name="PasswordHash" />
-        </div>
-        <div>
-            <label>Spol</label>
-            <select asp-for="SpolId" asp-items="Model.spolovi"></select>
-        </div>
-        <div>
-            <label>Grad</label>
-            <select asp-for="GradId" asp-items="Model.gradovi"></select>
-        </div>
-        <div>
-            <label>Titula</label>
-            <input type="text" name="Titula" />
-        </div>
-        <div>
-            <input type="submit" name="Spasi" value="Snimi" />
-        </div>
-    </form>
+<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
+    <h1 style="color: #0C6980">Novi user account za asistenta</h1>
+    <div class="primary" style="width:100%;padding-left:0%;">
+        <partial name="UserAccountsPartial" />
+    </div>
+    <div id="formaDiv" class="primarydark" style="margin:0; width:100%;">
+        <form asp-action="SpasiNoviStomatolog" class="primarydark">
+            <div>
+                <label>First name</label>
+                <input type="text" name="FirstName" />
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+            </div>
+            <div>
+                <label>Last name</label>
+                <input type="text" name="LastName" />
+                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+            </div>
+            <div>
+                <label>E-mail</label>
+                <input type="text" name="Email" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div>
+                <label>Broj telefona</label>
+                <input type="text" asp-for="BrojTelefona" />
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="text" name="PasswordHash" />
+                <span asp-validation-for="@Model.PasswordHash" class="text-danger"></span>
+            </div>
+            <div>
+                <label>Spol</label>
+                <select asp-for="SpolId" asp-items="Model.spolovi"></select>
+            </div>
+            <div>
+                <label>Grad</label>
+                <select asp-for="GradId" asp-items="Model.gradovi"></select>
+            </div>
+            <div>
+                <label>Titula</label>
+                <input type="text" name="Titula" />
+                <span asp-validation-for="@Model.Titula" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="submit" name="Spasi" value="Snimi" />
+            </div>
+        </form>
+    </div>
 </div>
 <style>
+    <style >
     #formaDiv {
         color: white;
         background-color: #343a40;

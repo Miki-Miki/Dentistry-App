@@ -3,12 +3,11 @@
 @model Dijagnoze
 <div>
     <div>
-        <label>Odabrana dijagnoza:</label>
+        <label style="padding-left:10px;">Odabrana dijagnoza:</label>
     </div>
     <form asp-controller="Dijagnoze" asp-action="SpasiNovuStaruDijagnozu">
         <label>Šifra:</label>
         <input type="text" asp-for="@Model.Id" />
-
 
         <label>Naziv:</label>
         <input type="text" asp-for="@Model.Naziv" />

@@ -1,12 +1,12 @@
 ﻿@using B.U.Z.Models
 @{ Layout = null;}
 @model Lijekovi
-<div>
+<div class="primarydark">
     <div>
-        <label>Odabrani lijek:</label>
+        <label style="padding-left:10px;">Odabrani lijek:</label>
     </div>
     <form asp-controller="Lijekovi" asp-action="SpasiNoviStariLijek">
-        <label>Šifra:</label>
+        <label style="padding-left:10px;">Šifra:</label>
         <input type="text" asp-for="@Model.Id" />
 
 

@@ -1,35 +1,37 @@
 ﻿@model int
-<div style="float:left; height:1000px; width:200px;">
+<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
     <partial name="../Home/Index" />
 </div>
-<h1>Lijekovi</h1>
-<div>
-    <partial name="LijekoviPartial" />
+
+
+<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
+    <h1 style="color: #0C6980">Novi lijek</h1>
+    <div class="primarydark">
+        <div class="primary" style="width:100%;padding-left:9%;">
+            <partial name="LijekoviPartial" />
+        </div>
+        <div id="formaDiv" class="primarydark">
+            <form asp-action="SpasiNoviLijek">
+                <div>
+                    <label>Redni broj</label>
+                    <input type="text" value="@Model" />
+                </div>
+                <div>
+                    <label>Naziv</label>
+                    <input type="text" name="Naziv" />
+                </div>
+                <div>
+                    <label>Opis</label>
+                    <input type="text" name="Opis" />
+                </div>
+                <div>
+                    <input type="submit" name="Spasi" value="Snimi" />
+                </div>
+            </form>
+        </div>
+        <style>
+            #formaDiv {
+            }
+        </style>
+    </div>
 </div>
-<div id="formaDiv">
-<form asp-action="SpasiNoviLijek">
-    <div>
-        <label>Redni broj</label>
-        <input type="text" value="@Model"/>
-    </div>
-    <div>
-        <label>Naziv lijeka</label>
-        <input type="text" name="Naziv"/>
-    </div>
-    <div>
-        <label>Opis lijeka</label>
-        <input type="text" name="Opis" />
-    </div>
-    <div>
-        <input type="submit" name="Spasi" value="Snimi"/>
-    </div>
-</form>
-</div>
-<style>
-    #formaDiv {
-        color: white;
-        background-color: #343a40;
-        width:80.6%;
-        margin-left:18.1%;
-    }
-</style>
