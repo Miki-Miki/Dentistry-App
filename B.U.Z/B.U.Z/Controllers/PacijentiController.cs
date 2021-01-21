@@ -184,7 +184,8 @@ namespace B.U.Z.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
             Pacijent p = db.Pacijenti.Find(_userManager.GetUserId(User));
-            List<SelectListItem> termini = db.Termini.Where(s => s.PacijentId == p.Id).OrderBy(a => a.TerminStart).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.TerminStart.ToString() }).ToList();
+            Termini t = db.Termini.Where(s => s.PacijentId == p.Id).FirstOrDefault();
+            List<SelectListItem> termini = db.Sesija.Where(s => s.TerminId == t.Id).OrderBy(a => a.Id).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.Termin.TerminStart.ToString() }).ToList();
             PacijentiKartonVM model = new PacijentiKartonVM
             {
                 Ime = p.FirstName,
@@ -195,9 +196,48 @@ namespace B.U.Z.Controllers
                 BrojTelefona = p.PhoneNumber,
                 DatumRodjenja = p.GodinaRodjenja,
                 BrojKartona = p.BrojKartona,
-                Termini = termini
+                Sesije = termini
             };
             return View(model);
+        }
+        public List<string> InformacijeOTerminu(int sesijaId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Sesija ses = db.Sesija.Find(sesijaId);
+            Termini ter = db.Termini.Where(s => s.Id == ses.TerminId).FirstOrDefault();
+     
+            Lijekovi l = new Lijekovi();
+            Terapije t = new Terapije();
+            Dijagnoze d = new Dijagnoze();
+            Usluga u = new Usluga();
+            TerapijaNaSesiji tns = db.TerapijaNaSesiji.Where(s => s.SesijaId == ses.Id)?.FirstOrDefault();
+            if (tns!=null)
+            {
+                 t = db.Terapije.Where(s => s.Id == tns.TerapijaId)?.FirstOrDefault();
+            }
+            LijekNaSesiji lns = db.LijekNaSesiji.Where(s => s.SesijaId == ses.Id)?.FirstOrDefault();
+            if (lns != null)
+            {
+                 l = db.Lijekovi.Where(s => s.Id == lns.LijekId)?.FirstOrDefault();
+            }
+            DijagnozaNaSesiji dns = db.DijagnozaNaSesiji.Where(s => s.SesijaId == ses.Id)?.FirstOrDefault();
+            if (dns != null)
+            {
+                d = db.Dijagnoze.Where(s => s.Id == dns.DijagnozaId)?.FirstOrDefault();
+            }
+            ZakazanaUsluga zu = db.ZakazanaUsluga.Where(s => s.TerminId == ter.Id)?.FirstOrDefault();
+            if (zu != null)
+            {
+                u = db.Usluga.Where(s => s.Id == zu.UslugaId)?.FirstOrDefault();
+            }
+           
+            List<string> rezultat = new List<string>();
+            rezultat.Add(u.Naziv);
+            rezultat.Add(d.Naziv);
+            rezultat.Add(t.Naziv);
+            rezultat.Add(l.Naziv);
+           
+            return rezultat;
         }
     }
 }

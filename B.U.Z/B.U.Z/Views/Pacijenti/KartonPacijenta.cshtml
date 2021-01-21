@@ -69,28 +69,28 @@
         </div>
 
         <div>
-            <label>Termini:</label>
-            <select asp-items="@Model.Termini"></select>
+            <label>Izvršene sesije:</label>
+            <select id="TerminiDropDown" asp-items="@Model.Sesije" onchange="UcitajInformacije()"></select>
         </div>
 
         <div>
             <label>Izvršena usluga:</label>
-            <input type="text" value="@Model.IzvrsenaUsluga" />
+            <input id="Usluga" type="text" value="@Model.IzvrsenaUsluga" />
         </div>
 
         <div>
             <label>Dijagnoza:</label>
-            <input type="text" value="@Model.Dijagnoza" />
+            <input id="Dijagnoza" type="text" value="@Model.Dijagnoza" />
         </div>
 
         <div>
             <label>Terapija:</label>
-            <input type="text" value="@Model.Terapija" />
+            <input id="Terapija" type="text" value="@Model.Terapija" />
         </div>
 
         <div>
             <label>Lijek:</label>
-            <input type="text" value="@Model.Lijek" />
+            <input id="Lijek" type="text" value="@Model.Lijek" />
         </div>
 
     </div>
@@ -131,4 +131,18 @@
         margin-top: 5%;
     }
 </style>
+
+<script>
+    function UcitajInformacije()
+    {
+        var sesijaId = $("#TerminiDropDown").val();
+        var url = "/Pacijenti/InformacijeOTerminu?sesijaId=" + sesijaId;
+        $.get(url, function (d) {
+            $("#Usluga").val(d[0]);
+            $("#Dijagnoza").val(d[1]);
+            $("#Terapija").val(d[2]);
+            $("#Lijek").val(d[3]);
+        });
+    }
+</script>
 

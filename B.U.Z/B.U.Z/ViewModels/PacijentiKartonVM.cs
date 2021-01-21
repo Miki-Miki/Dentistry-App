@@ -17,7 +17,7 @@ namespace B.U.Z.ViewModels
         public string BrojTelefona { get; set; }
         public string Grad { get; set; }
         public int BrojKartona { get; set; }
-        public List<SelectListItem> Termini { get; set; }
+        public List<SelectListItem> Sesije { get; set; }
         public string IzvrsenaUsluga { get; set; }
         public string Dijagnoza { get; set; }
         public string Terapija { get; set; }
