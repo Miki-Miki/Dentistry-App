@@ -16,5 +16,7 @@ namespace B.U.Z.ViewModels
         public Pacijent pacijent { get; set; }
         public Usluga usluga { get; set; }
 
+        public bool isPrihvacen { get; set; }
+
     }
 }

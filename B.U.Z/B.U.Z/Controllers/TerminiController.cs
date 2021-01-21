@@ -125,20 +125,30 @@ namespace B.U.Z.Controllers
             List<Termini> terminiDB = db.Termini.ToList();
             List<TerminiVM> termini = new List<TerminiVM>();
 
+            ZakazanaUsluga zakazanaUsluga = new ZakazanaUsluga();
+            Usluga _usluga = new Usluga();
+            Pacijent _pacijent = new Pacijent();
+
             foreach(var t in terminiDB)
             {
-                Pacijent _pacijent = db.Pacijenti.Find(t.PacijentId);
-                ZakazanaUsluga zakazanaUsluga = db.ZakazanaUsluga.Single(x => x.TerminId == t.Id);
-                Usluga _usluga = db.Usluga.Single(x => x.Id == zakazanaUsluga.UslugaId);
+                _pacijent = db.Pacijenti.Find(t.PacijentId);
 
-                termini.Add(new TerminiVM()
+                if (t.isPrihvacen == true)
                 {
-                    basePrice = t.basePrice,
-                    TerminStart = t.TerminStart,
-                    TerminEnd = t.TerminEnd,
-                    pacijent = _pacijent,
-                    usluga = _usluga
-                });
+                    zakazanaUsluga = db.ZakazanaUsluga.SingleOrDefault(x => x.TerminId == t.Id);
+                    _usluga = db.Usluga.SingleOrDefault(x => x.Id == zakazanaUsluga.UslugaId);
+                    
+                    termini.Add(new TerminiVM()
+                    {
+                        basePrice = t.basePrice,
+                        TerminStart = t.TerminStart,
+                        TerminEnd = t.TerminEnd,
+                        pacijent = _pacijent,
+                        usluga = _usluga
+                    });
+                }
+
+
             }
 
             var terminiJSON = termini.Select(t => new
@@ -153,40 +163,48 @@ namespace B.U.Z.Controllers
             return new JsonResult(terminiJSON);
         }
 
-        [Route("SFindAll")]
-        public IActionResult SFindAllTermini()
+
+        //Popravi
+        [Route("SFindAllPrihvaceni")]
+        public IActionResult SFindAllDaTermini()
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
             List<Termini> terminiDB = db.Termini.ToList();
             List<TerminiVM> termini = new List<TerminiVM>();
+            Pacijent _pacijent = new Pacijent();            
 
             foreach (var t in terminiDB)
             {
-                Pacijent _pacijent = db.Pacijenti.Find(t.PacijentId);
-
-                var _usluga = from zU in db.ZakazanaUsluga
-                                  join U in db.Usluga
-                                  on zU.UslugaId equals U.Id
-                                  where zU.TerminId == t.Id
-                                  select new Usluga
-                                  {
-                                      Id = U.Id,
-                                      Cijena = U.Cijena,
-                                      Naziv = U.Naziv,
-                                      Opis = U.Opis
-                                  };
-
-
-                termini.Add(new TerminiVM()
+                _pacijent = db.Pacijenti.Find(t.PacijentId);
+                if(t.isPrihvacen == true)
                 {
-                    TerminId = t.Id,
-                    basePrice = t.basePrice,
-                    TerminStart = t.TerminStart,
-                    TerminEnd = t.TerminEnd,
-                    pacijent = _pacijent,
-                    usluga = _usluga.FirstOrDefault()
-                }) ;
+                    var _usluga = from zU in db.ZakazanaUsluga
+                                      join U in db.Usluga
+                                      on zU.UslugaId equals U.Id
+                                      where zU.TerminId == t.Id
+                                      select new Usluga
+                                      {
+                                          Id = U.Id,
+                                          Cijena = U.Cijena,
+                                          Naziv = U.Naziv,
+                                          Opis = U.Opis
+                                      };
+
+                    termini.Add(new TerminiVM()
+                    {
+                        TerminId = t.Id,
+                        basePrice = t.basePrice,
+                        TerminStart = t.TerminStart,
+                        TerminEnd = t.TerminEnd,
+                        pacijent = _pacijent,
+                        usluga = _usluga.FirstOrDefault(),
+                        isPrihvacen = true
+                    }) ;
+                }
+
+
+
             }
 
             var terminiJSON = termini.Select(t => new
@@ -198,13 +216,72 @@ namespace B.U.Z.Controllers
                 end = t.TerminEnd,
                 basePrice = t.basePrice,
                 pacijent = t.pacijent,
-                usluga = t.usluga
+                usluga = t.usluga,
+                isPrihvacen = true
             });
 
             return new JsonResult(terminiJSON);
         }
 
+        [Route("SFindAllNePrihvaceni")]
+        public IActionResult SFindAllNeTermini()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
 
+            List<Termini> terminiDB = db.Termini.ToList();
+            List<TerminiVM> termini = new List<TerminiVM>();
+            Pacijent _pacijent = new Pacijent();
+
+            foreach (var t in terminiDB)
+            {
+                _pacijent = db.Pacijenti.Find(t.PacijentId);
+                if (t.isPrihvacen == false)
+                {
+                    var _usluga = from zU in db.ZakazanaUsluga
+                                  join U in db.Usluga
+                                  on zU.UslugaId equals U.Id
+                                  where zU.TerminId == t.Id
+                                  select new Usluga
+                                  {
+                                      Id = U.Id,
+                                      Cijena = U.Cijena,
+                                      Naziv = U.Naziv,
+                                      Opis = U.Opis
+                                  };
+
+                    termini.Add(new TerminiVM()
+                    {
+                        TerminId = t.Id,
+                        basePrice = t.basePrice,
+                        TerminStart = t.TerminStart,
+                        TerminEnd = t.TerminEnd,
+                        pacijent = _pacijent,
+                        usluga = _usluga.FirstOrDefault(),
+                        isPrihvacen = false
+                    });
+                }
+
+
+
+            }
+
+            var terminiJSON = termini.Select(t => new
+            {
+                id = t.TerminId,
+                title = t.pacijent.FirstName + " " + t.pacijent.LastName,
+                description = t.usluga.Naziv,
+                start = t.TerminStart,
+                end = t.TerminEnd,
+                basePrice = t.basePrice,
+                pacijent = t.pacijent,
+                usluga = t.usluga,
+                isPrihvacen = false
+            });
+
+            return new JsonResult(terminiJSON);
+        }
+
+        //Popravi
         [Route("FindAllMojiTermini")]
         public IActionResult FindAllMojiTermini()
         {
@@ -216,7 +293,7 @@ namespace B.U.Z.Controllers
 
             foreach (var t in terminiDB)
             {
-                if (_pacijent.Id == t.PacijentId)
+                if (_pacijent.Id == t.PacijentId && t.isPrihvacen == true)
                 {
                     var _usluga = from zU in db.ZakazanaUsluga
                                   join U in db.Usluga
@@ -246,7 +323,7 @@ namespace B.U.Z.Controllers
             var terminiJSON = termini.Select(t => new
             {
                 id = t.TerminId,
-                title = t.pacijent.FirstName + " " + t.pacijent.LastName,
+                title = t.usluga.Naziv,
                 description = t.usluga.Naziv,
                 start = t.TerminStart,
                 end = t.TerminEnd,
