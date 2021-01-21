@@ -54,3 +54,38 @@
     cursor: pointer;
     user-select: none;
 }
+
+#tableTermin {
+    margin-top: 2em;
+}
+
+#btnZakaziTermin {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    /*padding: 5px;*/
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #0C6980;
+    opacity: 0.7;
+    font-family: Tahoma;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;    
+}
+
+    #btnZakaziTermin:hover {
+        background-color: #8DA3A8;
+    }
+
+    #btnZakaziTermin:active {
+        background-color: #90CDDB;
+    }
+
+    #btnZakaziTermin:focus {
+        background-color: #90CDDB;
+        outline: none;
+    }

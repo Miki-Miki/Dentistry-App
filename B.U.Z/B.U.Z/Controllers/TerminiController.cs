@@ -282,5 +282,28 @@ namespace B.U.Z.Controllers
             return db.Usluga.Find(uslugaId).Cijena;
         }
 
+        [HttpPost]
+        [Route("SpremiTermin")]
+        public IActionResult SpremiTermin(string terminStart, string selectedBasePrice)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            DateTime tStart = DateTime.Parse(terminStart);
+            DateTime tEnd = tStart.Add(new TimeSpan(1, 0, 0));
+
+            Termini noviTermin = new Termini
+            {
+                PacijentId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id,
+                TerminStart = tStart,
+                TerminEnd = tEnd,
+                basePrice = Convert.ToDouble(selectedBasePrice)
+            };
+
+            db.Termini.Add(noviTermin);
+            db.SaveChanges();
+
+            return View("PacijentMojiTermini");
+        }
+
     }
 }

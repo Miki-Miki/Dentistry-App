@@ -70,13 +70,14 @@
                         </div>*@
                 </div>
             </div>
-            <button class="btn-primary" id="btnZakaziTermin" onclick="showTerminDetails()">Zakaži</button>
+            <button class="btn-primary" id="btnTerminDatalji" onclick="showTerminDetails()">Zakaži</button>
             <select asp-for="UslugaId" asp-items="Model.Usluge" id="usluge"></select>
         </div>
         <div id="calendar-pacijent-container">
             <div id="calendar-pacijent"></div>
         </div>
         <input id="datum" onchange="setSelectedDate(this.value)" />
+        <input id="currentDate" />
     </div>
 
 
@@ -84,8 +85,8 @@
 
 <div id="selectedTermin">
     <a id="btnNazad" onclick="unSelectTermin()">X</a>
+    <button id="btnZakaziTermin" class="btn-primary" onclick="zakaziTermin()">Zakaži</button>
     <h4 style="color: #0C6980;">Termin</h4>
-    <a id="btnZapocniTermin" onclick="sendSesija()">Započni</a>
 
     <table style="width:100%" id="tableTermin">
         <tr>
@@ -111,51 +112,11 @@
 <input type="hidden" id="selectedUslugaId"/>
 
 
+
 <script src="~/js/fullcalendar/kalendar-pacijent.js"></script>
 <script src="~/lib/shieldui/js/dateTimePicker.js"></script>
 
-@*<script type="text/javascript">
-        function destroyPicker() {
-            $("#picker").swidget().destroy();
-        }
-
-        function enable() {
-            $("#picker").swidget().enabled(true);
-        }
-
-        function disable() {
-            $("#picker").swidget().enabled(false);
-        }
-
-        function show() {
-            $("#picker").swidget().visible(true);
-        }
-
-        function hide() {
-            $("#picker").swidget().visible(false);
-        }
-
-        function getSelected() {
-            alert($("#picker").swidget().value());
-        }
-
-        function setSelectedDate() {
-            $("#picker").swidget().value(new Date(1900, 1, 1, 22, 0));
-        }
-
-        function showCalendar() {
-            $("#picker").swidget().open("calendar");
-        }
-
-        function hideCalendar() {
-            $("#picker").swidget().close("calendar");
-        }
-
-        function showCalendar1() {
-            $("#picker").swidget().open("timeview");
-        }
-
-        function hideCalendar1() {
-            $("#picker").swidget().close("timeview");
-        }
-    </script>*@
+<style>
+    .fc-sun { background-color:blue; }
+    .fc-sat { background-color:red;  }
+</style>

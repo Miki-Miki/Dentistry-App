@@ -21,5 +21,7 @@ namespace B.U.Z.Models
         public DateTime TerminEnd { get; set; }
 
         public double basePrice { get; set; }
+
+        public bool isPrihvacen { get; set; }
     }
 }

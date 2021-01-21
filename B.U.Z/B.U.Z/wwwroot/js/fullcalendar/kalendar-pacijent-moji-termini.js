@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         allDaySlot: false,
         slotMinTime: '08:00',
         slotMaxTime: '18:00',
+        hiddenDays: [0, 6],
         dateClick: function (info) {
             //calendar.changeView('timeGridDay', info.date)
             if (!dateClickedOn) {
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
 
         events: '/Termini/FindAllMojiTermini',
-        eventColor: '#852828'
+        eventColor: '#0062cc'
     });
 
     calendar.render();

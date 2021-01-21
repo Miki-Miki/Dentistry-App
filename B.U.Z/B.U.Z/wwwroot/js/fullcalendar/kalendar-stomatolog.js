@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('day clicked' + info.date)
             calendar.changeView('timeGridDay', info.date)
         },
-        
+
+        hiddenDays: [0, 6],
 
         eventClick: function (info) {
             //alert('clicked on date ' + info.dateStr);

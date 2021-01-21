@@ -12,14 +12,22 @@ var trmBasePrice = document.getElementById('trmBasePrice');
 
 
 var current = new Date();
-var selectedDay = (current.getMonth() + 1) + '/' + current.getDate() + '/' + current.getFullYear();;
+var selectedDate = (current.getMonth() + 1) + '/' + current.getDate() + '/' + current.getFullYear();
 var selectedTime;
+
+var selectedHours;
+var selectedDay;
+var selectedMonth;
+var selectedYear;
 
 var dateOfTermin;
 
 var cmbUsluge = document.getElementById('usluge');
 
 var selectedUslugaId = document.getElementById('selectedUslugaId');
+
+var fullSelectedDay;
+var _selectedBasePrice;
 
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar-pacijent');
@@ -38,9 +46,16 @@ document.addEventListener('DOMContentLoaded', function () {
         allDaySlot: false,
         slotMinTime: '08:00',
         slotMaxTime: '18:00',
+        hiddenDays: [0, 6],
         dateClick: function (info) {
             //calendar.changeView('timeGridDay', info.date)
 
+            if (timePicker.value != 0) {
+                selectedTime = timePicker.value;
+            } else {
+                selectedTime = '8:00 AM';
+            }
+            
             if (!dateClickedOn) {
                 info.dayEl.style.backgroundColor = '#00A8A8'
                 dateClickedOn = true;
@@ -57,19 +72,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             selectedDayTermin = info.dayEl;
-            selectedDay = (info.date.getMonth() + 1) + '/' + info.date.getDate() + '/' + info.date.getFullYear();
-            document.getElementById('datum').value = selectedDay;
-            //setSelectedDate(info.date);
-        },
+            selectedDate = (info.date.getMonth() + 1) + '/' + info.date.getDate() + '/' + info.date.getFullYear();
+            selectedDay = info.date.getDate();
+            selectedMonth = info.date.getMonth() + 1;
+            selectedYear = info.date.getFullYear();
+            document.getElementById('datum').value = selectedDate;
 
-        //eventDidMount: function (info) {
-        //    $(info.el).tooltip({
-        //        title: 'Zauzeto',
-        //        placement: "top",
-        //        trigger: "hover",
-        //        container: "body"
-        //    });
-        //},
+
+            //setSelectedDate(info.date);
+
+            validateDate();
+        },        
 
         businessHours: {            
             daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
@@ -92,12 +105,11 @@ function showTerminDetails() {
 
     if (timePicker.value != 0) {
         selectedTime = timePicker.value;
-        console.log('timePicker != null ;' + selectedTime)
     } else {
         selectedTime = '8:00 AM';
-        console.log('timePicker == null ;' + selectedTime)
     }
-    dateOfTermin = selectedDay + ' ' + selectedTime;
+
+    dateOfTermin = selectedDate + ' ' + selectedTime;
     console.log(dateOfTermin);
 
     //Empty details
@@ -126,17 +138,58 @@ function getCijenaUsluge(_uslugaId) {
         success: function (data) {
             console.log(data.responseText);
             trmBasePrice.innerText += data.responseText + ' KM';
+            _selectedBasePrice = data.responseText;
         },
 
         error: function (data) {
             console.log(data.responseText);
             trmBasePrice.innerText += data.responseText + ' KM';
+            _selectedBasePrice = data.responseText;
         },
 
         failure: function (data) {
             console.log(data.responseText);
             trmBasePrice.innerText += data.responseText + ' KM';
+            _selectedBasePrice = data.responseText;
         }
         
+    })
+}
+
+function validateDate() {
+
+    var now = new Date();
+    now.setHours(0, 0, 0, 0);
+    var _selectedDate = new Date(selectedDate);   
+    fullSelectedDay = selectedDate + ' ' + selectedTime;
+
+    console.log('selectedTime: ' + selectedTime);
+
+
+    if (_selectedDate < now) {
+        alert('Molimo izaberite validan datum');
+    }
+}
+
+function zakaziTermin() {
+    selectedHour = timePicker.value;
+    
+
+    $.ajax({
+        type: 'POST',
+        url: '/Termini/SpremiTermin/',
+        data: { terminStart: fullSelectedDay, selectedBasePrice: _selectedBasePrice },
+
+        success: function (data) {
+            console.log(data.responseText);
+        },
+
+        error: function (data) {
+            console.log(data.responseText);
+        },
+
+        failure: function (data) {
+            console.log(data.responseText);
+        }
     })
 }
