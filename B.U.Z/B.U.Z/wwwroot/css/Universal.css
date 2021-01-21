@@ -9,10 +9,10 @@
     margin-right: auto;
 }
 body {
-/*       background-image: url("/Images/media/background-image.png");
+    background-image: url("/Images/media/background-image.png");
     background-size: 300px 300px;
-    background-repeat: repeat;*/
-    background-color: #C4DBE0;
+    background-repeat: repeat;
+/*    background-color: #C4DBE0;*/
 }
 #naslov {
     background-color: #00A8A8;
