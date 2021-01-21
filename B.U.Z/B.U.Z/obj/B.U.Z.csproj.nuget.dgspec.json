@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Desktop\\Predavanja\\Razvoj softvera I\\Seminarski rad\\DevAzure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj": {}
+    "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Desktop\\Predavanja\\Razvoj softvera I\\Seminarski rad\\DevAzure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj": {
+    "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\Predavanja\\Razvoj softvera I\\Seminarski rad\\DevAzure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
+        "projectUniqueName": "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
         "projectName": "B.U.Z",
-        "projectPath": "C:\\Users\\PC\\Desktop\\Predavanja\\Razvoj softvera I\\Seminarski rad\\DevAzure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\Predavanja\\Razvoj softvera I\\Seminarski rad\\DevAzure\\webapp\\B.U.Z\\B.U.Z\\obj\\",
+        "projectPath": "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
+        "packagesPath": "C:\\Users\\Velid\\.nuget\\packages\\",
+        "outputPath": "D:\\FIT\\RS\\webapp\\B.U.Z\\B.U.Z\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Velid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -30,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNet.Identity.Core": {
               "target": "Package",
@@ -111,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

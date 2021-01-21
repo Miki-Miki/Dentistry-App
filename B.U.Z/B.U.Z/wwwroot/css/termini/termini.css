@@ -41,7 +41,7 @@
 }
 #termini {
     background-color: #0C6980;
-    width: 90%;
+    width: 100%;
     height: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -83,8 +83,7 @@ td {
 }
 
 #main_body {
-    float: left;
-    width: 80%;
+    width: 100%;
     background-color: #C4DBE0;
     padding: 30px;
     height: 100%

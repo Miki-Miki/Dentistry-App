@@ -1,38 +1,46 @@
 ﻿@model List<ApplicationUser>
 
-<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
-    <partial name="../Home/Index" />
-</div>
-<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
-    <h1 style="color: #0C6980">User accounts</h1>
+    <link href="~/css/Universal.css" rel="stylesheet" />
 
-    <div class="primary" style="width:100%; padding-left:0%;">
-        <partial name="UserAccountsPartial" />
+    <div id="mainContainer">
+        <div>
+            <partial name="../Home/Index" />
+        </div>
+        <div class="primarylight" id="MainPageBody">
+            <div id="pageContent">
+                <div id="partialNav">
+                    <partial name="UserAccountsPartial" />
+                </div>
+
+                @*<h1 id="naslov">User accounts</h1>*@
+                <div id="ostatakBody-a">
+
+
+                    <table id="tabela"  class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Ime</th>
+                                <th scope="col">Prezime</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>@s.Id</td>
+                                    <td>@s.FirstName</td>
+                                    <td>@s.LastName</td>
+                                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+                                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                                    @*<td><button class="badge-danger" onclick="OpenOdabraniLijek(@s.Id)">Select</button></td>*@
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <table class="table primarydark" style="width:100%;">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Ime</th>
-                <th scope="col">Prezime</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var s in Model)
-            {
-                <tr>
-                    <td></td>
-                    <td>@s.Id</td>
-                    <td>@s.FirstName</td>
-                    <td>@s.LastName</td>
-                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
-                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
-                    @*<td><button class="badge-danger" onclick="OpenOdabraniLijek(@s.Id)">Select</button></td>*@
-                </tr>
-            }
-
-        </tbody>
-    </table>
-</div>

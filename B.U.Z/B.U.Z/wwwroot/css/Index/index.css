@@ -1,7 +1,6 @@
-﻿body
-{
-    margin:0;
-    padding:0;
+﻿body {
+    margin: 0;
+    padding: 0;
 }
 #imageContainer
 {
@@ -23,12 +22,30 @@
     padding:0;
 }
 #layoutNavBar {
+    position: fixed;
+    z-index:2;
+    height: 7%;
+    width: 100%;
     margin: 0 !important;
-    border:none !important;
+    border: none !important;
+    background-color: #0C6980;
+    padding:0;
 }
-#layoutMain
-{
-    width:100%;
+    #layoutNavBar .container {
+        width: 100%;
+        margin: 0;
+        padding-left: 3%;
+        padding-right: 3%;
+        max-width: none !important;
+    }
+
+#buz{
+    font-size:30px;
+    color:white;
+}
+
+#layoutMain {
+    width: 100%;
 }
 #textIndex
 {

@@ -19,7 +19,7 @@
     <header class="primarydark">
         <nav id="layoutNavBar" class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand primarydark" asp-area="" asp-controller="Home" asp-action="Index">B.U.Z</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" id="buz">B.U.Z</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@
             </div>
         </nav>
     </header>
-    <div id="layoutContainer" class="col-lg-12">
+    <div id="layoutContainer">
         <main id="layoutMain" role="main">
             @RenderBody()
         </main>

@@ -9,85 +9,83 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="~/css/termini/termini.css" rel="stylesheet" />
+    <link href="~/css/Universal.css" rel="stylesheet" />
+    <link href="~/css/Universal.css" rel="stylesheet" />
 </head>
 
-
-<div id="mainContainerTermini">
-    <div style="float:left; width: 20%; background-color:#00A8A8">
-        <div style="float:left; height:1000px;">
+<div id="mainContainer">
+    @*<div id="mainContainerTermini">*@
+        <div>
             <partial name="../Home/Index" />
         </div>
+        <div id="MainPageBody" class="primarylight">
+
+            <div @*id="main_body"*@ id="pageContent">
+                    @*<div id="termini">*@
+                        <div id="partialNav">
+                            <partial name="TerminiPartial" />
+                        </div>
+                        <div id="ostatakBody-a" class="primarydark">
+                           <div id="header">
+                                <div id="calendar-stomatolog"></div>
+                            </div>
+
+                            <div id="podaci">
+
+                            </div>
+                        </div>
+                        <div id="selectedSesija">
+                            <a id="btnNazad" onclick="unSelectSesija()">X</a>
+                            <h4 style="color: #0C6980;">Termin</h4>
+                            <a id="btnZapocniSesiju" onclick="sendSesija()">Započni</a>
+
+                            <table style="width:100%" id="tableTermin">
+                                <tr>
+                                    <th><b>Početak: </b></th>
+                                    <td id="trmPocetak"></td>
+                                </tr>
+                                <tr>
+                                    <th><b>Kraj: </b></th>
+                                    <td id="trmKraj"></td>
+                                </tr>
+                                <tr>
+                                    <th><b>Pacijent: </b></th>
+                                    <td id="trmImePacijenta"></td>
+                                </tr>
+                                <tr>
+                                    <th><b>Usluga: </b></th>
+                                    <td id="trmUsluga"></td>
+                                </tr>
+                                <tr>
+                                    <th><b>Osnovna Cijena: </b></th>
+                                    <td id="trmBasePrice"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        </div>
+                    @*</div>*@
+            </div>
+@*</div>*@
     </div>
 
-    <div id="main_body">        
-        <div id="termini">
-            <div>
-                <partial name="TerminiPartial" />
-            </div>
+    <script src="~/js/fullcalendar/kalendar-stomatolog.js"></script>
+    <script>
+        //$(function () {
+        //    $("#tabs").tabs();
+        //});
 
-            <div id="header">                
-                <div id="calendar-stomatolog"></div>
-            </div>
+        function unSelectSesija() {
+            var selectedSesija = document.getElementById('selectedSesija');
+            var mainContainer = document.getElementById('mainContainerTermini');
+            selectedSesija.style.display = 'none';
+            mainContainer.style.filter = 'blur(0px)';
 
-            <div id="podaci">
-               
-            </div>
-        </div>
+        }
 
-    </div>
-</div>
-
-<div id="selectedSesija">
-    <a id="btnNazad" onclick="unSelectSesija()">X</a>
-    <h4 style="color: #0C6980;">Termin</h4>
-    <a id="btnZapocniSesiju" onclick="sendSesija()">Započni</a>
-
-    <table style="width:100%" id="tableTermin">
-        <tr>
-            <th><b>Početak: </b></th>
-            <td id="trmPocetak"></td>
-        </tr>
-        <tr>
-            <th><b>Kraj: </b></th>
-            <td id="trmKraj"></td>
-        </tr>
-        <tr>
-            <th><b>Pacijent: </b></th>
-            <td id="trmImePacijenta"></td>
-        </tr>
-        <tr>
-            <th><b>Usluga: </b></th>
-            <td id="trmUsluga"></td>
-        </tr>
-        <tr>
-            <th><b>Osnovna Cijena: </b></th>
-            <td id="trmBasePrice"></td>
-        </tr>
-    </table>
-
-
-
-
-</div>
-
-<script src="~/js/fullcalendar/kalendar-stomatolog.js"></script>
-<script>
-    //$(function () {
-    //    $("#tabs").tabs();
-    //});
-
-    function unSelectSesija() {
-        var selectedSesija = document.getElementById('selectedSesija');
-        var mainContainer = document.getElementById('mainContainerTermini');
-        selectedSesija.style.display = 'none';
-        mainContainer.style.filter = 'blur(0px)';
-
-    }
-
-    function odaberiTermin(TerminId) {
-        var url = "/Termini/OdaberiTermin?t=" + TerminId;
-        $.get(url, function (d) {
-            $("#TerminOdabir").html(d);
-        })
-    }
-</script>
+        function odaberiTermin(TerminId) {
+            var url = "/Termini/OdaberiTermin?t=" + TerminId;
+            $.get(url, function (d) {
+                $("#TerminOdabir").html(d);
+            })
+        }
+    </script>

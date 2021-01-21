@@ -176,7 +176,7 @@
 }
 
 body {
-    background-image: url("background-image.png");
+    background-image: url("/Images/media/background-image.png");
     background-size: 300px 300px;
     background-repeat: repeat;
     margin: 0;

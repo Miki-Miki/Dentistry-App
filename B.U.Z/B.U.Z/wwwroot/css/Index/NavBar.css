@@ -1,7 +1,47 @@
-﻿#NavBarContainer
-{
-    width:30%;
-    height:100%;
-    float:left;
-    color:white;
+﻿#NavBarContainer {
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    float: left;
+    color: white;
+    margin: 0;
+    background-color: #00A8A8;
+    padding-top: 3.5%;
+    z-index: 1;
+}
+#navbar {
+    width: 100%;
+    padding: 0;
+}
+#navigacija {
+    width: 100%;
+    padding: 0;
+    margin:0;
+}
+    #navigacija a {
+        margin: 0;
+        padding: 7%;
+        padding-left: 15%;
+        font-size: 20px;
+        color: white;
+    }
+    #navigacija li :hover {
+        background-color: #0C6980;
+        color: white;
+    }
+#navLogoDiv {
+    width: 100%;
+    bottom: 0;
+}
+#navLogoImg {
+    position:absolute;
+    width: 90%;
+    margin-left:auto;
+    margin-right:auto;
+    padding-bottom:5%;
+    bottom: 0;
+}
+#icon{
+    float: left;
+    margin-right:10%;
 }
