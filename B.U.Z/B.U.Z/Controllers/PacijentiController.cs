@@ -180,5 +180,24 @@ namespace B.U.Z.Controllers
             Pacijent l = db.Pacijenti.Find(PacijentId);
             return View("PacijentiOdabir", l);
         }
+        public IActionResult KartonPacijenta()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Pacijent p = db.Pacijenti.Find(_userManager.GetUserId(User));
+            List<SelectListItem> termini = db.Termini.Where(s => s.PacijentId == p.Id).OrderBy(a => a.TerminStart).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.TerminStart.ToString() }).ToList();
+            PacijentiKartonVM model = new PacijentiKartonVM
+            {
+                Ime = p.FirstName,
+                Prezime = p.LastName,
+                Spol = db.Spol.Find(p.SpolId).Naziv,
+                Grad = db.Grad.Find(p.GradId).Naziv,
+                Email = p.Email,
+                BrojTelefona = p.PhoneNumber,
+                DatumRodjenja = p.GodinaRodjenja,
+                BrojKartona = p.BrojKartona,
+                Termini = termini
+            };
+            return View(model);
+        }
     }
 }
