@@ -1,96 +1,101 @@
 ﻿@model List<Recepti>
 
-<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
-    <partial name="../Home/Index" />
-</div>
-
-
-<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
-    <h1 style="color: #0C6980">Recepti</h1>
-    <div class="primarydark">
-        <div class="primary" style="width:100%; padding-left:9%;">
-            <partial name="ReceptiPartial" />
+    <link href="~/css/Universal.css" rel="stylesheet" />
+    <div id="mainContainer">
+        <div>
+            <partial name="../Home/Index" />
         </div>
 
-        <div id="AjaxPrikazOdabranogRecepta">
+        <div id="MainPageBody">
+            <div class="primarylight" id="pageContent">
+                <div id="partialNav">
+                    <partial name="ReceptiPartial" />
+                </div>
+                @*<h1 id="naslov">Recepti</h1>*@
+                <div class="primarydark" id="ostatakBody-a">
 
+
+                    <div id="AjaxPrikazOdabranogRecepta">
+
+                    </div>
+
+                    <div id="PretraziDiv" class="primarydark">
+                        <form style="padding-left:10px;">
+                            <label>Pretraži recepte:</label>
+                            <input type="text" name="filter" />
+                            <input type="submit" value="Pretraži" />
+                        </form>
+                    </div>
+
+                    <table id="tabela"  class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Redni broj</th>
+                                <th scope="col">Šifra</th>
+                                <th scope="col">Naziv</th>
+                                <th scope="col">Opis</th>
+                                @*<th scope="col">Odaberi</th>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr id="receptiRed" onclick="OpenOdabraniRecept('@s.Id')">
+                                    <td></td>
+                                    <td>@s.Id</td>
+                                    <td>@s.Naziv</td>
+                                    <td>@s.Opis</td>
+                                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+                                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                                    @*<td><button class="badge-danger">Select</button></td>*@
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                    <div id="BrojRecepata" class="primarydark">
+                        <label style="margin-left:1%">Broj recepata:</label>@Model.Count()
+                    </div>
+                </div>
+            </div>
         </div>
+        <style>
+            body {
+                counter-reset: Serial; /* Set the Serial counter to 0 */
+            }
 
-        <div id="PretraziDiv" class="primarydark">
-            <form style="padding-left:10px;">
-                <label>Pretraži recepte:</label>
-                <input type="text" name="filter" />
-                <input type="submit" value="Pretraži" />
-            </form>
-        </div>
+            tr td:first-child:before {
+                counter-increment: Serial; /* Increment the Serial counter */
+                content: counter(Serial); /* Display the counter */
+            }
 
-        <table class="table primarydark">
-            <thead>
-                <tr>
-                    <th scope="col">Redni broj</th>
-                    <th scope="col">Šifra</th>
-                    <th scope="col">Naziv</th>
-                    <th scope="col">Opis</th>
-                    @*<th scope="col">Odaberi</th>*@
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var s in Model)
-                {
-                    <tr id="receptiRed" onclick="OpenOdabraniRecept('@s.Id')">
-                        <td></td>
-                        <td>@s.Id</td>
-                        <td>@s.Naziv</td>
-                        <td>@s.Opis</td>
-                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
-                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
-                        @*<td><button class="badge-danger">Select</button></td>*@
-                    </tr>
-                }
+            #PretraziDiv {
+                width: 100%;
+            }
 
-            </tbody>
-        </table>
+            #BrojRecepata {
+                width: 100%;
+            }
 
-        <div id="BrojRecepata" class="primarydark">
-            <label style="margin-left:1%">Broj recepata:</label>@Model.Count()
-        </div>
+            #AjaxPrikazOdabranogRecepta {
+                color: white;
+            }
+
+            #receptiRed:hover {
+                background-color: aqua;
+            }
+        </style>
+
+
     </div>
-    <style>
-        body {
-            counter-reset: Serial; /* Set the Serial counter to 0 */
+
+
+    <script>
+        function OpenOdabraniRecept(ReceptId) {
+            var url = "/Recepti/SelectRecept?ReceptId=" + ReceptId;
+            $.get(url, function (d) {
+                $("#AjaxPrikazOdabranogRecepta").html(d);
+            });
         }
-
-        tr td:first-child:before {
-            counter-increment: Serial; /* Increment the Serial counter */
-            content: counter(Serial); /* Display the counter */
-        }
-
-        #PretraziDiv {
-            width: 100%;
-        }
-
-        #BrojRecepata {
-            width: 100%;
-        }
-
-        #AjaxPrikazOdabranogRecepta {
-            color: white;
-        }
-
-        #receptiRed:hover {
-            background-color: aqua;
-        }
-    </style>
-
-
-</div>
-
-
-<script>
-    function OpenOdabraniRecept(ReceptId) {
-        var url = "/Recepti/SelectRecept?ReceptId=" + ReceptId;
-        $.get(url, function (d) {
-            $("#AjaxPrikazOdabranogRecepta").html(d);
-        });
-    }
-</script>
+    </script>

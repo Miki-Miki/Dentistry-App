@@ -1,100 +1,108 @@
 ﻿@model List<Pacijent>
 
-<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
-    <partial name="../Home/Index" />
-</div>
+    <link href="~/css/Universal.css" rel="stylesheet" />
 
-
-<div class="primarylight" style="width:80%; float:left; margin:0; padding:50px;">
-    <h1 style="color: #0C6980">Pacijenti</h1>
-    <div class="primarydark">
-        <div class="primary" style="width:100%; padding-left:9%;" >
-            <partial name="PacijentiPartial" />
+    <div id="mainContainer">
+        <div>
+            <partial name="../Home/Index" />
         </div>
 
-        <div id="AjaxPrikazOdabranogPacijenta">
+        <div  class="primarylight" id="MainPageBody">
+            <div id="pageContent">
+                @*<div id="naslovDiv">
+            <h1 id="naslov">Pacijenti</h1>
+        </div>*@
+                <div id="partialNav">
+                    <partial name="PacijentiPartial" />
+                </div>
 
+                <div class="primarydark" id="ostatakBody-a">
+
+                    <div id="AjaxPrikazOdabranogPacijenta">
+
+                    </div>
+
+                    <div id="PretraziDiv" class="primarydark">
+                        <form style="padding-left:10px;">
+                            <label>Pretraži pacijente:</label>
+                            <input type="text" name="filter" />
+                            <input type="submit" value="Pretraži" />
+                        </form>
+                    </div>
+
+                    <table id="tabela" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Redni broj</th>
+                                <th scope="col">Ime</th>
+                                <th scope="col">Prezime</th>
+                                <th scope="col">Datum rodjenja</th>
+                                <th scope="col">Broj telefona</th>
+                                @*<th scope="col">Odaberi</th>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr id="pacijentiRed" onclick="OpenOdabraniPacijent('@s.Id')">
+                                    <td></td>
+                                    <td>@s.FirstName</td>
+                                    <td>@s.LastName</td>
+                                    <td>@s.GodinaRodjenja</td>
+                                    <td>@s.PhoneNumber</td>
+                                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+                                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                                    @*<td><button class="badge-danger">Select</button></td>*@
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                    <div id="BrojPacijenata" class="primarydark">
+                        <label style="margin-left:1%">Broj pacijenata:</label>@Model.Count()
+                    </div>
+                </div>
+            </div>
         </div>
+        <style>
+            body {
+                counter-reset: Serial; /* Set the Serial counter to 0 */
+            }
 
-        <div id="PretraziDiv" class="primarydark">
-            <form style="padding-left:10px;">
-                <label>Pretraži pacijente:</label>
-                <input type="text" name="filter" />
-                <input type="submit" value="Pretraži" />
-            </form>
-        </div>
+            tr td:first-child:before {
+                counter-increment: Serial; /* Increment the Serial counter */
+                content: counter(Serial); /* Display the counter */
+            }
 
-        <table class="table primarydark">
-            <thead>
-                <tr>
-                    <th scope="col">Redni broj</th>
-                    <th scope="col">Ime</th>
-                    <th scope="col">Prezime</th>
-                    <th scope="col">Datum rodjenja</th>
-                    <th scope="col">Broj telefona</th>
-                    @*<th scope="col">Odaberi</th>*@
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var s in Model)
-                {
-                    <tr id="pacijentiRed" onclick="OpenOdabraniPacijent('@s.Id')">
-                        <td></td>
-                        <td>@s.FirstName</td>
-                        <td>@s.LastName</td>
-                        <td>@s.GodinaRodjenja</td>
-                        <td>@s.PhoneNumber</td>
-                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
-                        @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
-                        @*<td><button class="badge-danger">Select</button></td>*@
-                    </tr>
-                }
+            #PretraziDiv {
+                width: 100%;
+            }
 
-            </tbody>
-        </table>
+            #BrojDostupnihLijekova {
+                width: 100%;
+            }
 
-        <div id="BrojPacijenata" class="primarydark">
-            <label style="margin-left:1%">Broj pacijenata:</label>@Model.Count()
-        </div>
+            #AjaxPrikazOdabranogPacijenta {
+                color: white;
+                background-color: #343a40;
+                width: 100%;
+            }
+
+            #pacijentiRed:hover {
+                background-color: aqua;
+            }
+        </style>
+
+
     </div>
-    <style>
-        body {
-            counter-reset: Serial; /* Set the Serial counter to 0 */
-        }
 
-        tr td:first-child:before {
-            counter-increment: Serial; /* Increment the Serial counter */
-            content: counter(Serial); /* Display the counter */
-        }
-
-        #PretraziDiv {
-            width: 100%;
-        }
-
-        #BrojDostupnihLijekova {
-            width: 100%;
-        }
-
-        #AjaxPrikazOdabranogPacijenta {
-            color: white;
-            background-color: #343a40;
-            width: 100%;
-        }
-
-        #pacijentiRed:hover {
-            background-color: aqua;
-        }
-    </style>
-
-
-</div>
-
-<script>
-    function OpenOdabraniPacijent(PacijentId) {
-        var url = "/Pacijenti/SelectPacijent?PacijentId=" + PacijentId;
-        $.get(url, function (d) {
-            $("#AjaxPrikazOdabranogPacijenta").html(d);
-        });
-    };
-</script>
+    <script>
+        function OpenOdabraniPacijent(PacijentId) {
+            var url = "/Pacijenti/SelectPacijent?PacijentId=" + PacijentId;
+            $.get(url, function (d) {
+                $("#AjaxPrikazOdabranogPacijenta").html(d);
+            });
+        };
+    </script>
 

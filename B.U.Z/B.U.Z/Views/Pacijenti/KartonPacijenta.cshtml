@@ -1,0 +1,148 @@
+﻿@using B.U.Z.ViewModels
+@model PacijentiKartonVM
+
+<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
+    <partial name="../Home/Index" />
+</div>
+<h1 style="padding-top:3%; padding-left:22%;">Stomatološki karton</h1>
+<div id="PacijentiKartonContainer">
+
+    <div id="LicniPodaci">
+
+        <div style="padding-bottom:3%;">
+            <h4>Lični podaci</h4>
+        </div>
+        <div>
+
+            <label>Broj kartona:</label>
+            <input type="text" value="@Model.BrojKartona" />
+
+        </div>
+        <div>
+
+            <label>Ime:</label>
+            <input type="text" value="@Model.Ime" />
+
+        </div>
+
+        <div>
+            <label>Prezime:</label>
+            <input type="text" value="@Model.Prezime" />
+        </div>
+
+        <div>
+            <label>Spol:</label>
+            <input type="text" value="@Model.Spol" />
+        </div>
+
+        <div>
+            <label>Datum rodjenja:</label>
+            <input type="text" value="@Model.DatumRodjenja" />
+        </div>
+    </div>
+
+    <div id="KontaktPodaci">
+        <div style="padding-bottom:3%;">
+            <h4>Kontakt podaci</h4>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="text" value="@Model.Email" />
+        </div>
+
+        <div>
+            <label>Broj telefona:</label>
+            <input type="text" value="@Model.BrojTelefona" />
+        </div>
+
+        <div>
+            <label>Grad:</label>
+            <input type="text" value="@Model.Grad" />
+        </div>
+        
+    </div>
+
+    <div id="HistorijaTermina">
+
+        <div style="padding-bottom:3%;">
+            <h4>Historija termina</h4>
+        </div>
+
+        <div>
+            <label>Izvršene sesije:</label>
+            <select id="TerminiDropDown" asp-items="@Model.Sesije" onchange="UcitajInformacije()"></select>
+        </div>
+
+        <div>
+            <label>Izvršena usluga:</label>
+            <input id="Usluga" type="text" value="@Model.IzvrsenaUsluga" />
+        </div>
+
+        <div>
+            <label>Dijagnoza:</label>
+            <input id="Dijagnoza" type="text" value="@Model.Dijagnoza" />
+        </div>
+
+        <div>
+            <label>Terapija:</label>
+            <input id="Terapija" type="text" value="@Model.Terapija" />
+        </div>
+
+        <div>
+            <label>Lijek:</label>
+            <input id="Lijek" type="text" value="@Model.Lijek" />
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    #PacijentiKartonContainer
+    {
+        border:1px solid red;
+        float:left;
+        width:80%;
+        height:100%;
+    }
+    #LicniPodaci
+    {
+        width:40%;
+        height:50%;
+        margin-left:3%;
+        margin-top:5%;
+        float:left;
+        border:1px solid green;
+    }
+    #KontaktPodaci {
+        width: 40%;
+        height: 50%;
+        margin-left: 3%;
+        margin-top: 5%;
+        float: left;
+        border: 1px solid purple;
+    }
+    #HistorijaTermina {
+        border: 3px solid black;
+        width: 55%;
+        height: auto;
+        float: left;
+        margin-left: 3%;
+        margin-top: 5%;
+    }
+</style>
+
+<script>
+    function UcitajInformacije()
+    {
+        var sesijaId = $("#TerminiDropDown").val();
+        var url = "/Pacijenti/InformacijeOTerminu?sesijaId=" + sesijaId;
+        $.get(url, function (d) {
+            $("#Usluga").val(d[0]);
+            $("#Dijagnoza").val(d[1]);
+            $("#Terapija").val(d[2]);
+            $("#Lijek").val(d[3]);
+        });
+    }
+</script>
+
