@@ -12,6 +12,7 @@
     filter: blur(0px);
     box-shadow: 3px 5px 20px 2px #323d40;
     padding: 30px;
+    top: 10%;
 }
 
 .popUP {
@@ -28,6 +29,7 @@
     filter: blur(0px);
     box-shadow: 3px 5px 20px 2px #323d40;
     padding: 30px;
+    top: 10%;
 }
 
 #btnNazad {
@@ -135,3 +137,6 @@ td {
     cursor: pointer;
 }
 
+#header-kalendar {
+    height: 100%;
+}

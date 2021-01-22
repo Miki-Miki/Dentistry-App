@@ -9,31 +9,37 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="~/css/termini/termini.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Universal.css" />
 </head>
 
-
-<div id="mainContainerTermini">
-    <div style="float:left; width: 20%; background-color:#00A8A8">
-        <div style="float:left; height:1000px;">
-            <partial name="../Home/Index" />
-        </div>
+<div id="mainContainer">
+    <div>
+        <partial name="../Home/Index" />
     </div>
 
-    <div id="main_body">
-        <div id="termini">
-            <div>
-                <partial name="TerminiPartial" />
-            </div>
+    <div id="MainPageBody">
+        <div id="pageContent">
 
-            <div id="header">
-                <div id="calendar-stomatolog"></div>
-            </div>
+            <div id="mainContainerTermini">
 
-            <div id="podaci">
+                <div id="main_body">
+                    <div id="termini">
+                        <div>
+                            <partial name="TerminiPartial" />
+                        </div>
 
+                        <div id="header-kalendar">
+                            <div id="calendar-stomatolog"></div>
+                        </div>
+
+                        <div id="podaci">
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-
     </div>
 </div>
 

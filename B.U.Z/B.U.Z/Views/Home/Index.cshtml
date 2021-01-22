@@ -3,34 +3,57 @@
 @inject UserManager<ApplicationUser> UserManager
 @*For refactoring*@
 
+<link rel="stylesheet" href="/css/Index/index.css" />
+<link rel="stylesheet" href="~/css/Index/NavBar.css" />
+<link rel="stylesheet" href="~/css/Universal.css" />
+
+@if (!User.IsInRole("Stomatolog") && !User.IsInRole("Asistent") && !User.IsInRole("Pacijent"))
+{
+    <div id="imageContainer">
+        <div id="textIndex">
+            <h1>
+                B.U.Z
+            </h1>
+            <p>
+                Stomatološka ordinacija "B.U.Z", sa najboljom tehnologijom na tržištu
+                nudi svojim korisnicima izlaz iz tradicionalne brige o terminima kod stomatologa.
+                Za samo nekoliko klikova zakažite termin kod nekih od najiskusnijih stomatologa u regiji.
+                Pretplatite se i uživajte u bezbrižnoj njegi vašeg dragocjenog osmijeha.
+            </p>
+        </div>
+    </div>
+}
 @if (User.IsInRole("Stomatolog"))
 {
-    <div class="container">
-        <nav class="navbar navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item>">
-                    <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link">Termini</a>
+    <div id="NavBarContainer">
+        <nav class="navbar navbar-light" id="navbar">
+            <ul class="navbar-nav" id="navigacija">
+                <li class="nav-item">
+                    <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
                 </li>
                 <li class="nav-item>">
-                    <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link">Pacijenti</a>
+                    <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link"><img src="~/Images/media/baseline_description_white_18dp.png" id="icon" />Pacijenti</a>
                 </li>
                 <li class="nav-item>">
-                    <a asp-controller="Dijagnoze" asp-action="Dijagnoze" class="nav-link">Dijagnoze</a>
+                    <a asp-controller="Dijagnoze" asp-action="Dijagnoze" class="nav-link"><img src="~/Images/media/baseline_list_white_18dp.png" id="icon" />Dijagnoze</a>
                 </li>
                 <li class="nav-item>">
-                    <a asp-controller="Recepti" asp-action="Recepti" class="nav-link">Recepti</a>
+                    <a asp-controller="Recepti" asp-action="Recepti" class="nav-link"><img src="~/Images/media/baseline_receipt_white_18dp.png" id="icon" />Recepti</a>
                 </li>
                 <li class="nav-item>">
-                    <a asp-controller="Lijekovi" asp-action="Lijekovi" class="nav-link">Lijekovi</a>
+                    <a asp-controller="Lijekovi" asp-action="Lijekovi" class="nav-link"><img src="~/Images/media/baseline_medical_services_white_18dp.png" id="icon" />Lijekovi</a>
                 </li>
                 <li class="nav-item>">
-                    <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link">Dentalna pomagala</a>
+                    <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link"><img src="~/Images/media/baseline_bubble_chart_white_18dp.png" id="icon" />Dentalna pomagala</a>
                 </li>
                 <li class="nav-item>">
-                    <a asp-controller="UserAccounts" asp-action="UserAccounts" class="nav-link">User Accounts</a>
+                    <a asp-controller="UserAccounts" asp-action="UserAccounts" class="nav-link"><img src="~/Images/media/baseline_assignment_ind_white_18dp.png" id="icon" />User Accounts</a>
                 </li>
             </ul>
         </nav>
+        <div id="navLogoDiv">
+            <img src="~/Images/media/buz_logo.png" id="navLogoImg" />
+        </div>
     </div>
 }
 else if (User.IsInRole("Asistent"))
@@ -39,13 +62,13 @@ else if (User.IsInRole("Asistent"))
         <nav class="navbar navbar-light">
             <ul class="navbar-nav">
                 <li class="nav-item>">
-                    <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link">Termini</a>
+                    <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
                 </li>
                 <li class="nav-item>">
-                    <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link">Pacijenti</a>
+                    <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link"><img src="~/Images/media/baseline_description_white_18dp.png" id="icon" />Pacijenti</a>
                 </li>
                 <li class="nav-item>">
-                    <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link">Dentalna pomagala</a>
+                    <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link"><img src="~/Images/media/baseline_bubble_chart_white_18dp.png" id="icon" />Dentalna pomagala</a>
                 </li>
             </ul>
         </nav>
@@ -57,7 +80,10 @@ else if (User.IsInRole("Pacijent"))
         <nav class="navbar navbar-light">
             <ul class="navbar-nav">
                 <li class="nav-item>">
-                    <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link">Termini</a>
+                    <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
+                </li>
+                <li class="nav-item>">
+                    <a asp-controller="Pacijenti" asp-action="KartonPacijenta" class="nav-link">Stomatološki karton</a>
                 </li>
                 <li class="nav-item>">
                     <a asp-controller="Termini" asp-action="MojiTermini" class="nav-link">Moji Termini</a>
@@ -74,27 +100,27 @@ else if (User.IsInRole("Pacijent"))
 </script>
 
 @*@(Html.ShieldChart()
-    .Name("chart")
-    .Tooltip(tooltip => tooltip.AxisMarkers(axisMarkers => axisMarkers
-        .Enabled(true)
-        .Mode(ShieldUI.AspNetCore.Mvc.Chart.TooltipAxisMarkerMode.XY)
-        .Width(1)
-        .ZIndex(3)))
-    .Theme("light")
-    .PrimaryHeader(header => header.Text("Budget overview"))
-    .Export(false)
-    .AxisX(axis => axis.CategoricalValues(
-        "2000", "2001", "2002", "2003", "2004",
-        "2005", "2006", "2007", "2008", "2009",
-        "2010", "2011", "2012", "2013", "2014"
-    ))
-    .DataSeries(series =>
-        series.Area()
-              .Name("Budget in Thousands")
-              .Data(new object[] {
-                  100, 320, 453, 234, 553,
-                  665, 345, 123, 432, 545,
-                  654, 345, 332, 456, 234
-              })
-    )
-)*@
+        .Name("chart")
+        .Tooltip(tooltip => tooltip.AxisMarkers(axisMarkers => axisMarkers
+            .Enabled(true)
+            .Mode(ShieldUI.AspNetCore.Mvc.Chart.TooltipAxisMarkerMode.XY)
+            .Width(1)
+            .ZIndex(3)))
+        .Theme("light")
+        .PrimaryHeader(header => header.Text("Budget overview"))
+        .Export(false)
+        .AxisX(axis => axis.CategoricalValues(
+            "2000", "2001", "2002", "2003", "2004",
+            "2005", "2006", "2007", "2008", "2009",
+            "2010", "2011", "2012", "2013", "2014"
+        ))
+        .DataSeries(series =>
+            series.Area()
+                  .Name("Budget in Thousands")
+                  .Data(new object[] {
+                      100, 320, 453, 234, 553,
+                      665, 345, 123, 432, 545,
+                      654, 345, 332, 456, 234
+                  })
+        )
+    )*@
