@@ -441,5 +441,29 @@ namespace B.U.Z.Controllers
             return new JsonResult(terminiJSON);
         }
 
+        [Route("OznaciTermin")]
+        public IActionResult OznaciTermin(bool oznaka, int terminId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Termini selectedTermin = db.Termini.Find(terminId);
+
+            if(oznaka == true)
+            {
+                selectedTermin.isPrihvacen = true;
+                selectedTermin.AsistentId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+                db.SaveChanges();
+                return View();
+            }
+            if(oznaka == false)
+            {
+                db.Termini.Remove(db.Termini.SingleOrDefault(t => t.Id == terminId));
+                db.SaveChanges();
+                return View();
+            }
+
+            //If you get to here you messed something up
+            return View();
+        }
+
     }
 }
