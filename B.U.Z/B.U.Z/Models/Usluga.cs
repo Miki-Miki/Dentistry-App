@@ -11,5 +11,6 @@ namespace B.U.Z.Models
         public string Naziv { get; set; }
         public double Cijena { get; set; }
         public string Opis { get; set; }
+        public int Trajanje{ get; set; }
     }
 }

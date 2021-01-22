@@ -39,16 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             selectedDayTermin = info.dayEl;
             document.getElementById('datum').value = info.date
             setSelectedDate(info.date);
-        },
-
-        //eventDidMount: function (info) {
-        //    $(info.el).tooltip({
-        //        title: 'Zauzeto',
-        //        placement: "top",
-        //        trigger: "hover",
-        //        container: "body"
-        //    });
-        //},
+        },       
 
         businessHours: {            
             daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
@@ -57,7 +48,18 @@ document.addEventListener('DOMContentLoaded', function () {
             endTime: '17:00', 
         },
 
-        events: '/Termini/FindAllMojiTermini',
+        eventSources: [
+            {
+                url: '/Termini/FindAllMojiTermini',
+                color: 'white'
+            },
+
+            {
+                url: '/Termini/MojiNePrihvaceniTermini',
+                color: 'red'
+            }
+        ],
+
         eventColor: '#0062cc'
     });
 

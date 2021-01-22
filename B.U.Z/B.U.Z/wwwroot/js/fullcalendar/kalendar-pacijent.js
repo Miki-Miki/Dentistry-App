@@ -3,7 +3,7 @@ var selectedDayTermin;
 var timePicker = document.getElementById('picker');
 
 var selectedTermin = document.getElementById('selectedTermin');
-var mainContainer = document.getElementById('kontejner');
+var mainContainer = document.getElementById('mainContainer');
 
 var trmPocetak = document.getElementById('trmPocetak');
 var trmImePacijenta = document.getElementById('trmImePacijenta');
@@ -29,11 +29,24 @@ var selectedUslugaId = document.getElementById('selectedUslugaId');
 var fullSelectedDay;
 var _selectedBasePrice;
 
+//$(function () {
+//    $("#picker").shieldTimePicker({        
+//        events: {
+//            change: function (e) {
+//                selectedTime = timePicker.value;
+//                console.log('selectedTime: ' + selectedTime)
+//            }
+//        }
+//    });
+//});
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar-pacijent');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        timeZone: 'local',
+        timeZone: 'UTC',
         themeSystem: 'bootstrap',
         locale: 'bs',       
         headerToolbar: {
@@ -50,11 +63,13 @@ document.addEventListener('DOMContentLoaded', function () {
         dateClick: function (info) {
             //calendar.changeView('timeGridDay', info.date)
 
-            if (timePicker.value != 0) {
-                selectedTime = timePicker.value;
-            } else {
-                selectedTime = '8:00 AM';
-            }
+            //if (timePicker.value != 0 || timePicker.value != null) {
+            //    selectedTime = timePicker.value;
+            //} else {
+            //    selectedTime = '8:00 AM';
+            //}
+            //saveTimePicker(); 
+            //selectedTime = timePicker.value;
             
             if (!dateClickedOn) {
                 info.dayEl.style.backgroundColor = '#00A8A8'
@@ -72,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             selectedDayTermin = info.dayEl;
-            selectedDate = (info.date.getMonth() + 1) + '/' + info.date.getDate() + '/' + info.date.getFullYear();
+            selectedDate = (info.date.getUTCMonth() + 1) + '/' + info.date.getUTCDate() + '/' + info.date.getUTCFullYear();
             selectedDay = info.date.getDate();
             selectedMonth = info.date.getMonth() + 1;
             selectedYear = info.date.getFullYear();
@@ -92,7 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
         },
 
         events: '/Termini/PFindAll',
-        eventColor: '#852828'
+        eventColor: '#852828',
+        backgroundColor: 'white'
     });
 
     calendar.render();
@@ -106,11 +122,12 @@ function showTerminDetails() {
     if (timePicker.value != 0) {
         selectedTime = timePicker.value;
     } else {
-        selectedTime = '8:00 AM';
+        selectedTime = '8:00:00 AM';
     }
 
     dateOfTermin = selectedDate + ' ' + selectedTime;
     console.log(dateOfTermin);
+    console.log('selectedTime: ' + selectedTime);
 
     //Empty details
     trmPocetak.innerText = '';
@@ -157,14 +174,13 @@ function getCijenaUsluge(_uslugaId) {
 }
 
 function validateDate() {
-
     var now = new Date();
     now.setHours(0, 0, 0, 0);
+
     var _selectedDate = new Date(selectedDate);   
     fullSelectedDay = selectedDate + ' ' + selectedTime;
 
-    console.log('selectedTime: ' + selectedTime);
-
+    //console.log('selectedTime: ' + selectedTime);
 
     if (_selectedDate < now) {
         alert('Molimo izaberite validan datum');
@@ -173,23 +189,38 @@ function validateDate() {
 
 function zakaziTermin() {
     selectedHour = timePicker.value;
-    
+    //fullSelectedDay not good
+    console.log('dateOfTermin: ' + dateOfTermin)
+    fullSelectedDay = dateOfTermin
 
     $.ajax({
         type: 'POST',
         url: '/Termini/SpremiTermin/',
-        data: { terminStart: fullSelectedDay, selectedBasePrice: _selectedBasePrice },
+        data: { terminStart: fullSelectedDay, selectedBasePrice: _selectedBasePrice, _uslugaId: selectedUslugaId },
 
         success: function (data) {
             console.log(data.responseText);
+            window.location.href = '/Termini/MojiTermini';
         },
 
         error: function (data) {
             console.log(data.responseText);
+            window.location.href = '/Termini/MojiTermini';
         },
 
         failure: function (data) {
             console.log(data.responseText);
+            window.location.href = '/Termini/MojiTermini';
         }
     })
+}
+
+
+
+timePicker.onchange = () => {
+    console.log(timePicker.value);
+}
+
+function consoleLogTimePicker() {
+    console.log(timePicker);
 }

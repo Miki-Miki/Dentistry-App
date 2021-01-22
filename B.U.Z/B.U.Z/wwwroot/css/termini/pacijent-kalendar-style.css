@@ -4,21 +4,25 @@
     border: solid purple 3px;   
 }
 
-#partialHome {
+/*#partialHome {
     height: 100%;
-    width: 20%;
-    float: left;
-}
+    width: 20%;*//**/
+    /*float: left;
+}*/
 
-#kontejner {
+#mainContainer {
     height: 20vh;
     width: 100%;
 }
 
+#picker {
+    width: 200px;
+}
+
 #calendar-container {
-    width: 80%;
+    /*width: 80%;*/
     height: auto;
-    float: right;
+    /*float: right;*/
 }
 
 #calendar-pacijent-container {
