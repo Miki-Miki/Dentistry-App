@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
         eventSources: [
             {
                 url: '/Termini/FindAllMojiTermini',
-                color: 'white'
+                color: 'white',
+                textColor: 'black'
             },
 
             {
