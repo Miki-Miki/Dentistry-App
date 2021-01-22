@@ -372,14 +372,15 @@ namespace B.U.Z.Controllers
                 isPrihvacen = false
             };
 
+            db.Termini.Add(noviTermin);
+            db.SaveChanges();
+
             ZakazanaUsluga novaZakazanaUsluga = new ZakazanaUsluga
             {
                 UslugaId = _uslugaId,
                 TerminId = noviTermin.Id
             };
 
-            db.Termini.Add(noviTermin);
-            db.SaveChanges();
             db.ZakazanaUsluga.Add(novaZakazanaUsluga);
             db.SaveChanges();
 
