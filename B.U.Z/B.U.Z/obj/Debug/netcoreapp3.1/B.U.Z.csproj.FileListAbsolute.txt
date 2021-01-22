@@ -531,3 +531,4 @@ D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.pdb
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.genruntimeconfig.cache
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csprojAssemblyReference.cache
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\KartonPacijenta.cshtml.g.cs
+D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\KartonPacijenta.cshtml.g.cs
