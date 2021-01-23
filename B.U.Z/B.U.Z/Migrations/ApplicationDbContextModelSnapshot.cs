@@ -306,22 +306,24 @@ namespace B.U.Z.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Datum")
+                    b.Property<DateTime?>("Datum")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Napomena")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("OsnovnaCijena")
+                    b.Property<double?>("OsnovnaCijena")
                         .HasColumnType("float");
 
-                    b.Property<double>("UkupnaCijena")
+                    b.Property<int?>("SesijaId")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("UkupnaCijena")
                         .HasColumnType("float");
 
-                    b.Property<double>("stopaPDV")
+                    b.Property<double?>("stopaPDV")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SesijaId");
 
                     b.ToTable("Racun");
                 });
@@ -750,6 +752,13 @@ namespace B.U.Z.Migrations
                         .HasForeignKey("SesijaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("B.U.Z.Models.Racun", b =>
+                {
+                    b.HasOne("B.U.Z.Models.Sesija", "Sesija")
+                        .WithMany()
+                        .HasForeignKey("SesijaId");
                 });
 
             modelBuilder.Entity("B.U.Z.Models.Sesija", b =>

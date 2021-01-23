@@ -81,7 +81,7 @@
                 <div id="buttons">
                     <button value="Odustani" class="btn" id="odustaniBtn" onclick="Odustani(@Model.SesijaId)">Odustani</button>
                     <button value="Zakazi novi termin" class="btn" id="zakaziBtn">Zakazi novi termin</button>
-                    <button name="ZavrsiUslugu" value="Zavrsi uslugu" class="btn" id="zavrsiBtn">Zavrsi uslugu</button>
+                    <button value="Zavrsi uslugu" class="btn" id="zavrsiBtn" onclick="ZavrsiUslugu(@Model.SesijaId)">Zavrsi uslugu</button>
 </div>
             </div>
         </div>
@@ -106,6 +106,51 @@
                     odaberiCTSnimak(sesijaId);
                 }
             }
+        
+        function ZavrsiUslugu(sesijaId) {
+
+            //$(window).load(function () {
+                //var url = $('#analyticLog').attr('href');
+                /*loc = ".../Racun/ZavrsiUslugu";*/
+                //$.ajax({
+                //    type: "POST",
+                //    url: "Racun/ZavrsiUslugu",
+                //    data: { _sesijaId: sesijaId },
+                //    success: function (data) {
+                //        //$("#analyticLogAjax").replaceWith($("#analyticLogAjax", $(html)));
+                //        console.log(data.responseText);
+                //    },
+                //    error: function (data) {
+                //        console.log(data.responseText);
+                //    }
+                //});
+            //});
+
+            //var url = "/Sesija/ZavrsiUslugu?sesijaId=" + sesijaId;
+
+            //$.ajax({
+            //    type: "POST",
+            //    url: "Racun/ZavrsiUslugu",
+            //    data: { _sesijaId:sesijaId },
+            //    success: function (data) {
+            //      //s window.location.href = "Recept/ZavrsiUslugu";
+            //        console.log(data.responseText);
+            //    },
+            //    error: function (data) {
+            //        console.log(data.responseText);
+            //    },
+            //    faliure: function (data) {
+            //        console.log(data.responseText);
+            //    }
+
+            //})
+
+            window.location.href = "/Racun/ZavrsiUslugu?_sesijaId=" + sesijaId;
+
+            //$.get(url, function (d) {
+            //    //window.Location.href = "/Racun/Report";
+            //})
+        }
 
             function zatvoriSliku() {
                 var imageDiv = document.getElementById("CTimgDiv");
