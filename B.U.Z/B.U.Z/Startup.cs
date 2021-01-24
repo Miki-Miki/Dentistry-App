@@ -84,6 +84,8 @@ namespace B.U.Z
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            app.UseFastReport();
         }
     }
 }

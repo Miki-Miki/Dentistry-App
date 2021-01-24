@@ -8,11 +8,16 @@ namespace B.U.Z.Models
     public class Racun
     {
         public int Id { get; set; }
-        public double UkupnaCijena { get; set; }
-        public double OsnovnaCijena { get; set; }
-        public double stopaPDV { get; set; }
-        public DateTime Datum { get; set; }
-        public string Napomena { get; set; }
+        public double? UkupnaCijena { get; set; }
+        public double? OsnovnaCijena { get; set; }
+        public double? stopaPDV { get; set; }
+
+        public DateTime? Datum { get; set; }
+
+        public int? SesijaId { get; set; }
+        public Sesija? Sesija { get; set; }
+
+
 
     }
 }

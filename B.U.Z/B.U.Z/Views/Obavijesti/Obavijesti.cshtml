@@ -1,0 +1,51 @@
+﻿@model List<Obavijesti>
+
+<link href="~/css/Universal.css" rel="stylesheet" />
+
+<div id="mainContainer">
+
+    <div>
+        <partial name="../Home/Index" />
+    </div>
+
+    <div id="MainPageBody">
+        <div id="pageContent">
+            @*<h1 id="naslov">Dijagnoze</h1>*@
+
+            <div class="primarydark" id="ostatakBody-a">
+
+                <table id="tabela" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Redni broj</th>
+                            <th scope="col">Obavijest</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var s in Model)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@s.Id</td>
+                                <td>@s.Sadrzaj</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            counter-reset: Serial; /* Set the Serial counter to 0 */
+        }
+
+        tr td:first-child:before {
+            counter-increment: Serial; /* Increment the Serial counter */
+            content: counter(Serial); /* Display the counter */
+        }
+    </style>
+
+
+</div>

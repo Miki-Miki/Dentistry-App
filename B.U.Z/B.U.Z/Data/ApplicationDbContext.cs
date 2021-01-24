@@ -59,5 +59,6 @@ namespace B.U.Z.Data
         public DbSet<Terapije> Terapije { get; set; }
         public DbSet<Usluga> Usluga { get; set; }
         public DbSet<ZakazanaUsluga> ZakazanaUsluga { get; set; }
+        public DbSet<Obavijesti> Obavijesti { get; set; }
     }
 }

@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             selectedDayTermin = info.dayEl;
-            selectedDate = (info.date.getUTCMonth() + 1) + '/' + info.date.getUTCDate() + '/' + info.date.getUTCFullYear();
+            selectedDate = info.date.getUTCFullYear() + '-'+(info.date.getUTCMonth() + 1) + '-' + info.date.getUTCDate();
             selectedDay = info.date.getDate();
             selectedMonth = info.date.getMonth() + 1;
             selectedYear = info.date.getFullYear();

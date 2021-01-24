@@ -61,6 +61,7 @@
 
 #tableTermin {
     margin-top: 2em;
+    width: 100%
 }
 
 #btnZakaziTermin {
@@ -93,3 +94,7 @@
         background-color: #90CDDB;
         outline: none;
     }
+
+#demoDiv {
+    width: 100px
+}

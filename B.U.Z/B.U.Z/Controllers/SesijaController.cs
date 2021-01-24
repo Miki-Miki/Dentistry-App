@@ -391,6 +391,48 @@ namespace B.U.Z.Controllers
             return ctNalaz.Nalaz;
         }
 
+        //public IActionResult ZavrsiUslugu(int sesijaId)
+        //{
+        //    ApplicationDbContext db = new ApplicationDbContext();
+        //    Sesija sesija = db.Sesija.Find(sesijaId);
 
+        //    TerapijaNaSesiji tns = db.TerapijaNaSesiji.Where(a => a.SesijaId == sesija.Id).FirstOrDefault();
+
+        //    DijagnozaNaSesiji dns = db.DijagnozaNaSesiji.Where(a => a.SesijaId == sesija.Id).FirstOrDefault();
+
+        //    LijekNaSesiji lns = db.LijekNaSesiji.Where(a => a.SesijaId == sesija.Id).FirstOrDefault();
+
+        //    Termini termin = db.Termini.Find(sesija.TerminId);
+        //    ZakazanaUsluga zakazanaUsluga = db.ZakazanaUsluga.Where(a => a.TerminId == termin.Id).FirstOrDefault();
+        //    Usluga usluga = db.Usluga.Find(zakazanaUsluga.UslugaId);
+
+
+        //    RacunVM racunVm = new RacunVM();
+
+        //    if (dns != null)
+        //        racunVm.dijagnozaId = dns.DijagnozaId;
+        //    if (tns != null)
+        //    {
+        //        racunVm.terapijaId = tns.TerapijaId;
+        //        racunVm.Datum = termin.TerminStart;
+        //    }
+        //    if (lns != null)
+        //        racunVm.LijekId = lns.LijekId;
+        //    if (zakazanaUsluga != null)
+        //    {
+        //        racunVm.Usluga = zakazanaUsluga.UslugaId;
+        //        racunVm.cijena = usluga.Cijena;
+        //    }
+        //    racunVm.SesijaId = sesijaId;
+
+
+        //    //var controller = DependencyResolver.Current.GetService<RacunController>();
+        //    //controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
+
+        //    //return RedirectToAction("Racun", "Racun", racunVm);
+
+        //    return View("CTSnimakOdabir");
+
+        //}
     }
 }
