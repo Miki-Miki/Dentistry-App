@@ -503,7 +503,8 @@ namespace B.U.Z.Controllers
                     + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
                     " je prihvaćen.",
                     From = selectedTermin.AsistentId,
-                    isProcitana = false
+                    isProcitana = false,
+                    To=selectedTermin.PacijentId
                 };
                 db.Obavijesti.Add(obavijest);
                 db.SaveChanges();
@@ -541,20 +542,23 @@ namespace B.U.Z.Controllers
                     await smtp.SendMailAsync(message);
                 }
 
-                db.ZakazanaUsluga.Remove(db.ZakazanaUsluga.SingleOrDefault(zU => zU.TerminId == terminId));
-                db.Termini.Remove(db.Termini.SingleOrDefault(t => t.Id == terminId));
-                db.SaveChanges();
-
                 Obavijesti obavijest = new Obavijesti
                 {
                     Sadrzaj = "Vaš termin na datum: "
                      + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
                      " je odbijen.",
-                    From = selectedTermin.AsistentId,
-                    isProcitana = false
+                    From = _userManager.FindByNameAsync(User.Identity.Name).Result.Id,
+                    isProcitana = false,
+                    To = selectedTermin.PacijentId
                 };
+
                 db.Obavijesti.Add(obavijest);
                 db.SaveChanges();
+                db.ZakazanaUsluga.Remove(db.ZakazanaUsluga.SingleOrDefault(zU => zU.TerminId == terminId));
+                db.Termini.Remove(db.Termini.SingleOrDefault(t => t.Id == terminId));
+                db.SaveChanges();
+
+                
 
                 return RedirectToAction("Termini", "Termini");
             }

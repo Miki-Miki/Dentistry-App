@@ -26,9 +26,10 @@ namespace B.U.Z.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
             ObavijestiVM model;
             List<Obavijesti> obav = db.Obavijesti.ToList();
+            List<Pacijent> p = db.Pacijenti.ToList();
             if (_userManager.FindByNameAsync(User.Identity.Name).Result.isStomatolog==true || _userManager.FindByNameAsync(User.Identity.Name).Result.isAsistent==true)
             {
-                List<Pacijent> p = db.Pacijenti.ToList();
+                
                 model = new ObavijestiVM
                 {
                     Procitane = db.Obavijesti.Where(s => s.isProcitana == true && db.Pacijenti.Single(p=>p.Id==s.From)!=null).ToList(),
@@ -36,7 +37,13 @@ namespace B.U.Z.Controllers
                 };
                 foreach (var o in obav)
                 {
-                    o.isProcitana = true;
+                    foreach(var pac in p)
+                    {
+                        if(o.From==pac.Id)
+                        {
+                            o.isProcitana = true;
+                        }
+                    }
                 }
                 db.SaveChanges();
                 return View(model);
@@ -47,12 +54,21 @@ namespace B.U.Z.Controllers
                 List<Stomatolog> s = db.Stomatolozi.ToList();
                 model = new ObavijestiVM
                 {
-                    Procitane = db.Obavijesti.Where(s => s.isProcitana == true && (db.Asistenti.Single(p=>p.Id==s.From) != null || db.Stomatolozi.Single(p=>p.Id==s.From) != null)).ToList(),
-                    NeProcitane = db.Obavijesti.Where(s => s.isProcitana == false && (db.Asistenti.Single(p => p.Id == s.From) != null || db.Stomatolozi.Single(p => p.Id == s.From) != null)).ToList()
+                    Procitane = db.Obavijesti.Where(s => s.isProcitana == true && (db.Asistenti.Single(p=>p.Id==s.From) != null || db.Stomatolozi.Single(p=>p.Id==s.From) != null) && s.To == _userManager.FindByNameAsync(User.Identity.Name).Result.Id).ToList(),
+                    NeProcitane = db.Obavijesti.Where(s => s.isProcitana == false && (db.Asistenti.Single(p => p.Id == s.From) != null || db.Stomatolozi.Single(p => p.Id == s.From) != null) && s.To == _userManager.FindByNameAsync(User.Identity.Name).Result.Id).ToList()
                 };
                 foreach (var o in obav)
                 {
-                    o.isProcitana = true;
+                    foreach (var aa in a)
+                    {
+                        foreach (var ss in s)
+                        {
+                            if ((o.From == aa.Id || o.From == ss.Id)&&(o.To==_userManager.FindByNameAsync(User.Identity.Name).Result.Id))
+                            {
+                                o.isProcitana = true;
+                            }
+                        }
+                    }
                 }
                 db.SaveChanges();
                 return View(model);

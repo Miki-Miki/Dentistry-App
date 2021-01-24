@@ -11,5 +11,7 @@ namespace B.U.Z.Models
         public string Sadrzaj { get; set; }
         public bool isProcitana { get; set; }
         public string From { get; set; }
+        public string To { get; set; }
+        
     }
 }
