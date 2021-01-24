@@ -1,4 +1,5 @@
-﻿@model List<Obavijesti>
+﻿@using B.U.Z.ViewModels
+@model ObavijestiVM
 
 <link href="~/css/Universal.css" rel="stylesheet" />
 
@@ -13,26 +14,36 @@
             @*<h1 id="naslov">Dijagnoze</h1>*@
 
             <div class="primarydark" id="ostatakBody-a">
-
                 <table id="tabela" class="table">
                     <thead>
-                        <tr>
+                        <tr onclick="PromijeniBojuProcitanihObavijesti()">
                             <th scope="col">Redni broj</th>
                             <th scope="col">Obavijest</th>
+                            <th scope="col">Akcija</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var s in Model)
+                        @foreach (var s in Model.NeProcitane)
                         {
                             <tr>
                                 <td></td>
-                                <td>@s.Id</td>
                                 <td>@s.Sadrzaj</td>
+                                @*<td><button onclick="OpenOdabranuObavijest(@s.Id)">Detalji</button></td>*@
+                            <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
+                            </tr>
+                        }
+                        @foreach (var s in Model.Procitane)
+                        {
+                            <tr>
+                                <td></td>
+                                <td style="color:cornflowerblue;">@s.Sadrzaj</td>
+                                <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
                             </tr>
                         }
 
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </div>
@@ -45,7 +56,14 @@
             counter-increment: Serial; /* Increment the Serial counter */
             content: counter(Serial); /* Display the counter */
         }
+        #AjaxPrikazOdabraneObavijesti
+        {
+            color:white;
+            background-color:red;
+            border:1px solid red;
+        }
     </style>
 
 
 </div>
+

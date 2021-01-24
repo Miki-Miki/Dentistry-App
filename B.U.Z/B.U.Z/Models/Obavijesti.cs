@@ -9,5 +9,7 @@ namespace B.U.Z.Models
     {
         public int Id { get; set; }
         public string Sadrzaj { get; set; }
+        public bool isProcitana { get; set; }
+        public string From { get; set; }
     }
 }

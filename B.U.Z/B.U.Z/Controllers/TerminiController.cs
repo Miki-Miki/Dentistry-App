@@ -386,7 +386,10 @@ namespace B.U.Z.Controllers
             Obavijesti obavijest = new Obavijesti
             {
                 Sadrzaj = "Pacijent" + " " + _userManager.FindByNameAsync(User.Identity.Name).Result.FirstName + " " + _userManager.FindByNameAsync(User.Identity.Name).Result.LastName
-                + " " + "je zakazao/la termin na dan" + " " + noviTermin.TerminStart.Day+"."+noviTermin.TerminStart.Month+"."+noviTermin.TerminStart.Year +" "+ "u" + " " + noviTermin.TerminStart.TimeOfDay + " "+ "sati"
+                + " " + "je zakazao/la termin na dan" + " " + noviTermin.TerminStart.Day + "." + noviTermin.TerminStart.Month + "." + noviTermin.TerminStart.Year
+                + " " + "u" + " " + noviTermin.TerminStart.TimeOfDay + " " + "sati",
+                isProcitana = false,
+                From = _userManager.FindByNameAsync(User.Identity.Name).Result.Id
             };
             db.Obavijesti.Add(obavijest);
             db.SaveChanges();

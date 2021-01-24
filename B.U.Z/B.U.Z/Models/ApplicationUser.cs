@@ -19,6 +19,10 @@ namespace B.U.Z.Models
 
         public int GradId { get; set; }
         public Grad Grad { get; set; }
+        public bool ? isPacijent { get; set; }
+        public bool ? isAsistent { get; set; }
+        public bool ? isStomatolog { get; set; }
+
     }
 }
 

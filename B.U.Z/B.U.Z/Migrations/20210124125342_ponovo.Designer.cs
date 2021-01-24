@@ -4,14 +4,16 @@ using B.U.Z.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace B.U.Z.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210124125342_ponovo")]
+    partial class ponovo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -315,14 +317,8 @@ namespace B.U.Z.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("From")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Sadrzaj")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isProcitana")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
