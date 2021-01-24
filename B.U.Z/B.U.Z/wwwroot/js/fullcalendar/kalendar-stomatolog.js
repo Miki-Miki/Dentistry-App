@@ -148,12 +148,18 @@ function s_clearTerminDetails() {
 
 
 function fillTerminDetails(_selectedSesija) {
-    var terminStartDate = new Date(_selectedSesija.start);    
+    var terminStartDate = new Date(_selectedSesija.start);   
+    var terminEndDate = new Date(_selectedSesija.end);
     console.log('terminStartDate: ' + terminStartDate);
+   
+    trmPocetak.innerText += (terminStartDate.getUTCMonth() + 1) + '.' + terminStartDate.getUTCDate() + '.' + + terminStartDate.getUTCFullYear()
+        + ' | ' + terminStartDate.getUTCHours() + ':' + (terminStartDate.getUTCMinutes() < 10 ? '0' : '') + terminStartDate.getUTCMinutes();
 
-    // fix formatting
-    trmPocetak.innerText += terminStartDate.getDate() + '.' + (terminStartDate.getMonth() + 1) + '.' + terminStartDate.getFullYear() + ' | ';
-    trmKraj.innerText += _selectedSesija.end;
+    trmKraj.innerText += (terminEndDate.getUTCMonth() + 1) + '.'
+        + terminEndDate.getUTCDate() + '.' + 
+        + terminEndDate.getUTCFullYear() + ' | '
+        + terminEndDate.getUTCHours() + ':' + (terminEndDate.getUTCMinutes() < 10 ? '0' : '') + terminEndDate.getUTCMinutes();
+
     trmImePacijenta.innerText += _selectedSesija.pacijent.firstName + ' ' + _selectedSesija.pacijent.lastName;
     trmUsluga.innerText += _selectedSesija.usluga.naziv;
     trmBasePrice.innerText += _selectedSesija.basePrice;
@@ -183,22 +189,22 @@ function s_fillTerminDetails(_selectedSesija) {
 function oznaciTermin(_oznaka) {
     $.ajax({
         type: 'POST',
-        url: '/Termini/OznaciTemrin',
+        url: '/Termini/OznaciTermin',
         data: { oznaka: _oznaka, terminId: selectedSesija.terminId },
 
         success: function (data) {
-            console.log(data.responseText);
+            console.log('success: ' + data.responseText);
             window.location.reload();
         },
 
         error: function (data) {
-            console.log(data.responseText);
-            window.location.reload();
+            console.log('error: ' + data.responseText);
+            alert('ajax error');
         },
 
         failure: function (data) {
-            console.log(data.responseText);
-            window.location.reload();
+            console.log('failure: ' + data.responseText);
+            alert('ajax failure"');
         }
     })
 }
