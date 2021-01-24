@@ -1,5 +1,8 @@
 ﻿@using B.U.Z.ViewModels
 @model ObavijestiVM
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <link href="~/css/Universal.css" rel="stylesheet" />
 
@@ -23,15 +26,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var s in Model.NeProcitane)
-                        {
-                            <tr>
-                                <td></td>
-                                <td>@s.Sadrzaj</td>
-                                @*<td><button onclick="OpenOdabranuObavijest(@s.Id)">Detalji</button></td>*@
-                            <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
-                            </tr>
-                        }
+                       
+                            @foreach (var s in Model.NeProcitane)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>@s.Sadrzaj</td>
+                                    @*<td><button onclick="OpenOdabranuObavijest(@s.Id)">Detalji</button></td>*@
+                                    <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
+                                </tr>
+                            }
                         @foreach (var s in Model.Procitane)
                         {
                             <tr>
@@ -43,7 +47,7 @@
 
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
     </div>
@@ -56,11 +60,11 @@
             counter-increment: Serial; /* Increment the Serial counter */
             content: counter(Serial); /* Display the counter */
         }
-        #AjaxPrikazOdabraneObavijesti
-        {
-            color:white;
-            background-color:red;
-            border:1px solid red;
+
+        #AjaxPrikazOdabraneObavijesti {
+            color: white;
+            background-color: red;
+            border: 1px solid red;
         }
     </style>
 

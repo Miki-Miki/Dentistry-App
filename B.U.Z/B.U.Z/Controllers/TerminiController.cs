@@ -19,7 +19,7 @@ namespace B.U.Z.Controllers
     public class TerminiController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;        
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public TerminiController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
@@ -75,7 +75,7 @@ namespace B.U.Z.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
             Pacijent pacijent = db.Pacijenti.Find(pacijentId);
-            return View( "PacijentOdabir", pacijent);
+            return View("PacijentOdabir", pacijent);
         }
 
         public IActionResult OdaberiTermin(int t)
@@ -92,7 +92,7 @@ namespace B.U.Z.Controllers
                 TerminEnd = termin.TerminEnd,
                 pacijent = pacijent
             };
-           
+
             return View("TerminOdabir", terminVM);
         }
 
@@ -106,7 +106,7 @@ namespace B.U.Z.Controllers
 
             UslugaVM usluge = new UslugaVM
             {
-                Usluge = db.Usluga.OrderBy(a => a.Id).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.Naziv }).ToList()                
+                Usluge = db.Usluga.OrderBy(a => a.Id).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.Naziv }).ToList()
             };
 
             if (aspUser is Pacijent)
@@ -131,7 +131,7 @@ namespace B.U.Z.Controllers
             Usluga _usluga = new Usluga();
             Pacijent _pacijent = new Pacijent();
 
-            foreach(var t in terminiDB)
+            foreach (var t in terminiDB)
             {
                 _pacijent = db.Pacijenti.Find(t.PacijentId);
 
@@ -139,7 +139,7 @@ namespace B.U.Z.Controllers
                 {
                     zakazanaUsluga = db.ZakazanaUsluga.SingleOrDefault(x => x.TerminId == t.Id);
                     _usluga = db.Usluga.SingleOrDefault(x => x.Id == zakazanaUsluga.UslugaId);
-                    
+
                     termini.Add(new TerminiVM()
                     {
                         basePrice = t.basePrice,
@@ -172,24 +172,24 @@ namespace B.U.Z.Controllers
 
             List<Termini> terminiDB = db.Termini.ToList();
             List<TerminiVM> termini = new List<TerminiVM>();
-            Pacijent _pacijent = new Pacijent();            
+            Pacijent _pacijent = new Pacijent();
 
             foreach (var t in terminiDB)
             {
                 _pacijent = db.Pacijenti.Find(t.PacijentId);
-                if(t.isPrihvacen == true)
+                if (t.isPrihvacen == true)
                 {
                     var _usluga = from zU in db.ZakazanaUsluga
-                                      join U in db.Usluga
-                                      on zU.UslugaId equals U.Id
-                                      where zU.TerminId == t.Id
-                                      select new Usluga
-                                      {
-                                          Id = U.Id,
-                                          Cijena = U.Cijena,
-                                          Naziv = U.Naziv,
-                                          Opis = U.Opis
-                                      };
+                                  join U in db.Usluga
+                                  on zU.UslugaId equals U.Id
+                                  where zU.TerminId == t.Id
+                                  select new Usluga
+                                  {
+                                      Id = U.Id,
+                                      Cijena = U.Cijena,
+                                      Naziv = U.Naziv,
+                                      Opis = U.Opis
+                                  };
 
                     termini.Add(new TerminiVM()
                     {
@@ -200,7 +200,7 @@ namespace B.U.Z.Controllers
                         pacijent = _pacijent,
                         usluga = _usluga.FirstOrDefault(),
                         isPrihvacen = true
-                    }) ;
+                    });
                 }
             }
 
@@ -331,7 +331,7 @@ namespace B.U.Z.Controllers
 
             return new JsonResult(terminiJSON);
         }
-      
+
 
         //[Route("ZapocniSesiju")]
         //[HttpPost]
@@ -463,8 +463,8 @@ namespace B.U.Z.Controllers
 
             Pacijent pacijent = db.Pacijenti.Find(selectedTermin.PacijentId);
 
-            if(oznaka == true)
-            {                
+            if (oznaka == true)
+            {
                 var body = "<h3>Vaš termin na datum: "
                     + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
                     " je prihvaćen.</h3>" +
@@ -497,10 +497,21 @@ namespace B.U.Z.Controllers
                 selectedTermin.AsistentId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
                 db.SaveChanges();
 
+                Obavijesti obavijest = new Obavijesti
+                {
+                    Sadrzaj = "Vaš termin na datum: "
+                    + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
+                    " je prihvaćen.",
+                    From = selectedTermin.AsistentId,
+                    isProcitana = false
+                };
+                db.Obavijesti.Add(obavijest);
+                db.SaveChanges();
+
                 return RedirectToAction("Termini", "Termini");
             }
 
-            if(oznaka == false)
+            if (oznaka == false)
             {
                 var body = "<h3>Vaš termin na datum: "
                     + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
@@ -533,6 +544,18 @@ namespace B.U.Z.Controllers
                 db.ZakazanaUsluga.Remove(db.ZakazanaUsluga.SingleOrDefault(zU => zU.TerminId == terminId));
                 db.Termini.Remove(db.Termini.SingleOrDefault(t => t.Id == terminId));
                 db.SaveChanges();
+
+                Obavijesti obavijest = new Obavijesti
+                {
+                    Sadrzaj = "Vaš termin na datum: "
+                     + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
+                     " je odbijen.",
+                    From = selectedTermin.AsistentId,
+                    isProcitana = false
+                };
+                db.Obavijesti.Add(obavijest);
+                db.SaveChanges();
+
                 return RedirectToAction("Termini", "Termini");
             }
 

@@ -31,8 +31,8 @@ namespace B.U.Z.Controllers
                 List<Pacijent> p = db.Pacijenti.ToList();
                 model = new ObavijestiVM
                 {
-                    Procitane = db.Obavijesti.Where(s => s.isProcitana == true && db.Pacijenti.Find(s.From)!=null).ToList(),
-                    NeProcitane = db.Obavijesti.Where(s => s.isProcitana == false).ToList()
+                    Procitane = db.Obavijesti.Where(s => s.isProcitana == true && db.Pacijenti.Single(p=>p.Id==s.From)!=null).ToList(),
+                    NeProcitane = db.Obavijesti.Where(s => s.isProcitana == false && db.Pacijenti.Single(p=>p.Id==s.From)!=null).ToList()
                 };
                 foreach (var o in obav)
                 {
@@ -41,18 +41,22 @@ namespace B.U.Z.Controllers
                 db.SaveChanges();
                 return View(model);
             }
-            else if(_userManager.FindByNameAsync(User.Identity.Name).Result.isPacijent==true)
+            else
             {
                 List<Asistent> a = db.Asistenti.ToList();
                 List<Stomatolog> s = db.Stomatolozi.ToList();
-                model =new ObavijestiVM
+                model = new ObavijestiVM
                 {
-                    Procitane=db.Obavijesti.Where(s=>s.isProcitana==true &&(db.Asistenti.Find(s.From)!=null || db.Stomatolozi.Find(s.From)!=null)
+                    Procitane = db.Obavijesti.Where(s => s.isProcitana == true && (db.Asistenti.Single(p=>p.Id==s.From) != null || db.Stomatolozi.Single(p=>p.Id==s.From) != null)).ToList(),
+                    NeProcitane = db.Obavijesti.Where(s => s.isProcitana == false && (db.Asistenti.Single(p => p.Id == s.From) != null || db.Stomatolozi.Single(p => p.Id == s.From) != null)).ToList()
+                };
+                foreach (var o in obav)
+                {
+                    o.isProcitana = true;
                 }
-            };
-            
-           
-            return View(model);
+                db.SaveChanges();
+                return View(model);
+            };            
         }
         public IActionResult ProcitajObavijest(int ObavijestId)
         {
