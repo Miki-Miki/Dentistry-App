@@ -18,6 +18,8 @@ using B.U.Z.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Net.Mail;
 using System.Net;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace B.U.Z.Areas.Identity.Pages.Account
 {
@@ -89,6 +91,10 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "Broj telefona")]
             public string BrojTelefona { get; set; }
+
+            [Required]
+            [Display(Name = "Autentifikacijski kod")]
+            public string PhoneAuthCode { get; set; }
 
             [Required]
             [Display(Name = "Grad")]
@@ -174,6 +180,22 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
+            return Page();
+        }
+        
+        public IActionResult SendCode()
+        {
+            string accountSid = Environment.GetEnvironmentVariable("AC1279df1aea6e0ac0945312ba31e89586");
+            string authToken = Environment.GetEnvironmentVariable("d3ef9890e2a3ebd27f396bf503240e7a");
+
+            TwilioClient.Init(accountSid, authToken);
+
+            var message = MessageResource.Create(
+            body: "Join Earth's mightiest heroes. Like Kevin Bacon.",
+            from: new Twilio.Types.PhoneNumber("+15017122661"),
+            to: new Twilio.Types.PhoneNumber("+15558675310")
+        );
+
             return Page();
         }
     }

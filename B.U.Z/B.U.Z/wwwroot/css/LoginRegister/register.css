@@ -15,3 +15,26 @@ body {
     margin:0;
     padding:0;
 }
+
+#phoneCodeLabel {
+    display: block;
+}
+
+#phoneAuthCode {
+    width: 65%;
+    float: left;
+}
+
+#sendCodeBtnContainer {
+   margin-bottom: 10px;
+}
+
+#btnSendCode {
+    float: left;
+    width: 30%;
+    margin-left: 5%;
+}
+
+#lozinkaInput {
+    margin-top: 60px;
+}

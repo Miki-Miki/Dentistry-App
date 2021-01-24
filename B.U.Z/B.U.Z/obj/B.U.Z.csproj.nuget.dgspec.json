@@ -112,6 +112,10 @@
             "System.Linq": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "Twilio": {
+              "target": "Package",
+              "version": "[5.53.0, )"
             }
           },
           "imports": [

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YA7rLNIE03o60Q4c7AqyBBTt4sXs2Z57TSyunv83Eb0Pj9Ojx+7P8b6h+gsOFxf5ZhoWZuXxKZnbumCr7JYEqA==",
+  "dgSpecHash": "lPwe4kET/HBTbuhK4mQeW3ej1aLufdJVoQS/k/E+Osawy2v5aG97SIxZyR7IdgU+yt9E441h1L+0VEe7nBVeYA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Bios Servis\\Desktop\\College\\Godina 3\\Razvoj Softvera 1\\Seminarski\\DevAzure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
   "expectedPackageFiles": [
@@ -239,7 +239,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\Bios Servis\\.nuget\\packages\\twilio\\5.53.0\\twilio.5.53.0.nupkg.sha512"
   ],
   "logs": [
     {

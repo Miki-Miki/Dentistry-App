@@ -6,6 +6,7 @@
 
 }
 <link rel="stylesheet" href="~/css/LoginRegister/register.css" />
+<link rel="stylesheet" href="~/css/Universal.css" />
 <div id="registerDiv">
     <div style="text-align: center; color: #0C6980;">
         <h1>@ViewData["Title"]</h1>
@@ -40,6 +41,17 @@
                     <span asp-validation-for="Input.BrojTelefona" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label id="phoneCodeLabel">Unesite kod</label>
+                    <input asp-for="Input.PhoneAuthCode" class="form-control" id="phoneAuthCode" />
+                    <span asp-validation-for="Input.PhoneAuthCode" class="text-danger"></span>
+
+                    <div id="sendCodeBtnContainer">
+                        <button class="btn primarydark" id="btnSendCode">Send Code</button>
+                    </div>
+
+                </div>
+                
+                <div class="form-group" id="lozinkaInput">
                     <label>Lozinka</label>
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
@@ -105,3 +117,5 @@
         <partial name="_ValidationScriptsPartial" />
     }
 </div>
+
+<script src="~/js/phoneNumberFA/phone-number-fa.js"></script>
