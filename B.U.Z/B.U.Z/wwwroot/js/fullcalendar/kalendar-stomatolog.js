@@ -146,18 +146,12 @@ function s_clearTerminDetails() {
     s_trmBasePrice.innerText = "";
 }
 
-//terminId: info.event.id,
-//    basePrice: info.event.extendedProps.basePrice,
-//        start: info.event.startStr,
-//            end: info.event.endStr,
-//                pacijent: info.event.extendedProps.pacijent,
-//                    usluga: info.event.extendedProps.usluga,
-//                        isPrihvacen: info.event.extendedProps.isPrihvacen
 
 function fillTerminDetails(_selectedSesija) {
     var terminStartDate = new Date(_selectedSesija.start);    
     console.log('terminStartDate: ' + terminStartDate);
 
+    // fix formatting
     trmPocetak.innerText += terminStartDate.getDate() + '.' + (terminStartDate.getMonth() + 1) + '.' + terminStartDate.getFullYear() + ' | ';
     trmKraj.innerText += _selectedSesija.end;
     trmImePacijenta.innerText += _selectedSesija.pacijent.firstName + ' ' + _selectedSesija.pacijent.lastName;
