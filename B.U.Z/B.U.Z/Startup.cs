@@ -16,6 +16,7 @@ using B.U.Z.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using ShieldUI.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace B.U.Z
 {
@@ -43,13 +44,14 @@ namespace B.U.Z
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
-            //services.AddMvc(options =>
-            //{
-            //    var policy = new AuthorizationPolicyBuilder()
-            //    .RequireAuthenticatedUser().Build();
-            //    options.Filters.Add(new AuthorizeFilter(policy));
-            //}).AddXmlSerializerFormatters();
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddXmlSerializerFormatters();
 
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             services.AddShieldUI();
 
         }

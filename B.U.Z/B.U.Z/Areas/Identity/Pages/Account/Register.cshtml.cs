@@ -100,6 +100,7 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             [Display(Name = "Grad")]
             public int Grad { get; set; }
         }
+     
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -183,18 +184,20 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             return Page();
         }
         
-        public IActionResult SendCode()
+
+        public IActionResult OnGetSendCode(string code, string phoneNumber)
         {
-            string accountSid = Environment.GetEnvironmentVariable("AC1279df1aea6e0ac0945312ba31e89586");
-            string authToken = Environment.GetEnvironmentVariable("d3ef9890e2a3ebd27f396bf503240e7a");
+            string accountSid = "AC1279df1aea6e0ac0945312ba31e89586";
+            string authToken = "d3ef9890e2a3ebd27f396bf503240e7a";
 
             TwilioClient.Init(accountSid, authToken);
 
+
             var message = MessageResource.Create(
-            body: "Join Earth's mightiest heroes. Like Kevin Bacon.",
-            from: new Twilio.Types.PhoneNumber("+15017122661"),
-            to: new Twilio.Types.PhoneNumber("+15558675310")
-        );
+                body: "Vaš autentifikacijski kod je: " + code,
+                from: new Twilio.Types.PhoneNumber("+12513195692"),
+                to: new Twilio.Types.PhoneNumber(phoneNumber)
+            );
 
             return Page();
         }

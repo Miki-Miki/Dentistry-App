@@ -65,6 +65,7 @@
     <PackageReference Include="ShieldUI.AspNetCore.Mvc" Version="1.7.34" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="Twilio" Version="5.53.0" />
+    <PackageReference Include="Twilio.AspNet.Common" Version="5.37.2" />
   </ItemGroup>
 
   <ItemGroup>

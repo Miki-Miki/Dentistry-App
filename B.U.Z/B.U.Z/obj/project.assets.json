@@ -3769,6 +3769,18 @@
         "runtime": {
           "lib/netstandard2.0/Twilio.dll": {}
         }
+      },
+      "Twilio.AspNet.Common/5.37.2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.0/Twilio.AspNet.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Twilio.AspNet.Common.dll": {}
+        }
       }
     }
   },
@@ -11227,6 +11239,19 @@
         "twilio.5.53.0.nupkg.sha512",
         "twilio.nuspec"
       ]
+    },
+    "Twilio.AspNet.Common/5.37.2": {
+      "sha512": "mtcDcP+pKO6bBm9SAWXj7DqUgLkV706CGtbQ2h7HzM1Aw/hTM1f14z03CqDEfM+afXELC9SeK0/6qYYQw9TMCQ==",
+      "type": "package",
+      "path": "twilio.aspnet.common/5.37.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Twilio.AspNet.Common.dll",
+        "lib/netstandard1.0/Twilio.AspNet.Common.dll",
+        "twilio.aspnet.common.5.37.2.nupkg.sha512",
+        "twilio.aspnet.common.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -11248,7 +11273,8 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
       "ShieldUI.AspNetCore.Mvc >= 1.7.34",
       "System.Linq >= 4.3.0",
-      "Twilio >= 5.53.0"
+      "Twilio >= 5.53.0",
+      "Twilio.AspNet.Common >= 5.37.2"
     ]
   },
   "packageFolders": {
@@ -11368,6 +11394,10 @@
           "Twilio": {
             "target": "Package",
             "version": "[5.53.0, )"
+          },
+          "Twilio.AspNet.Common": {
+            "target": "Package",
+            "version": "[5.37.2, )"
           }
         },
         "imports": [

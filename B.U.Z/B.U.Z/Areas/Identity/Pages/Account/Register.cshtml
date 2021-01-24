@@ -7,12 +7,14 @@
 }
 <link rel="stylesheet" href="~/css/LoginRegister/register.css" />
 <link rel="stylesheet" href="~/css/Universal.css" />
+
 <div id="registerDiv">
     <div style="text-align: center; color: #0C6980;">
         <h1>@ViewData["Title"]</h1>
     </div>
 
     <div>
+        @Html.AntiForgeryToken()
         <div style="width:100%;">
             <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <div style="text-align: center; color: #0C6980;">
@@ -46,11 +48,11 @@
                     <span asp-validation-for="Input.PhoneAuthCode" class="text-danger"></span>
 
                     <div id="sendCodeBtnContainer">
-                        <button class="btn primarydark" id="btnSendCode">Send Code</button>
+                        <button class="btn primarydark" id="btnSendCode" onclick="sendCode()">Send Code</button>
                     </div>
 
                 </div>
-                
+
                 <div class="form-group" id="lozinkaInput">
                     <label>Lozinka</label>
                     <input asp-for="Input.Password" class="form-control" />
@@ -117,5 +119,12 @@
         <partial name="_ValidationScriptsPartial" />
     }
 </div>
+
+<form method="get">
+    <input type="hidden" id="phoneFACode" name="code" />
+    <input type="hidden" id="phoneNumber" name="phoneNumber" />   
+
+    <button onclick="generateCode()" asp-page-handler="SendCode" class="btn primarydark" id="btnSendCode">Send Code</button>    
+</form>
 
 <script src="~/js/phoneNumberFA/phone-number-fa.js"></script>

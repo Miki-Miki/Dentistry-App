@@ -42,6 +42,7 @@
           "ShieldUI.AspNetCore.Mvc": "1.7.34",
           "System.Linq": "4.3.0",
           "Twilio": "5.53.0",
+          "Twilio.AspNet.Common": "5.37.2",
           "Microsoft.AspNetCore.Antiforgery.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -3066,6 +3067,20 @@
         },
         "compile": {
           "lib/netstandard2.0/Twilio.dll": {}
+        }
+      },
+      "Twilio.AspNet.Common/5.37.2": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "runtime": {
+          "lib/netstandard1.0/Twilio.AspNet.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.0/Twilio.AspNet.Common.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery.Reference/3.1.0.0": {
@@ -6318,6 +6333,13 @@
       "sha512": "sha512-+gXiTPhLH38SCX73dDm8Nb221Jb0FUV+Lnst+Xx6uUC55CqOuhV6saCg5S+Vl8qvtzpomX1b1C5KfY4w/91c9g==",
       "path": "twilio/5.53.0",
       "hashPath": "twilio.5.53.0.nupkg.sha512"
+    },
+    "Twilio.AspNet.Common/5.37.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mtcDcP+pKO6bBm9SAWXj7DqUgLkV706CGtbQ2h7HzM1Aw/hTM1f14z03CqDEfM+afXELC9SeK0/6qYYQw9TMCQ==",
+      "path": "twilio.aspnet.common/5.37.2",
+      "hashPath": "twilio.aspnet.common.5.37.2.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery.Reference/3.1.0.0": {
       "type": "referenceassembly",
