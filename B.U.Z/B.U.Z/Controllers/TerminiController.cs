@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
 
 namespace B.U.Z.Controllers
 {
@@ -17,7 +19,7 @@ namespace B.U.Z.Controllers
     public class TerminiController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;        
 
         public TerminiController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
@@ -449,6 +451,93 @@ namespace B.U.Z.Controllers
             });
 
             return new JsonResult(terminiJSON);
+        }
+
+        [Route("OznaciTermin")]
+        [HttpPost]
+        public async Task<IActionResult> OznaciTermin(bool oznaka, int terminId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Termini selectedTermin = db.Termini.Find(terminId);
+            ZakazanaUsluga zakazanaUsluga = db.ZakazanaUsluga.Find(terminId);
+
+            Pacijent pacijent = db.Pacijenti.Find(selectedTermin.PacijentId);
+
+            if(oznaka == true)
+            {                
+                var body = "<h3>Vaš termin na datum: "
+                    + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
+                    " je prihvaćen.</h3>" +
+                    "<br>Očekujemo vaš dolazak";
+
+                var message = new MailMessage();
+                var email = pacijent.Email;
+
+                message.To.Add(new MailAddress(email.ToString()));
+                message.From = new MailAddress("buz.stomatologija@gmail.com");
+                message.Subject = "Vaš termin je prihvaćen!";
+                message.Body = string.Format(body, "B.U.Z", "buz.stomatologija@gmail.com");
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "buz.stomatologija@gmail.com",
+                        Password = "vmhXPuAg2hTEdw3"
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                }
+
+                selectedTermin.isPrihvacen = true;
+                selectedTermin.AsistentId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+                db.SaveChanges();
+
+                return RedirectToAction("Termini", "Termini");
+            }
+
+            if(oznaka == false)
+            {
+                var body = "<h3>Vaš termin na datum: "
+                    + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
+                    " je odbijen.</h3>" +
+                    "<br>Molimo zakažite termin u neko drugo vrijeme.";
+
+                var message = new MailMessage();
+                var email = pacijent.Email;
+
+                message.To.Add(new MailAddress(email.ToString()));
+                message.From = new MailAddress("buz.stomatologija@gmail.com");
+                message.Subject = "Vaš termin je odbijen.";
+                message.Body = string.Format(body, "B.U.Z", "buz.stomatologija@gmail.com");
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "buz.stomatologija@gmail.com",
+                        Password = "vmhXPuAg2hTEdw3"
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                }
+
+                db.ZakazanaUsluga.Remove(db.ZakazanaUsluga.SingleOrDefault(zU => zU.TerminId == terminId));
+                db.Termini.Remove(db.Termini.SingleOrDefault(t => t.Id == terminId));
+                db.SaveChanges();
+                return RedirectToAction("Termini", "Termini");
+            }
+
+            //If you get to here you messed something up
+            return View("Termini");
         }
 
     }

@@ -11,7 +11,14 @@ var trmImePacijenta = document.getElementById('trmImePacijenta');
 var trmUsluga = document.getElementById('trmUsluga');
 var trmBasePrice = document.getElementById('trmBasePrice');
 
+var s_trmPocetak = document.getElementById('s_trmPocetak');
+var s_trmKraj = document.getElementById('s_trmKraj');
+var s_trmImePacijenta = document.getElementById('s_trmImePacijenta');
+var s_trmUsluga = document.getElementById('s_trmUsluga');
+var s_trmBasePrice = document.getElementById('s_trmBasePrice');
+
 var terminDate;
+
 
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar-stomatolog');
@@ -73,19 +80,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 selectedTerminDiv.style.display = 'block';
                 mainContainer.style.filter = "blur(4px)";
 
-                ////Empty text
-                //trmPocetak.innerText = "";
-                //trmKraj.innerText = "";
-                //trmImePacijenta.innerText = "";
-                //trmUsluga.innerText = "";
-                //trmBasePrice.innerText = "";
+                s_clearTerminDetails();
+                s_fillTerminDetails(selectedSesija);
 
-                ////Initialize session
-                //trmPocetak.innerText += selectedSesija.start;
-                //trmKraj.innerText += selectedSesija.end;
-                //trmImePacijenta.innerText += selectedSesija.pacijent.firstName + ' ' + selectedSesija.pacijent.lastName;
-                //trmUsluga.innerText += selectedSesija.usluga.naziv;
-                //trmBasePrice.innerText += selectedSesija.basePrice;
+                console.log('neprihvacen termin: ' + selectedSesija.isPrihvacen);
             }
         },
 
@@ -140,22 +138,73 @@ function clearTerminDetails() {
     trmBasePrice.innerText = "";
 }
 
-//terminId: info.event.id,
-//    basePrice: info.event.extendedProps.basePrice,
-//        start: info.event.startStr,
-//            end: info.event.endStr,
-//                pacijent: info.event.extendedProps.pacijent,
-//                    usluga: info.event.extendedProps.usluga,
-//                        isPrihvacen: info.event.extendedProps.isPrihvacen
+function s_clearTerminDetails() {
+    s_trmPocetak.innerText = "";
+    s_trmKraj.innerText = "";
+    s_trmImePacijenta.innerText = "";
+    s_trmUsluga.innerText = "";
+    s_trmBasePrice.innerText = "";
+}
+
 
 function fillTerminDetails(_selectedSesija) {
-    var terminStartDate = new Date(_selectedSesija.start);    
+    var terminStartDate = new Date(_selectedSesija.start);   
+    var terminEndDate = new Date(_selectedSesija.end);
     console.log('terminStartDate: ' + terminStartDate);
+   
+    trmPocetak.innerText += (terminStartDate.getUTCMonth() + 1) + '.' + terminStartDate.getUTCDate() + '.' + + terminStartDate.getUTCFullYear()
+        + ' | ' + terminStartDate.getUTCHours() + ':' + (terminStartDate.getUTCMinutes() < 10 ? '0' : '') + terminStartDate.getUTCMinutes();
 
-    trmPocetak.innerText += terminStartDate.getDate() + '.' + (terminStartDate.getMonth() + 1) + '.' + terminStartDate.getFullYear() + ' | ';
-    trmKraj.innerText += _selectedSesija.end;
+    trmKraj.innerText += (terminEndDate.getUTCMonth() + 1) + '.'
+        + terminEndDate.getUTCDate() + '.' + 
+        + terminEndDate.getUTCFullYear() + ' | '
+        + terminEndDate.getUTCHours() + ':' + (terminEndDate.getUTCMinutes() < 10 ? '0' : '') + terminEndDate.getUTCMinutes();
+
     trmImePacijenta.innerText += _selectedSesija.pacijent.firstName + ' ' + _selectedSesija.pacijent.lastName;
     trmUsluga.innerText += _selectedSesija.usluga.naziv;
     trmBasePrice.innerText += _selectedSesija.basePrice;
 
+}
+
+function s_fillTerminDetails(_selectedSesija) {
+    var terminStartDate = new Date(_selectedSesija.start);
+    var terminEndDate = new Date(_selectedSesija.end);
+    console.log('terminStartDate: ' + terminStartDate);
+
+    s_trmPocetak.innerText += terminStartDate.getUTCDate() + '.'
+        + (terminStartDate.getUTCMonth() + 1) + '.'
+        + terminStartDate.getUTCFullYear() + ' | '
+        + terminStartDate.getUTCHours() + ':' + (terminStartDate.getUTCMinutes() < 10 ? '0' : '') + terminStartDate.getUTCMinutes();
+
+    s_trmKraj.innerText += terminEndDate.getUTCDate() + '.'
+        + (terminEndDate.getUTCMonth() + 1) + '.'
+        + terminEndDate.getUTCFullYear() + ' | '
+        + terminEndDate.getUTCHours() + ':' + (terminEndDate.getUTCMinutes() < 10 ? '0' : '') + terminEndDate.getUTCMinutes();
+
+    s_trmImePacijenta.innerText += _selectedSesija.pacijent.firstName + ' ' + _selectedSesija.pacijent.lastName;
+    s_trmUsluga.innerText += _selectedSesija.usluga.naziv;
+    s_trmBasePrice.innerText += _selectedSesija.basePrice;
+}
+
+function oznaciTermin(_oznaka) {
+    $.ajax({
+        type: 'POST',
+        url: '/Termini/OznaciTermin',
+        data: { oznaka: _oznaka, terminId: selectedSesija.terminId },
+
+        success: function (data) {
+            console.log('success: ' + data.responseText);
+            window.location.reload();
+        },
+
+        error: function (data) {
+            console.log('error: ' + data.responseText);
+            alert('ajax error');
+        },
+
+        failure: function (data) {
+            console.log('failure: ' + data.responseText);
+            alert('ajax failure"');
+        }
+    })
 }
