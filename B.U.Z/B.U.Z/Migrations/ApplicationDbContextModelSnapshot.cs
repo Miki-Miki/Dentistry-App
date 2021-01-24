@@ -299,6 +299,21 @@ namespace B.U.Z.Migrations
                     b.ToTable("Lijekovi");
                 });
 
+            modelBuilder.Entity("B.U.Z.Models.Obavijesti", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Sadrzaj")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Obavijesti");
+                });
+
             modelBuilder.Entity("B.U.Z.Models.Racun", b =>
                 {
                     b.Property<int>("Id")

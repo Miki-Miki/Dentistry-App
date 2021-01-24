@@ -360,6 +360,7 @@ namespace B.U.Z.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
+            //kad se ne selektuje vrijeme, nije dobar format
             DateTime tStart = DateTime.Parse(terminStart);
             DateTime tEnd = tStart.Add(new TimeSpan(1, 0, 0));
 
@@ -382,6 +383,12 @@ namespace B.U.Z.Controllers
             };
 
             db.ZakazanaUsluga.Add(novaZakazanaUsluga);
+            Obavijesti obavijest = new Obavijesti
+            {
+                Sadrzaj = "Pacijent" + " " + _userManager.FindByNameAsync(User.Identity.Name).Result.FirstName + " " + _userManager.FindByNameAsync(User.Identity.Name).Result.LastName
+                + " " + "je zakazao/la termin na dan" + " " + noviTermin.TerminStart.Day+"."+noviTermin.TerminStart.Month+"."+noviTermin.TerminStart.Year +" "+ "u" + " " + noviTermin.TerminStart.TimeOfDay + " "+ "sati"
+            };
+            db.Obavijesti.Add(obavijest);
             db.SaveChanges();
 
             return View("PacijentMojiTermini");
