@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.AspNetCore.SignalR;
+using B.U.Z.samirsignal;
 
 namespace B.U.Z.Controllers
 {
@@ -20,12 +22,15 @@ namespace B.U.Z.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        IHubContext<NotHub> _hubContext;
+
 
         public TerminiController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager, IHubContext<NotHub> hubContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _hubContext = hubContext;
         }
 
         [Route("Termini")]
@@ -395,6 +400,10 @@ namespace B.U.Z.Controllers
             };
             db.Obavijesti.Add(obavijest);
             db.SaveChanges();
+            List<Stomatolog> zubari = db.Stomatolozi.ToList();
+
+
+            _hubContext.Clients.All.SendAsync("prijemPoruke", obavijest.Sadrzaj);
 
             return View("PacijentMojiTermini");
         }

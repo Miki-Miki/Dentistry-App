@@ -3,4 +3,17 @@
 
 // Write your JavaScript code.
 
-//ovo je komenater
+
+
+var connection = new signalR.HubConnectionBuilder().withUrl("/notHub").build();
+connection.on("prijemPoruke", function (message) {
+    var td = document.createElement("li");
+    td.textContent = message;
+    document.getElementById("tabela").appendChild(td);
+});
+connection.start().then(function () {
+    console.info("started signalR hub");
+
+}).catch(function (err) {
+    return console.error(err.toString());
+});

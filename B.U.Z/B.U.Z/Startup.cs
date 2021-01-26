@@ -16,6 +16,7 @@ using B.U.Z.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using ShieldUI.AspNetCore.Mvc;
+using B.U.Z.samirsignal;
 
 namespace B.U.Z
 {
@@ -51,6 +52,7 @@ namespace B.U.Z
             //}).AddXmlSerializerFormatters();
 
             services.AddShieldUI();
+            services.AddSignalR();
 
         }
 
@@ -83,6 +85,7 @@ namespace B.U.Z
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<NotHub>("/notHub");
             });
 
             app.UseFastReport();
