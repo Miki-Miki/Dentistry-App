@@ -20,7 +20,8 @@ connection.on("prijemPoruke", function (message) {
     document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdRb);
     document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdSad);
     var brojObavijesti = parseInt(document.getElementById("obavijestiStomatolog").innerHTML);
-    document.getElementById("obavijestiStomatolog").innerHTML = brojObavijesti + 1;
+    document.getElementById("obavijestiStomatolog").innerHTML = brojObavijesti+1;
+    document.getElementById("vijest").innerHTML = "";
     //brojObavijesti++;
 
 

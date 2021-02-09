@@ -5,8 +5,8 @@
 @*For refactoring*@
 <link rel="stylesheet" href="/css/Index/index.css" />
 <link rel="stylesheet" href="~/css/Index/NavBar.css" />
-
-
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 @{
     List<Obavijesti> neprocitane = new List<Obavijesti>();
 }
@@ -148,7 +148,7 @@
         </div>
     }
 }
-      
+
 
 <script>
     $(document).ready(function () {
