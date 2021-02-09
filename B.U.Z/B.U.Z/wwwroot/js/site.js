@@ -4,7 +4,14 @@
 // Write your JavaScript code.
 
 
-
+function updateNotificationCount() {
+    
+        var count = 0;
+    count = parseInt($("notStomatolog").html()) || 0;
+        count++;
+    $("notStomatolog").html(count);
+    
+}
 var connection = new signalR.HubConnectionBuilder().withUrl("/notHub").build();
 connection.on("prijemPoruke", function (message) {
 
@@ -19,9 +26,10 @@ connection.on("prijemPoruke", function (message) {
     tdSad.textContent = message;
     document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdRb);
     document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdSad);
-    var brojObavijesti = parseInt(document.getElementById("obavijestiStomatolog").innerHTML);
-    document.getElementById("obavijestiStomatolog").innerHTML = brojObavijesti+1;
+    var brojObavijesti = parseInt(document.getElementById("notStomatolog").innerHTML);
+    document.getElementById("notStomatolog").innerHTML = brojObavijesti+1;
     document.getElementById("vijest").innerHTML = "";
+    updateNotificationCount();
     //brojObavijesti++;
 
 

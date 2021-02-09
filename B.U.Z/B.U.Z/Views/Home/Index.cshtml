@@ -69,7 +69,7 @@
             <nav class="navbar navbar-light" id="navbar">
                 <ul class="navbar-nav" id="navigacija">
                     <li class="nav-item>">
-                        <a asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/baseline_description_white_18dp.png" id="icon" />Obavijesti  <h6 id="obavijestiStomatolog">@neprocitane.Count()</h6></a>
+                        <a id="link"asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/baseline_description_white_18dp.png" id="icon" />Obavijesti  <span id="notStomatolog">@neprocitane.Count()</span></a>
                     </li>
                     <li class="nav-item">
                         <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
