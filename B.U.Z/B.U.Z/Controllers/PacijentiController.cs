@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using B.U.Z.Areas.Identity.Pages.Account;
 using B.U.Z.Data;
 using B.U.Z.Models;
+using B.U.Z.samirsignal;
 using B.U.Z.ViewModels;
+using Microsoft.AspNet.SignalR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -31,12 +33,14 @@ namespace B.U.Z.Controllers
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         ILogger<RegisterModel> logger,
-        IEmailSender emailSender)
+        IEmailSender emailSender
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+
         }
         public IActionResult Pacijenti(string filter)
         {

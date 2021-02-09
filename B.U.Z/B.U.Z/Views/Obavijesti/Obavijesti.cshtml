@@ -14,31 +14,59 @@
 
     <div id="MainPageBody">
         <div id="pageContent">
-            @*<h1 id="naslov">Dijagnoze</h1>*@
+            <h1 id="naslov">Obavijesti</h1>
 
             <div class="primarydark" id="ostatakBody-a">
-                <table id="tabela" class="table">
+
+
+                    <h3>Nepročitane obavijesti</h3>
+                 
+                
+                
+                    <table id="tabelaNeprocitane" class="table">
+                        @if (Model.NeProcitane.Count == 0)
+                        {
+                            <tr id="vijest">Nema novih obavijesti!</tr>
+                        }
+                        else
+                        {
+                            <thead>
+                                <tr>
+                                    <th scope="col">Redni broj</th>
+                                    <th scope="col">Obavijest</th>
+                                    <th scope="col">Akcija</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var s in Model.NeProcitane)
+                                {
+                                    <tr id="Neprocitane">
+                                        <td></td>
+                                        <td>@s.Sadrzaj</td>
+                                        @*<td><button onclick="OpenOdabranuObavijest(@s.Id)">Detalji</button></td>*@
+                                        <td id="dugme"><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        }
+                    </table>
+                
+                <h3>Pročitane obavijesti</h3>
+                <table id="tabelaProcitane" class="table">
                     <thead>
-                        <tr onclick="PromijeniBojuProcitanihObavijesti()">
+                        <tr>
                             <th scope="col">Redni broj</th>
                             <th scope="col">Obavijest</th>
                             <th scope="col">Akcija</th>
                         </tr>
                     </thead>
                     <tbody>
-                       
-                            @foreach (var s in Model.NeProcitane)
-                            {
-                                <tr>
-                                    <td></td>
-                                    <td>@s.Sadrzaj</td>
-                                    @*<td><button onclick="OpenOdabranuObavijest(@s.Id)">Detalji</button></td>*@
-                                    <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
-                                </tr>
-                            }
+
                         @foreach (var s in Model.Procitane)
                         {
-                            <tr>
+                            <tr id="Procitane">
                                 <td></td>
                                 <td style="color:cornflowerblue;">@s.Sadrzaj</td>
                                 <td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
@@ -70,4 +98,61 @@
 
 
 </div>
+<script>
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("tabela");
+        switching = true;
+        // Set the sorting direction to ascending:
+        dir = "asc";
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                /* Get the two elements you want to compare,
+                one from current row and one from the next: */
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /* Check if the two rows should switch place,
+                based on the direction, asc or desc: */
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark that a switch has been done: */
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                // Each time a switch is done, increase this count by 1:
+                switchcount++;
+            } else {
+                /* If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again. */
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+
+</script>
 

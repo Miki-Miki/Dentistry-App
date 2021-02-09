@@ -38,8 +38,8 @@ namespace B.U.Z
             services.AddIdentity<ApplicationUser, IdentityRole>(opt=>
             {
                 opt.User.RequireUniqueEmail = true;
-                opt.SignIn.RequireConfirmedEmail = true;
-                opt.SignIn.RequireConfirmedAccount = true;
+                //opt.SignIn.RequireConfirmedEmail = true;
+                //opt.SignIn.RequireConfirmedAccount = true;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
