@@ -417,7 +417,7 @@ namespace B.U.Z.Controllers
             
 
 
-            _hubContext.Clients.Users(pIds).SendAsync("prijemPoruke", obavijest.Sadrzaj);
+            _hubContext.Clients.Users(pIds).SendAsync("prijemPoruke", obavijest.Sadrzaj,"StomatologAsistent");
             return View("PacijentMojiTermini");
         }
 
@@ -530,7 +530,7 @@ namespace B.U.Z.Controllers
                 };
                 db.Obavijesti.Add(obavijest);
                 var UserID = pacijent.Id;
-                await _hubContext.Clients.User(UserID).SendAsync("prijemPoruke", obavijest.Sadrzaj);
+                await _hubContext.Clients.User(UserID).SendAsync("prijemPoruke", obavijest.Sadrzaj,"Pacijent");
                 db.SaveChanges();
                 return RedirectToAction("Termini", "Termini");
             }
@@ -576,7 +576,7 @@ namespace B.U.Z.Controllers
                 };
 
                 db.Obavijesti.Add(obavijest);
-                await _hubContext.Clients.User(pacijent.Id).SendAsync("prijemPoruke", obavijest.Sadrzaj);
+                await _hubContext.Clients.User(pacijent.Id).SendAsync("prijemPoruke", obavijest.Sadrzaj,"Pacijent");
                 db.SaveChanges();
                 db.ZakazanaUsluga.Remove(db.ZakazanaUsluga.SingleOrDefault(zU => zU.TerminId == terminId));
                 db.Termini.Remove(db.Termini.SingleOrDefault(t => t.Id == terminId));

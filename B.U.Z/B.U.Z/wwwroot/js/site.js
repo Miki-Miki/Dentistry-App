@@ -6,7 +6,7 @@
 
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/notHub").build();
-connection.on("prijemPoruke", function (message) {
+connection.on("prijemPoruke", function (message,tip) {
 
     //radi
     //var td = document.createElement("li");
@@ -17,10 +17,25 @@ connection.on("prijemPoruke", function (message) {
     var tdRb = document.createElement("td");
     var tdSad = document.createElement("td");
     tdSad.textContent = message;
-    var brojObavijesti = parseInt(document.getElementById("notStomatolog").innerHTML);
-    document.getElementById("notStomatolog").innerHTML = brojObavijesti + 1;
-    document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdRb);
-    document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdSad);
+    if (tip == "Pacijent") {
+        var brojObavijesti = parseInt(document.getElementById("notPacijent").innerHTML);
+        document.getElementById("notPacijent").innerHTML = brojObavijesti + 1;
+
+        document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdRb);
+        document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdSad);
+
+        document.getElementById("vijest").innerHTML = "";
+    }
+    else if (tip == "StomatologAsistent") {
+
+        var brojObavijesti = parseInt(document.getElementById("notAsistent").innerHTML);
+        document.getElementById("notAsistent").innerHTML = brojObavijesti + 1;
+
+        document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdRb);
+        document.getElementById("tabelaNeprocitane").appendChild(tr).appendChild(tdSad);
+
+        document.getElementById("vijest").innerHTML = "";
+    }
    
     document.getElementById("vijest").innerHTML = "";
     //brojObavijesti++;
