@@ -47,13 +47,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         timeZone: 'UTC',
-        themeSystem: 'bootstrap',
-        locale: 'bs',       
+        themeSystem: 'bootstrap',     
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
         },
+
+        views: {
+            dayGrid: { // name of view
+                titleFormat: { year: 'numeric', month: 'long' },
+                // other view-specific options here
+            }
+        },
+
+        buttonIcons: true,
         weekNumbers: true,
         dayMaxEvents: true, // allow "more" link when too many events
         allDaySlot: false,
@@ -108,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         events: '/Termini/PFindAll',
         eventColor: '#852828',
-        backgroundColor: 'white'
+        locale: 'en-au'
     });
 
     calendar.render();
@@ -116,8 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function showTerminDetails() {   
-    selectedTermin.style.display = 'block';
-    mainContainer.style.filter = 'blur(4px)';
+    //selectedTermin.style.display = 'block';
+    //mainContainer.style.filter = 'blur(4px)';
 
     if (timePicker.value != 0) {
         selectedTime = timePicker.value;
