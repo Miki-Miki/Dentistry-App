@@ -105,6 +105,10 @@ namespace B.U.Z.Controllers
                     PhoneNumber=s.BrojTelefona,
                     SpolId = s.SpolId,
                     GradId = s.GradId, 
+                    isPacijent=true,
+                    isAsistent=false,
+                    isStomatolog=false,
+                    Email=s.Email
                 };
                 var result = await _userManager.CreateAsync(user, s.PasswordHash);
                 if (result.Succeeded)

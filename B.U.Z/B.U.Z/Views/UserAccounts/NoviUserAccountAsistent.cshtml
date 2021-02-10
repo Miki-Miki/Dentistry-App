@@ -17,39 +17,39 @@
                 <div id="ostatakBody-a">
                     <form asp-action="SpasiNoviAsistent" class="primarydark">
                         <div>
-                            <label>First name</label>
+                            <label>First name:</label>
                             <input type="text" name="FirstName" />
                             <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
                         </div>
                         <div>
-                            <label>Last name</label>
+                            <label>Last name:</label>
                             <input type="text" name="LastName" />
                             <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                         </div>
                         <div>
-                            <label>E-mail</label>
+                            <label>E-mail:</label>
                             <input type="text" name="Email" />
                             <span asp-validation-for="@Model.Email" class="text-danger"></span>
                         </div>
                         <div>
-                            <label>Broj telefona</label>
+                            <label>Broj telefona:</label>
                             <input type="text" asp-for="BrojTelefona" />
                         </div>
                         <div>
-                            <label>Password</label>
+                            <label>Password:</label>
                             <input type="text" name="PasswordHash" />
                             <span asp-validation-for="@Model.PasswordHash" class="text-danger"></span>
                         </div>
                         <div>
-                            <label>Spol</label>
+                            <label>Spol:</label>
                             <select asp-for="SpolId" asp-items="Model.spolovi"></select>
                         </div>
                         <div>
-                            <label>Grad</label>
+                            <label>Grad:</label>
                             <select asp-for="GradId" asp-items="Model.gradovi"></select>
                         </div>
                         <div>
-                            <label>Titula</label>
+                            <label>Titula:</label>
                             <input type="text" name="Titula" />
                             <span asp-validation-for="@Model.Titula" class="text-danger"></span>
                         </div>
