@@ -70,7 +70,7 @@
             <nav class="navbar navbar-light" id="navbar">
                 <ul class="navbar-nav" id="navigacija">
                     <li class="nav-item" id="ListObavijest">
-                        <a id="link"asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti  <span id="notAsistent">@neprocitane.Count()</span></a>
+                        <a id="link"asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti  <div id="notAsistent"><span>@neprocitane.Count()</span></div></a>
                     </li>
                     <li class="nav-item" id="ListTermin">
                         <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
@@ -106,7 +106,7 @@
             <nav class="navbar navbar-light" id="navbar">
                 <ul class="navbar-nav" id="navigacija">
                     <li class="nav-item" id="ListObavijest">
-                        <a asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti <span id="notAsistent">@neprocitane.Count()</span></a>
+                        <a asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti <div id="notAsistent"><span>@neprocitane.Count()</span></div></a>
                     </li>
                     <li class="nav-item" id="ListTermin">
                         <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
@@ -130,7 +130,7 @@
             <nav class="navbar navbar-light" id="navbar">
                 <ul class="navbar-nav" id="navigacija">
                     <li class="nav-item" id="ListObavijest">
-                        <a asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti <span id="notPacijent">@neprocitane.Count()</span></a>
+                        <a asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti <div id="notPacijent"><span>@neprocitane.Count()</span></div></a>
                     </li>
                     <li data-toggle="tooltip" title="Termini opis" class="nav-item" id="ListTermin">
                         <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/zakazi.png" id="icon" />Zakaži termin</a>
@@ -152,24 +152,34 @@
 
 <style>
     #notAsistent {
+        display: inline;
         background-color: #ff6666;
-        border-radius: 30px;
+        border: 1px solid red;
+        border-radius: 50%;
         -moz-border-radius: 30px;
-        height: 60px;
-        width: 60px;
-        padding: 5px;
+        height: 0.1em;
+        width: 0.1em;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 4px;
         margin-left: 30%;
         text-align: center;
+        line-height: 0.1em;
     }
     #notPacijent {
+        display:inline;
         background-color: #ff6666;
-        border-radius: 30px;
+        border:1px solid red;
+        border-radius: 50%;
         -moz-border-radius: 30px;
-        height: 60px;
-        width: 60px;
-        padding: 5px;
+        height: 0.1em;
+        width: 0.1em;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom:4px;
         margin-left: 30%;
         text-align: center;
+        line-height:0.1em;
     }
 </style>
 

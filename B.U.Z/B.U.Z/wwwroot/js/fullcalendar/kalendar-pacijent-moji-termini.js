@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         timeZone: 'UTC',
         themeSystem: 'bootstrap',
-        locale: 'bs',       
+        locale: 'en',       
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',

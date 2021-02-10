@@ -44,7 +44,7 @@ body {
 }
 #tabelaNeprocitane {
     background-color: #C4DBE0 !important;
-    color: #0C6980;
+    color: #0C6980 !important;
     width: 100%;
     margin: 0%;
     margin-top: 2%;
@@ -52,7 +52,7 @@ body {
 }
 #tabelaProcitane {
     background-color: #C4DBE0 !important;
-    color: #0C6980;
+    color: #0C6980 !important;
     width: 100%;
     margin: 0%;
     margin-top: 2%;

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PRXvJthilllMCiRhBCiTojJUGNf4SdkqH330bSI7szOYxKAbF8LPICFb9ZfYkSAkD1GB6AF6ecZVIOCkEIOKkA==",
+  "dgSpecHash": "3Gs8H2aclSowy5qRwZfuKWf2+dunR8cGb1/Z6jiDNT9CBWu/ZLkPqZILnEtShh73GN0T/Z8ky93MPpttEM28mQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\Desktop\\Predavanja\\Razvoj softvera I\\Seminarski rad\\DevAzure\\webapp\\B.U.Z\\B.U.Z\\B.U.Z.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\bower\\1.3.11\\bower.1.3.11.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\fastreport.opensource\\2020.1.0\\fastreport.opensource.2020.1.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\fastreport.opensource.data.mssql\\2020.1.0\\fastreport.opensource.data.mssql.2020.1.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\fastreport.opensource.web\\2020.1.0\\fastreport.opensource.web.2020.1.0.nupkg.sha512",
@@ -130,6 +131,8 @@
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.win32.systemevents\\4.6.0-preview8.19405.3\\microsoft.win32.systemevents.4.6.0-preview8.19405.3.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\node.js\\0.10.28\\node.js.0.10.28.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\nogit\\0.0.8\\nogit.0.0.8.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
