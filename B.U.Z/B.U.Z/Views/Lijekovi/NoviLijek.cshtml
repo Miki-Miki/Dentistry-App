@@ -1,7 +1,8 @@
 ﻿@model int
 
     <link href="~/css/Universal.css" rel="stylesheet" />
-
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script src="~/js/Validation/NoviLijek.js"></script>
     <div id="mainContainer">
         <div>
             <partial name="../Home/Index" />
@@ -15,18 +16,18 @@
                     <partial name="LijekoviPartial" />
                 </div>
                 <div id="ostatakBody-a" class="primarydark">
-                    <form asp-action="SpasiNoviLijek">
+                    <form id="NoviLijek" asp-action="SpasiNoviLijek">
                         <div>
-                            <label>Redni broj</label>
+                            <label>Redni broj:</label>
                             <input type="text" value="@Model" />
                         </div>
                         <div>
-                            <label>Naziv</label>
-                            <input type="text" name="Naziv" />
+                            <label>Naziv:</label>
+                            <input id="Naziv" type="text" name="Naziv" />
                         </div>
                         <div>
-                            <label>Opis</label>
-                            <input type="text" name="Opis" />
+                            <label>Opis:</label>
+                            <input id="Opis" type="text" name="Opis" />
                         </div>
                         <div>
                             <input type="submit" name="Spasi" value="Snimi" />

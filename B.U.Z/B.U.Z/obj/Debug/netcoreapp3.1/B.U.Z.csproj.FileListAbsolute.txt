@@ -151,9 +151,6 @@ C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.AssemblyInfoInputs.cache
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.AssemblyInfo.cs
-C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csproj.CoreCompileInputs.cache
-C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.RazorAssemblyInfo.cache
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.RazorAssemblyInfo.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.TagHelpers.input.cache
@@ -531,6 +528,9 @@ C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Pacijenti\KartonPacijenta.cshtml.g.cs
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\B.U.Z.StaticWebAssets.xml
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\B.U.Z.exe
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\B.U.Z.deps.json
@@ -587,6 +587,7 @@ C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAz
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -794,6 +795,7 @@ C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAz
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.dll
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.pdb
 C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.genruntimeconfig.cache
+C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csprojAssemblyReference.cache
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\FastReport.dll
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\FastReport.Data.MsSql.dll
 D:\FIT\RS\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\FastReport.OpenSource.Web.dll
@@ -817,14 +819,10 @@ C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Racun\Report.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Termini\PacijentMojiTermini.cshtml.g.cs
 C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Obavijesti\Obavijesti.cshtml.g.cs
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\FastReport.dll
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\FastReport.Data.MsSql.dll
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\FastReport.OpenSource.Web.dll
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\scopedcss\bundle\B.U.Z.styles.css
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Obavijesti\Obavijesti.cshtml.g.cs
-C:\Users\Bios Servis\Desktop\College\Godina 3\Razvoj Softvera 1\Seminarski\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\Razor\Views\Racun\Report.cshtml.g.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\bin\Debug\netcoreapp3.1\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\PC\Desktop\Predavanja\Razvoj softvera I\Seminarski rad\DevAzure\webapp\B.U.Z\B.U.Z\obj\Debug\netcoreapp3.1\B.U.Z.MvcApplicationPartsAssemblyInfo.cache
