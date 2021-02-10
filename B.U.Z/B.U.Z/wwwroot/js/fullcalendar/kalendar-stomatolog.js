@@ -4,6 +4,8 @@ var selectedSesija;
 var selectedSesijaDiv = document.getElementById('selectedSesija');
 var mainContainer = document.getElementById('mainContainerTermini');
 var selectedTerminDiv = document.getElementById('selectedTermin');
+var karticaContainer1 = document.getElementById("KarticaContainer1");
+var karticaContainer2 = document.getElementById("KarticaContainer2");
 
 var trmPocetak = document.getElementById('trmPocetak');
 var trmKraj = document.getElementById('trmKraj');
@@ -64,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 selectedSesijaDiv.style.display = 'block';
                 mainContainer.style.filter = "blur(4px)";
-
+                karticaContainer1.style.display = 'block';
                 //Empty text
                 clearTerminDetails();
 
@@ -79,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 selectedTerminDiv.style.display = 'block';
                 mainContainer.style.filter = "blur(4px)";
+                karticaContainer2.style.display = 'block';
 
                 s_clearTerminDetails();
                 s_fillTerminDetails(selectedSesija);

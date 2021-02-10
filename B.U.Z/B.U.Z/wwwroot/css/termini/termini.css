@@ -56,6 +56,7 @@
     margin-top: 30px;
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px #0C6980;
+    color:black;
 }
 
 
@@ -139,4 +140,22 @@ td {
 
 #header-kalendar {
     height: 100%;
+}
+#KarticaContainer1 {
+    display: none;
+    z-index: 50000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #0C6980;
+    opacity: 0.6;
+}
+#KarticaContainer2 {
+    display: none;
+    z-index: 50000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #0C6980;
+    opacity: 0.6;
 }

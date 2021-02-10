@@ -3,7 +3,8 @@ var selectedDayTermin;
 var timePicker = document.getElementById('picker');
 
 var selectedTermin = document.getElementById('selectedTermin');
-var mainContainer = document.getElementById('mainContainer');
+var mainContainer = document.getElementById('calendar-pacijent');
+var karticaContainer = document.getElementById("KarticaContainer");
 
 var trmPocetak = document.getElementById('trmPocetak');
 var trmImePacijenta = document.getElementById('trmImePacijenta');
@@ -124,8 +125,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function showTerminDetails() {   
-    //selectedTermin.style.display = 'block';
-    //mainContainer.style.filter = 'blur(4px)';
+    selectedTermin.style.display = 'block';
+    mainContainer.style.filter = 'blur(4px)';
+    karticaContainer.style.display = 'block';
 
     if (timePicker.value != 0) {
         selectedTime = timePicker.value;
@@ -151,6 +153,7 @@ function showTerminDetails() {
 function unSelectTermin() {
     selectedTermin.style.display = 'none';
     mainContainer.style.filter = 'blur(0px)';
+    karticaContainer.style.display = 'none';
 }
 
 function getCijenaUsluge(_uslugaId) {

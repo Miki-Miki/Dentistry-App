@@ -13,20 +13,20 @@
 </head>
 
 <div id="mainContainer">
-    <div>
+    <div id="partialHome">
         <partial name="../Home/Index" />
     </div>
 
     <div id="MainPageBody">
         <div id="pageContent">
+            <div id="partialNav">
+                <partial name="TerminiPartial" />
+            </div>
+            <div class="primarydark" id="ostatakBody-a">
+                <div id="mainContainerTermini">
 
-            <div id="mainContainerTermini">
 
-                <div id="main_body">
                     <div id="termini">
-                        <div>
-                            <partial name="TerminiPartial" />
-                        </div>
 
                         <div id="header-kalendar">
                             <div id="calendar-stomatolog"></div>
@@ -37,95 +37,98 @@
                         </div>
                     </div>
 
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div id="selectedSesija">
-    <a id="btnNazad" onclick="unSelectSesija()">X</a>
-    <h4 style="color: #0C6980;">Termin</h4>
-    <a id="btnZapocniSesiju" onclick="sendSesija()">Započni</a>
+<div id="KarticaContainer1" onclick="unSelectSesija()"></div>
+    <div id="selectedSesija">
+        <a id="btnNazad" onclick="unSelectSesija()">X</a>
+        <h4 style="color: #0C6980;">Termin</h4>
+        <a id="btnZapocniSesiju" onclick="sendSesija()">Započni</a>
 
-    <table style="width:100%" id="tableTermin">
-        <tr>
-            <th><b>Početak: </b></th>
-            <td id="trmPocetak"></td>
-        </tr>
-        <tr>
-            <th><b>Kraj: </b></th>
-            <td id="trmKraj"></td>
-        </tr>
-        <tr>
-            <th><b>Pacijent: </b></th>
-            <td id="trmImePacijenta"></td>
-        </tr>
-        <tr>
-            <th><b>Usluga: </b></th>
-            <td id="trmUsluga"></td>
-        </tr>
-        <tr>
-            <th><b>Osnovna Cijena: </b></th>
-            <td id="trmBasePrice"></td>
-        </tr>
-    </table>
-</div>
+        <table style="width:100%" id="tableTermin">
+            <tr>
+                <th><b>Početak: </b></th>
+                <td id="trmPocetak"></td>
+            </tr>
+            <tr>
+                <th><b>Kraj: </b></th>
+                <td id="trmKraj"></td>
+            </tr>
+            <tr>
+                <th><b>Pacijent: </b></th>
+                <td id="trmImePacijenta"></td>
+            </tr>
+            <tr>
+                <th><b>Usluga: </b></th>
+                <td id="trmUsluga"></td>
+            </tr>
+            <tr>
+                <th><b>Osnovna Cijena: </b></th>
+                <td id="trmBasePrice"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="KarticaContainer2" onclick="unSelectTermin()"></div>
+    <div id="selectedTermin" class="popUP">
+        <a id="btnNazad" onclick="unSelectTermin()">X</a>
+        <h4 style="color: #0C6980;">Termin</h4>
+        <button class="btn-primary" id="btnZapocniSesiju" onclick="oznaciTermin(true)">Odobri</button>
+        <button class="btn-primary" id="btnOdbijTermin" onclick="oznaciTermin(false)">Odbij</button>
 
+        <table style="width:100%" id="tableTermin">
+            <tr>
+                <th><b>Početak: </b></th>
+                <td id="s_trmPocetak"></td>
+            </tr>
+            <tr>
+                <th><b>Kraj: </b></th>
+                <td id="s_trmKraj"></td>
+            </tr>
+            <tr>
+                <th><b>Pacijent: </b></th>
+                <td id="s_trmImePacijenta"></td>
+            </tr>
+            <tr>
+                <th><b>Usluga: </b></th>
+                <td id="s_trmUsluga"></td>
+            </tr>
+            <tr>
+                <th><b>Osnovna Cijena: </b></th>
+                <td id="s_trmBasePrice"></td>
+            </tr>
+        </table>
+    </div>
 
-<div id="selectedTermin" class="popUP">
-    <a id="btnNazad" onclick="unSelectTermin()">X</a>
-    <h4 style="color: #0C6980;">Termin</h4>
-    <button class="btn-primary" id="btnZapocniSesiju" onclick="oznaciTermin(true)">Odobri</button>
-    <button class="btn-primary" id="btnOdbijTermin" onclick="oznaciTermin(false)">Odbij</button>
+    <script src="~/js/fullcalendar/kalendar-stomatolog.js"></script>
+    <script>
+        //$(function () {
+        //    $("#tabs").tabs();
+        //});
 
-    <table style="width:100%" id="tableTermin">
-        <tr>
-            <th><b>Početak: </b></th>
-            <td id="s_trmPocetak"></td>
-        </tr>
-        <tr>
-            <th><b>Kraj: </b></th>
-            <td id="s_trmKraj"></td>
-        </tr>
-        <tr>
-            <th><b>Pacijent: </b></th>
-            <td id="s_trmImePacijenta"></td>
-        </tr>
-        <tr>
-            <th><b>Usluga: </b></th>
-            <td id="s_trmUsluga"></td>
-        </tr>
-        <tr>
-            <th><b>Osnovna Cijena: </b></th>
-            <td id="s_trmBasePrice"></td>
-        </tr>
-    </table>
-</div>
+        function unSelectSesija() {
+            var selectedSesija = document.getElementById('selectedSesija');
+            var mainContainer = document.getElementById('mainContainerTermini');
+            selectedSesija.style.display = 'none';
+            mainContainer.style.filter = 'blur(0px)';
+            karticaContainer1.style.display = 'none';
 
-<script src="~/js/fullcalendar/kalendar-stomatolog.js"></script>
-<script>
-    //$(function () {
-    //    $("#tabs").tabs();
-    //});
+        }
 
-    function unSelectSesija() {
-        var selectedSesija = document.getElementById('selectedSesija');
-        var mainContainer = document.getElementById('mainContainerTermini');
-        selectedSesija.style.display = 'none';
-        mainContainer.style.filter = 'blur(0px)';
+        function unSelectTermin() {
+            document.getElementById('selectedTermin').style.display = 'none';
+            mainContainer.style.filter = 'blur(0px)';
+            karticaContainer2.style.display = 'none';
+        }
 
-    }
-
-    function unSelectTermin() {
-        document.getElementById('selectedTermin').style.display = 'none';
-        mainContainer.style.filter = 'blur(0px)';
-    }
-
-    function odaberiTermin(TerminId) {
-        var url = "/Termini/OdaberiTermin?t=" + TerminId;
-        $.get(url, function (d) {
-            $("#TerminOdabir").html(d);
-        })
-    }
-</script>
+        function odaberiTermin(TerminId) {
+            var url = "/Termini/OdaberiTermin?t=" + TerminId;
+            $.get(url, function (d) {
+                $("#TerminOdabir").html(d);
+            })
+        }
+    </script>

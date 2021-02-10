@@ -75,31 +75,33 @@
     </div>
 </div>
 
-<div id="selectedTermin">
-    <a id="btnNazad" onclick="unSelectTermin()">X</a>
-    <button id="btnZakaziTermin" class="btn-primary" onclick="zakaziTermin()">Zakaži</button>
-    <h4 style="color: #0C6980;">Termin</h4>
-
-    <table id="tableTermin">
-        <tr>
-            <th><b>Početak: </b></th>
-            <td id="trmPocetak"></td>
-        </tr>
-        <tr>
-            <th><b>Pacijent: </b></th>
-            <td id="trmImePacijenta">@UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName @UserManager.FindByNameAsync(User.Identity.Name).Result.LastName</td>
-        </tr>
-        <tr>
-            <th><b>Usluga: </b></th>
-            <td id="trmUsluga"></td>
-        </tr>
-        <tr>
-            <th><b>Osnovna Cijena: </b></th>
-            <td id="trmBasePrice"></td>
-        </tr>
-    </table>
-
+<div id="KarticaContainer" onclick="unSelectTermin()">
 </div>
+    <div id="selectedTermin" class="popUP">
+        <a id="btnNazad" onclick="unSelectTermin()">X</a>
+        <button id="btnZakaziTermin" class="btn-primary" onclick="zakaziTermin()">Zakaži</button>
+        <h4 style="color: #0C6980;">Termin</h4>
+
+        <table id="tableTermin">
+            <tr>
+                <th><b>Početak: </b></th>
+                <td id="trmPocetak"></td>
+            </tr>
+            <tr>
+                <th><b>Pacijent: </b></th>
+                <td id="trmImePacijenta">@UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName @UserManager.FindByNameAsync(User.Identity.Name).Result.LastName</td>
+            </tr>
+            <tr>
+                <th><b>Usluga: </b></th>
+                <td id="trmUsluga"></td>
+            </tr>
+            <tr>
+                <th><b>Osnovna Cijena: </b></th>
+                <td id="trmBasePrice"></td>
+            </tr>
+        </table>
+
+    </div>
 
 
 

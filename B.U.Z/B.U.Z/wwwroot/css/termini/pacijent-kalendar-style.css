@@ -28,7 +28,7 @@
 }
 
 #selectedTermin {
-    position: absolute;
+    position: fixed;
     left: 50%;
     margin-left: -340px;
     width: 680px;
@@ -42,6 +42,7 @@
     box-shadow: 3px 5px 20px 2px #323d40;
     padding: 30px;
     top: 20%;
+   
 }
 
 #btnNazad {
@@ -57,10 +58,10 @@
     user-select: none;
 }
 
-#tableTermin {
+/*#tableTermin {
     margin-top: 2em;
     width: 100%
-}
+}*/
 
 #ostatakBody-a {
     border-radius: 10px !important;
@@ -209,4 +210,13 @@
 
 .sui-timepicker, #usluge, #btnTerminDetalji {
     box-shadow: 2px 7px 20px 2px rgba(29, 29, 30, 0.30);
+}
+#KarticaContainer {
+    display: none;
+    z-index: 50000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #0C6980;
+    opacity: 0.6;
 }
