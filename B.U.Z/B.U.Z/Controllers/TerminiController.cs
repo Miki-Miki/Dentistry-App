@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
+using Microsoft.AspNetCore.SignalR;
+using B.U.Z.samirsignal;
 
 namespace B.U.Z.Controllers
 {
@@ -18,12 +22,15 @@ namespace B.U.Z.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        IHubContext<NotHub> _hubContext;
+
 
         public TerminiController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager, IHubContext<NotHub> hubContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _hubContext = hubContext;
         }
 
         [Route("Termini")]
@@ -73,7 +80,7 @@ namespace B.U.Z.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
             Pacijent pacijent = db.Pacijenti.Find(pacijentId);
-            return View( "PacijentOdabir", pacijent);
+            return View("PacijentOdabir", pacijent);
         }
 
         public IActionResult OdaberiTermin(int t)
@@ -90,7 +97,7 @@ namespace B.U.Z.Controllers
                 TerminEnd = termin.TerminEnd,
                 pacijent = pacijent
             };
-           
+
             return View("TerminOdabir", terminVM);
         }
 
@@ -104,7 +111,7 @@ namespace B.U.Z.Controllers
 
             UslugaVM usluge = new UslugaVM
             {
-                Usluge = db.Usluga.OrderBy(a => a.Id).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.Naziv }).ToList()                
+                Usluge = db.Usluga.OrderBy(a => a.Id).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.Naziv }).ToList()
             };
 
             if (aspUser is Pacijent)
@@ -129,7 +136,7 @@ namespace B.U.Z.Controllers
             Usluga _usluga = new Usluga();
             Pacijent _pacijent = new Pacijent();
 
-            foreach(var t in terminiDB)
+            foreach (var t in terminiDB)
             {
                 _pacijent = db.Pacijenti.Find(t.PacijentId);
 
@@ -137,7 +144,7 @@ namespace B.U.Z.Controllers
                 {
                     zakazanaUsluga = db.ZakazanaUsluga.SingleOrDefault(x => x.TerminId == t.Id);
                     _usluga = db.Usluga.SingleOrDefault(x => x.Id == zakazanaUsluga.UslugaId);
-                    
+
                     termini.Add(new TerminiVM()
                     {
                         basePrice = t.basePrice,
@@ -170,24 +177,24 @@ namespace B.U.Z.Controllers
 
             List<Termini> terminiDB = db.Termini.ToList();
             List<TerminiVM> termini = new List<TerminiVM>();
-            Pacijent _pacijent = new Pacijent();            
+            Pacijent _pacijent = new Pacijent();
 
             foreach (var t in terminiDB)
             {
                 _pacijent = db.Pacijenti.Find(t.PacijentId);
-                if(t.isPrihvacen == true)
+                if (t.isPrihvacen == true)
                 {
                     var _usluga = from zU in db.ZakazanaUsluga
-                                      join U in db.Usluga
-                                      on zU.UslugaId equals U.Id
-                                      where zU.TerminId == t.Id
-                                      select new Usluga
-                                      {
-                                          Id = U.Id,
-                                          Cijena = U.Cijena,
-                                          Naziv = U.Naziv,
-                                          Opis = U.Opis
-                                      };
+                                  join U in db.Usluga
+                                  on zU.UslugaId equals U.Id
+                                  where zU.TerminId == t.Id
+                                  select new Usluga
+                                  {
+                                      Id = U.Id,
+                                      Cijena = U.Cijena,
+                                      Naziv = U.Naziv,
+                                      Opis = U.Opis
+                                  };
 
                     termini.Add(new TerminiVM()
                     {
@@ -198,7 +205,7 @@ namespace B.U.Z.Controllers
                         pacijent = _pacijent,
                         usluga = _usluga.FirstOrDefault(),
                         isPrihvacen = true
-                    }) ;
+                    });
                 }
             }
 
@@ -329,7 +336,7 @@ namespace B.U.Z.Controllers
 
             return new JsonResult(terminiJSON);
         }
-      
+
 
         //[Route("ZapocniSesiju")]
         //[HttpPost]
@@ -360,6 +367,7 @@ namespace B.U.Z.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
+            //kad se ne selektuje vrijeme, nije dobar format
             DateTime tStart = DateTime.Parse(terminStart);
             DateTime tEnd = tStart.Add(new TimeSpan(1, 0, 0));
 
@@ -382,8 +390,34 @@ namespace B.U.Z.Controllers
             };
 
             db.ZakazanaUsluga.Add(novaZakazanaUsluga);
+            Obavijesti obavijest = new Obavijesti
+            {
+                Sadrzaj = "Pacijent" + " " + _userManager.FindByNameAsync(User.Identity.Name).Result.FirstName + " " + _userManager.FindByNameAsync(User.Identity.Name).Result.LastName
+                + " " + "je zakazao/la termin na dan" + " " + noviTermin.TerminStart.Day + "." + noviTermin.TerminStart.Month + "." + noviTermin.TerminStart.Year
+                + " " + "u" + " " + noviTermin.TerminStart.TimeOfDay + " " + "sati",
+                isProcitana = false,
+                From = _userManager.FindByNameAsync(User.Identity.Name).Result.Id
+            };
+            db.Obavijesti.Add(obavijest);
             db.SaveChanges();
+           
+            List<Stomatolog> zubari = db.Stomatolozi.ToList();
+            List<Asistent> asistenti = db.Asistenti.ToList();
+            List<Pacijent> pacijents = db.Pacijenti.ToList();
+            List<string> pIds = new List<string>();
+            //foreach (var s in zubari)
+            //{
+            //    pIds.Add(s.Id);
+            //}
+            foreach (var a in asistenti)
+            {
+                pIds.Add(a.Id);
+            }
+            
+            
 
+
+            _hubContext.Clients.Users(pIds).SendAsync("prijemPoruke", obavijest.Sadrzaj,"StomatologAsistent");
             return View("PacijentMojiTermini");
         }
 
@@ -439,6 +473,122 @@ namespace B.U.Z.Controllers
             });
 
             return new JsonResult(terminiJSON);
+        }
+
+        [Route("OznaciTermin")]
+        [HttpPost]
+        public async Task<IActionResult> OznaciTermin(bool oznaka, int terminId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Termini selectedTermin = db.Termini.Find(terminId);
+            ZakazanaUsluga zakazanaUsluga = db.ZakazanaUsluga.Find(terminId);
+
+            Pacijent pacijent = db.Pacijenti.Find(selectedTermin.PacijentId);
+
+            if (oznaka == true)
+            {
+                var body = "<h3>Vaš termin na datum: "
+                    + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
+                    " je prihvaćen.</h3>" +
+                    "<br>Očekujemo vaš dolazak";
+
+                var message = new MailMessage();
+                var email = pacijent.Email;
+
+                message.To.Add(new MailAddress(email.ToString()));
+                message.From = new MailAddress("buz.stomatologija@gmail.com");
+                message.Subject = "Vaš termin je prihvaćen!";
+                message.Body = string.Format(body, "B.U.Z", "buz.stomatologija@gmail.com");
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "buz.stomatologija@gmail.com",
+                        Password = "vmhXPuAg2hTEdw3"
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                }
+
+                selectedTermin.isPrihvacen = true;
+                selectedTermin.AsistentId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+                db.SaveChanges();
+
+                Obavijesti obavijest = new Obavijesti
+                {
+                    Sadrzaj = "Vaš termin na datum: "
+                    + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
+                    " je prihvaćen.",
+                    From = selectedTermin.AsistentId,
+                    isProcitana = false,
+                    To=selectedTermin.PacijentId
+                };
+                db.Obavijesti.Add(obavijest);
+                var UserID = pacijent.Id;
+                await _hubContext.Clients.User(UserID).SendAsync("prijemPoruke", obavijest.Sadrzaj,"Pacijent");
+                db.SaveChanges();
+                return RedirectToAction("Termini", "Termini");
+            }
+
+            if (oznaka == false)
+            {
+                var body = "<h3>Vaš termin na datum: "
+                    + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
+                    " je odbijen.</h3>" +
+                    "<br>Molimo zakažite termin u neko drugo vrijeme.";
+
+                var message = new MailMessage();
+                var email = pacijent.Email;
+
+                message.To.Add(new MailAddress(email.ToString()));
+                message.From = new MailAddress("buz.stomatologija@gmail.com");
+                message.Subject = "Vaš termin je odbijen.";
+                message.Body = string.Format(body, "B.U.Z", "buz.stomatologija@gmail.com");
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "buz.stomatologija@gmail.com",
+                        Password = "vmhXPuAg2hTEdw3"
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                }
+
+                Obavijesti obavijest = new Obavijesti
+                {
+                    Sadrzaj = "Vaš termin na datum: "
+                     + selectedTermin.TerminStart.ToString("dd/MM/yyyy HH:mm") +
+                     " je odbijen.",
+                    From = _userManager.FindByNameAsync(User.Identity.Name).Result.Id,
+                    isProcitana = false,
+                    To = selectedTermin.PacijentId
+                };
+
+                db.Obavijesti.Add(obavijest);
+                await _hubContext.Clients.User(pacijent.Id).SendAsync("prijemPoruke", obavijest.Sadrzaj,"Pacijent");
+                db.SaveChanges();
+                db.ZakazanaUsluga.Remove(db.ZakazanaUsluga.SingleOrDefault(zU => zU.TerminId == terminId));
+                db.Termini.Remove(db.Termini.SingleOrDefault(t => t.Id == terminId));
+                db.SaveChanges();
+
+                
+
+                return RedirectToAction("Termini", "Termini");
+            }
+
+            //If you get to here you messed something up
+            return View("Termini");
         }
 
     }

@@ -1,102 +1,187 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using B.U.Z.Data
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @*For refactoring*@
-
 <link rel="stylesheet" href="/css/Index/index.css" />
 <link rel="stylesheet" href="~/css/Index/NavBar.css" />
-
-@if (!User.IsInRole("Stomatolog") && !User.IsInRole("Asistent") && !User.IsInRole("Pacijent"))
-{
-<div id="imageContainer">
-    <div id="textIndex">
-        <h1>
-            B.U.Z
-        </h1>
-        <p>
-            Stomatološka ordinacija "B.U.Z", sa najboljom tehnologijom na tržištu
-            nudi svojim korisnicima izlaz iz tradicionalne brige o terminima kod stomatologa.
-            Za samo nekoliko klikova zakažite termin kod nekih od najiskusnijih stomatologa u regiji.
-            Pretplatite se i uživajte u bezbrižnoj njegi vašeg dragocjenog osmijeha.
-        </p>
-    </div>
-</div>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/ListItems/ChangeColor.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@{
+    List<Obavijesti> neprocitane = new List<Obavijesti>();
 }
-@if (User.IsInRole("Stomatolog"))
+@if (User.Identity.Name == null)
 {
-    <div id="NavBarContainer">
-        <nav class="navbar navbar-light" id="navbar">
-            <ul class="navbar-nav" id="navigacija">
-                <li class="nav-item">
-                    <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
-                </li>
-                <li class="nav-item>">
-                    <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link"><img src="~/Images/media/baseline_description_white_18dp.png" id="icon" />Pacijenti</a>
-                </li>
-                <li class="nav-item>">
-                    <a asp-controller="Dijagnoze" asp-action="Dijagnoze" class="nav-link"><img src="~/Images/media/baseline_list_white_18dp.png" id="icon" />Dijagnoze</a>
-                </li>
-                <li class="nav-item>">
-                    <a asp-controller="Recepti" asp-action="Recepti" class="nav-link"><img src="~/Images/media/baseline_receipt_white_18dp.png" id="icon" />Recepti</a>
-                </li>
-                <li class="nav-item>">
-                    <a asp-controller="Lijekovi" asp-action="Lijekovi" class="nav-link"><img src="~/Images/media/baseline_medical_services_white_18dp.png" id="icon" />Lijekovi</a>
-                </li>
-                <li class="nav-item>">
-                    <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link"><img src="~/Images/media/baseline_bubble_chart_white_18dp.png" id="icon" />Dentalna pomagala</a>
-                </li>
-                <li class="nav-item>">
-                    <a asp-controller="UserAccounts" asp-action="UserAccounts" class="nav-link"><img src="~/Images/media/baseline_assignment_ind_white_18dp.png" id="icon" />User Accounts</a>
-                </li>
-            </ul>
-        </nav>
-        <div id="navLogoDiv">
-            <img src="~/Images/media/buz_logo.png" id="navLogoImg"/>
+    <div id="imageContainer">
+        <div id="textIndex">
+            <h1>
+                B.U.Z
+            </h1>
+            <p>
+                Stomatološka ordinacija "B.U.Z", sa najboljom tehnologijom na tržištu
+                nudi svojim korisnicima izlaz iz tradicionalne brige o terminima kod stomatologa.
+                Za samo nekoliko klikova zakažite termin kod nekih od najiskusnijih stomatologa u regiji.
+                Pretplatite se i uživajte u bezbrižnoj njegi vašeg dragocjenog osmijeha.
+            </p>
         </div>
     </div>
 }
-else if (User.IsInRole("Asistent"))
+@if (User.Identity.Name != null)
 {
-<div id="NavBarContainer">
-    <nav class="navbar navbar-light" id="navbar">
-        <ul class="navbar-nav" id="navigacija">
-            <li class="nav-item>">
-                <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
-            </li>
-            <li class="nav-item>">
-                <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link"><img src="~/Images/media/baseline_description_white_18dp.png" id="icon" />Pacijenti</a>
-            </li>
-            <li class="nav-item>">
-                <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link"><img src="~/Images/media/baseline_bubble_chart_white_18dp.png" id="icon" />Dentalna pomagala</a>
-            </li>
-        </ul>
-    </nav>
-    <div id="navLogoDiv">
-        <img src="~/Images/media/buz_logo.png" id="navLogoImg" />
-    </div>
-</div>
+
+    ApplicationDbContext db = new ApplicationDbContext();
+    List<Obavijesti> obav = db.Obavijesti.ToList();
+    List<Pacijent> p = db.Pacijenti.ToList();
+    List<Asistent> a = db.Asistenti.ToList();
+    List<Stomatolog> s = db.Stomatolozi.ToList();
+
+    if (UserManager.FindByNameAsync(User.Identity.Name).Result.isAsistent == true || UserManager.FindByNameAsync(User.Identity.Name).Result.isStomatolog == true)
+    {
+
+
+        foreach (var pac in p)
+        {
+            foreach (var ob in obav)
+            {
+                if (pac.Id == ob.From && ob.isProcitana == false)
+                {
+                    neprocitane.Add(ob);
+                }
+            }
+        }
+    }
+    else
+    {
+        //foreach (var asi in a)
+        {
+            //neprocitane = db.Obavijesti.Where(s => s.isProcitana == false && s.To == UserManager.FindByNameAsync(User.Identity.Name).Result.Id).ToList();
+        }
+        //foreach (var sto in s)
+        {
+            neprocitane = db.Obavijesti.Where(s => s.isProcitana == false && s.To == UserManager.FindByNameAsync(User.Identity.Name).Result.Id).ToList();
+        }
+    }
+
+
+    @if (UserManager.FindByNameAsync(User.Identity.Name).Result.isStomatolog == true)
+    {
+        <div id="NavBarContainer">
+            <nav class="navbar navbar-light" id="navbar">
+                <ul class="navbar-nav" id="navigacija">
+                    <li class="nav-item" id="ListObavijest">
+                        <a id="link"asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti  <div id="notAsistent"><span>@neprocitane.Count()</span></div></a>
+                    </li>
+                    <li class="nav-item" id="ListTermin">
+                        <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
+                    </li>
+                    <li class="nav-item" id="ListPacijent">
+                        <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link"><img src="~/Images/media/baseline_description_white_18dp.png" id="icon" />Pacijenti</a>
+                    </li>
+                    <li class="nav-item" id="ListDijagnoza">
+                        <a asp-controller="Dijagnoze" asp-action="Dijagnoze" class="nav-link"><img src="~/Images/media/baseline_list_white_18dp.png" id="icon" />Dijagnoze</a>
+                    </li>
+                    <li class="nav-item" id="ListRecept">
+                        <a asp-controller="Recepti" asp-action="Recepti" class="nav-link"><img src="~/Images/media/baseline_receipt_white_18dp.png" id="icon" />Recepti</a>
+                    </li>
+                    <li class="nav-item" id="ListLijek">
+                        <a asp-controller="Lijekovi" asp-action="Lijekovi" class="nav-link"><img src="~/Images/media/baseline_medical_services_white_18dp.png" id="icon" />Lijekovi</a>
+                    </li>
+                    <li class="nav-item" id="ListDentalnoPomagalo">
+                        <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link"><img src="~/Images/media/baseline_bubble_chart_white_18dp.png" id="icon" />Dentalna pomagala</a>
+                    </li>
+                    <li class="nav-item" id="ListUserAccount">
+                        <a asp-controller="UserAccounts" asp-action="UserAccounts" class="nav-link"><img src="~/Images/media/baseline_assignment_ind_white_18dp.png" id="icon" />User Accounts</a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="navLogoDiv">
+                <img src="~/Images/media/buz_logo.png" id="navLogoImg" />
+            </div>
+        </div>
+    }
+    else if (UserManager.FindByNameAsync(User.Identity.Name).Result.isAsistent == true)
+    {
+        <div id="NavBarContainer">
+            <nav class="navbar navbar-light" id="navbar">
+                <ul class="navbar-nav" id="navigacija">
+                    <li class="nav-item" id="ListObavijest">
+                        <a asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti <div id="notAsistent"><span>@neprocitane.Count()</span></div></a>
+                    </li>
+                    <li class="nav-item" id="ListTermin">
+                        <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
+                    </li>
+                    <li class="nav-item" id="ListPacijent">
+                        <a asp-controller="Pacijenti" asp-action="Pacijenti" class="nav-link"><img src="~/Images/media/baseline_description_white_18dp.png" id="icon" />Pacijenti</a>
+                    </li>
+                    <li class="nav-item" id="ListDentalnoPomagalo">
+                        <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link"><img src="~/Images/media/baseline_bubble_chart_white_18dp.png" id="icon" />Dentalna pomagala</a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="navLogoDiv">
+                <img src="~/Images/media/buz_logo.png" id="navLogoImg" />
+            </div>
+        </div>
+    }
+    else if (UserManager.FindByNameAsync(User.Identity.Name).Result.isPacijent == true)
+    {
+        <div id="NavBarContainer">
+            <nav class="navbar navbar-light" id="navbar">
+                <ul class="navbar-nav" id="navigacija">
+                    <li class="nav-item" id="ListObavijest">
+                        <a asp-controller="Obavijesti" asp-action="Obavijesti" class="nav-link"><img src="~/Images/media/obavijest.png" id="icon" />Obavijesti <div id="notPacijent"><span>@neprocitane.Count()</span></div></a>
+                    </li>
+                    <li data-toggle="tooltip" title="Termini opis" class="nav-item" id="ListTermin">
+                        <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/zakazi.png" id="icon" />Zakaži termin</a>
+                    </li>
+                    <li class="nav-item" id="Karton">
+                        <a asp-controller="Pacijenti" asp-action="KartonPacijenta" class="nav-link"><img src="~/Images/media/baseline_assignment_ind_white_18dp.png" id="icon" />Stomatološki karton</a>
+                    </li>
+                    <li class="nav-item" id="MojiTermini">
+                        <a asp-controller="Termini" asp-action="MojiTermini" id="MojiTermini "class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Moji Termini</a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="navLogoDiv">
+                <img src="~/Images/media/buz_logo.png" id="navLogoImg" />
+            </div>
+        </div>
+    }
 }
-else if (User.IsInRole("Pacijent"))
-{
-<div id="NavBarContainer">
-    <nav class="navbar navbar-light" id="navbar">
-        <ul class="navbar-nav" id="navigacija">
-            <li data-toggle="tooltip" title="Termini opis" class="nav-item>">
-                <a asp-controller="Termini" asp-action="OtvoriKalendar" class="nav-link"><img src="~/Images/media/baseline_event_white_18dp.png" id="icon" />Termini</a>
-            </li>
-            <li class="nav-item>">
-                <a asp-controller="Pacijenti" asp-action="KartonPacijenta" class="nav-link">Stomatološki karton</a>
-            </li>
-            <li class="nav-item>">
-                <a asp-controller="Termini" asp-action="MojiTermini" class="nav-link">Moji Termini</a>
-            </li>
-        </ul>
-    </nav>
-    <div id="navLogoDiv">
-        <img src="~/Images/media/buz_logo.png" id="navLogoImg" />
-    </div>
-</div>
-}
+
+<style>
+    #notAsistent {
+        display: inline;
+        background-color: #ff6666;
+        border: 1px solid red;
+        border-radius: 50%;
+        -moz-border-radius: 30px;
+        height: 0.1em;
+        width: 0.1em;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 4px;
+        margin-left: 30%;
+        text-align: center;
+        line-height: 0.1em;
+    }
+    #notPacijent {
+        display:inline;
+        background-color: #ff6666;
+        border:1px solid red;
+        border-radius: 50%;
+        -moz-border-radius: 30px;
+        height: 0.1em;
+        width: 0.1em;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom:4px;
+        margin-left: 30%;
+        text-align: center;
+        line-height:0.1em;
+    }
+</style>
 
 <script>
     $(document).ready(function () {

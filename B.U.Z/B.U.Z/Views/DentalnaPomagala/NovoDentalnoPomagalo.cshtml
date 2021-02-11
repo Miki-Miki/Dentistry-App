@@ -1,42 +1,53 @@
 ﻿@using B.U.Z.ViewModels;
 @model NovoDentalnoPomagaloVM
 
-    <link href="~/css/Universal.css" rel="stylesheet" />
+<link href="~/css/Universal.css" rel="stylesheet" />
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="~/js/Validation/NovoDentalnoPomagalo.js"></script>
+<div id="mainContainer">
+    <div>
+        <partial name="../Home/Index" />
+    </div>
+    <div id="MainPageBody">
+        <div id="pageContent">
+            <div id="partialNav">
+                <partial name="DentalnaPomagalaPartial" />
+            </div>
 
-    <div id="mainContainer">
-        <div>
-            <partial name="../Home/Index" />
-        </div>
-        <div id="MainPageBody">
-            @*<h1 style="color: #0C6980">Novo dentalno pomagalo</h1>*@
-            <div id="pageContent">
-                <div id="partialNav">
-                    <partial name="DentalnaPomagalaPartial" />
-                </div>
-
-                <div id="ostatakBody-a" class="primarydark">
-                    <form asp-action="SpasiNovoDentalnoPomagalo">
-                        <div>
-                            <label>Redni broj</label>
-                            <input type="text" value="@Model.BrojDentalnihPomagala" />
-                        </div>
-                        <div>
-                            <label>Naziv dentalnog pomagala</label>
-                            <input type="text" asp-for="Naziv" />
-                        </div>
-                        <div>
-                            <label>Opis dentalnog pomagala</label>
-                            <input type="text" asp-for="Opis" />
-                        </div>
-                        <div>
-                            <label>Pacijent</label>
+            <div id="ostatakBody-a" class="primarydark">
+                <form id="NovoDentalnoPomagalo" asp-action="SpasiNovoDentalnoPomagalo">
+                    <div>
+                        
+                            <label>Redni broj:</label>
+                        
+                        <input type="text" value="@Model.BrojDentalnihPomagala" />
+                    </div>
+                    <div>
+                        
+                            <label>Naziv dentalnog pomagala:</label>
+                        
+                        <input type="text" asp-for="Naziv" />
+                    </div>
+                    <div>
+                        
+                            <label>Opis dentalnog pomagala:</label>
+                        
+                        <input type="text" asp-for="Opis" />
+                    </div>
+                    <div>
+                        
+                            <label>Pacijent:</label>
+                        
+                        
                             <select asp-for="PacijentId" asp-items="@Model.pacijenti"></select>
-                        </div>
-                        <div>
-                            <input type="submit" name="Spasi" value="Snimi" />
-                        </div>
-                    </form>
-                </div>
+                        
+                    </div>
+                    
+                    <div>                     
+                            <input type="submit" name="Spasi" value="Snimi" />                      
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>

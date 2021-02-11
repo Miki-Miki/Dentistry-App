@@ -74,14 +74,17 @@ namespace B.U.Z.Controllers
                 var user = new Stomatolog
                 {
                     UserName = s.BrojTelefona,
-                    PhoneNumber=s.BrojTelefona,
+                    PhoneNumber = s.BrojTelefona,
                     Email = s.Email,
                     FirstName = s.FirstName,
                     LastName = s.LastName,
                     SpolId = s.SpolId,
                     GradId = s.GradId,
-                    Specijalizacija=s.Specijalizacija,
-                    Titula=s.Titula
+                    Specijalizacija = s.Specijalizacija,
+                    Titula = s.Titula,
+                    isStomatolog = true,
+                    isAsistent = false,
+                    isPacijent = false
                 };
                 var result = await _userManager.CreateAsync(user, s.PasswordHash);
                 if (result.Succeeded)
@@ -145,7 +148,10 @@ namespace B.U.Z.Controllers
                     LastName = s.LastName,
                     SpolId = s.SpolId,
                     GradId = s.GradId,
-                    Titula = s.Titula
+                    Titula = s.Titula,
+                    isStomatolog = false,
+                    isAsistent = true,
+                    isPacijent = false
                 };
                 var result = await _userManager.CreateAsync(user, s.PasswordHash);
                 if (result.Succeeded)

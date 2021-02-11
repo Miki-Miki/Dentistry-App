@@ -23,87 +23,90 @@
     <script type="text/javascript" src="~/lib/shieldui/js/jszip.min.js"></script>
     <link rel="stylesheet" href="~/css/dateTimePicker/dateTimePickerStyle.css" />
     <link rel="stylesheet" href="~/css/Universal.css" />
+    <script src="~/lib/fullcalendar/locales/en-au.js"></script>
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
+    @*<script src="~/lib/fontawesome/js/all.js"></script>*@
     @*<script src="~/js/termini/dateTimePicker.js"></script>*@
 </head>
 <div id="mainContainer">
     <div id="partialHome">
         <partial name="../Home/Index" />
     </div>
-
     <div id="MainPageBody">
         <div id="pageContent">
             <div class="primarydark" id="ostatakBody-a">
 
-
                 <input type="hidden" id="selectedUslugaId" />
                 <div id="calendar-container">
-                    <div id="frmZakazivanjeTermina">
-                        <div class="theme-light">
-                            <div class="mainDiv">
-                                <div class="demoDiv" @*style="width: 100px"*@>
-                                    @(Html.ShieldTimePicker()
+                    <div class="theme-light">
+                        <div class="frmZakazivanjeTermina">
+                            <div class="demoDivCal" @*style="width: 100px"*@>
+                                <label style="color: white;" id="vrijemeLabel">Odaberite vrijeme:</label>
+                                @(Html.ShieldTimePicker()
                                             .Name("picker")
                                             .OpenOnFocus(false)
                                             .ShowButton(true)
                                             .Editable(false)
                                             .Min(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0))
                                             .Max(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 17, 0, 0))
-                            )
-                                </div>
+                                        )
+                            </div>
+                            <div id="uslugeContainer">
+                                <label style="color: white;" id="uslugeLabel">Odaberite uslugu:</label>
+                                <select asp-for="UslugaId" asp-items="Model.Usluge" id="usluge"></select>
+                            </div>
+                            <div id="btnTerminDetaljiContainer">
+                                <button id="btnTerminDetalji" onclick="showTerminDetails()">Zakaži</button>
                             </div>
                         </div>
-                        <button class="btn-primary" id="btnTerminDatalji" onclick="showTerminDetails()()">Zakaži</button>
-                        <select asp-for="UslugaId" asp-items="Model.Usluge" id="usluge"></select>
                     </div>
-                    <div id="calendar-pacijent-container">
-                        <div id="calendar-pacijent"></div>
-                    </div>
-                    <input id="datum" onchange="setSelectedDate(this.value)" />
-                    <input id="currentDate" />
                 </div>
+                <div id="datumOdabirLabelContainer">
+                    <label id="datumOdabirLabel">Odaberite datum:</label>
+                </div>
+                <div id="calendar-pacijent-container">
+                    <div id="calendar-pacijent"></div>
+                </div>
+                <input hidden id="datum" onchange="setSelectedDate(this.value)" />
+                <input hidden id="currentDate" />
+                
             </div>
         </div>
     </div>
 </div>
 
-
-<div id="selectedTermin">
-    <a id="btnNazad" onclick="unSelectTermin()">X</a>
-    <button id="btnZakaziTermin" class="btn-primary" onclick="zakaziTermin()">Zakaži</button>
-    <h4 style="color: #0C6980;">Termin</h4>
-
-    <table id="tableTermin">
-        <tr>
-            <th><b>Početak: </b></th>
-            <td id="trmPocetak"></td>
-        </tr>
-        <tr>
-            <th><b>Pacijent: </b></th>
-            <td id="trmImePacijenta">@UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName @UserManager.FindByNameAsync(User.Identity.Name).Result.LastName</td>
-        </tr>
-        <tr>
-            <th><b>Usluga: </b></th>
-            <td id="trmUsluga"></td>
-        </tr>
-        <tr>
-            <th><b>Osnovna Cijena: </b></th>
-            <td id="trmBasePrice"></td>
-        </tr>
-    </table>
-
+<div id="KarticaContainer" onclick="unSelectTermin()">
 </div>
+    <div id="selectedTermin" class="popUP">
+        <a id="btnNazad" onclick="unSelectTermin()">X</a>
+        <button id="btnZakaziTermin" class="btn-primary" onclick="zakaziTermin()">Zakaži</button>
+        <h4 style="color: #0C6980;">Termin</h4>
+
+        <table id="tableTermin">
+            <tr>
+                <th><b>Početak: </b></th>
+                <td id="trmPocetak"></td>
+            </tr>
+            <tr>
+                <th><b>Pacijent: </b></th>
+                <td id="trmImePacijenta">@UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName @UserManager.FindByNameAsync(User.Identity.Name).Result.LastName</td>
+            </tr>
+            <tr>
+                <th><b>Usluga: </b></th>
+                <td id="trmUsluga"></td>
+            </tr>
+            <tr>
+                <th><b>Osnovna Cijena: </b></th>
+                <td id="trmBasePrice"></td>
+            </tr>
+        </table>
+
+    </div>
+
+
 
 
 
 <script src="~/js/fullcalendar/kalendar-pacijent.js"></script>
 <script src="~/lib/shieldui/js/dateTimePicker.js"></script>
 
-<style>
-    .fc-sun {
-        background-color: blue;
-    }
-
-    .fc-sat {
-        background-color: red;
-    }
-</style>

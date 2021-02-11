@@ -121,16 +121,19 @@ namespace B.U.Z.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Pacijent 
-                { 
-                    UserName = Input.BrojTelefona, 
-                    PhoneNumber=Input.BrojTelefona,
-                    Email = Input.Email, 
+                var user = new Pacijent
+                {
+                    UserName = Input.BrojTelefona,
+                    PhoneNumber = Input.BrojTelefona,
+                    Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     GodinaRodjenja = Input.GodinaRodjenja,
                     SpolId = Input.Spol,
-                    GradId = Input.Grad
+                    GradId = Input.Grad,
+                    isPacijent = true,
+                    isAsistent = false,
+                    isStomatolog = false
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

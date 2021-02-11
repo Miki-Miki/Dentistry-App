@@ -3,7 +3,8 @@ var selectedDayTermin;
 var timePicker = document.getElementById('picker');
 
 var selectedTermin = document.getElementById('selectedTermin');
-var mainContainer = document.getElementById('mainContainer');
+var mainContainer = document.getElementById('calendar-pacijent');
+var karticaContainer = document.getElementById("KarticaContainer");
 
 var trmPocetak = document.getElementById('trmPocetak');
 var trmImePacijenta = document.getElementById('trmImePacijenta');
@@ -47,13 +48,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         timeZone: 'UTC',
-        themeSystem: 'bootstrap',
-        locale: 'bs',       
+        themeSystem: 'bootstrap',     
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
         },
+
+        views: {
+            dayGrid: { // name of view
+                titleFormat: { year: 'numeric', month: 'long' },
+                // other view-specific options here
+            }
+        },
+
+        buttonIcons: true,
         weekNumbers: true,
         dayMaxEvents: true, // allow "more" link when too many events
         allDaySlot: false,
@@ -87,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             selectedDayTermin = info.dayEl;
-            selectedDate = (info.date.getUTCMonth() + 1) + '/' + info.date.getUTCDate() + '/' + info.date.getUTCFullYear();
+            selectedDate = info.date.getUTCFullYear() + '-'+(info.date.getUTCMonth() + 1) + '-' + info.date.getUTCDate();
             selectedDay = info.date.getDate();
             selectedMonth = info.date.getMonth() + 1;
             selectedYear = info.date.getFullYear();
@@ -108,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         events: '/Termini/PFindAll',
         eventColor: '#852828',
-        backgroundColor: 'white'
+        locale: 'en-au'
     });
 
     calendar.render();
@@ -118,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function showTerminDetails() {   
     selectedTermin.style.display = 'block';
     mainContainer.style.filter = 'blur(4px)';
+    karticaContainer.style.display = 'block';
 
     if (timePicker.value != 0) {
         selectedTime = timePicker.value;
@@ -143,6 +153,7 @@ function showTerminDetails() {
 function unSelectTermin() {
     selectedTermin.style.display = 'none';
     mainContainer.style.filter = 'blur(0px)';
+    karticaContainer.style.display = 'none';
 }
 
 function getCijenaUsluge(_uslugaId) {
