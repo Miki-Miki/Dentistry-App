@@ -1,7 +1,9 @@
 ﻿@using B.U.Z.ViewModels
 @model AsistentRegistracijaVM
-
-    <link href="~/css/Universal.css" rel="stylesheet" />
+    <head>
+        <link href="~/css/Universal.css" rel="stylesheet" />
+        <link href="~/css/rounded-corners.css" rel="stylesheet" />
+    </head>
 
     <div id="mainContainer">
 
@@ -14,7 +16,7 @@
                 <div id="partialNav">
                     <partial name="UserAccountsPartial" />
                 </div>
-                <div id="ostatakBody-a">
+                <div id="ostatakBody-a" class="rcMainBody">
                     <form asp-action="SpasiNoviAsistent" class="primarydark">
                         <div>
                             <label>First name:</label>

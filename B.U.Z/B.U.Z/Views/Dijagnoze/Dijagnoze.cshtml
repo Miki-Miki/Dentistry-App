@@ -1,6 +1,8 @@
 ﻿@model List<Dijagnoze>
-
-    <link href="~/css/Universal.css" rel="stylesheet" />
+    <head>
+        <link href="~/css/Universal.css" rel="stylesheet" />
+        <link href="~/css/rounded-corners.css" rel="stylesheet" />
+    </head>
 
 <div id="mainContainer">
 
@@ -16,7 +18,7 @@
             <partial name="DijagnozePartial" />
         </div>
 
-        <div class="primarydark" id="ostatakBody-a">
+        <div class="primarydark rcMainBody" id="ostatakBody-a">
 
 
             <div id="AjaxPrikazOdabraneDijagnoze">
@@ -31,7 +33,7 @@
                 </form>
             </div>
 
-            <table id="tabela"  class="table">
+            <table id="tabela"  class="table rcMainTable">
                 <thead>
                     <tr>
                         <th scope="col">Redni broj</th>
@@ -44,7 +46,7 @@
                 <tbody>
                     @foreach (var s in Model)
                     {
-                        <tr id="lijekoviRed" onclick="OpenOdabranuDijagnozu('@s.Id')">
+                        <tr id="lijekoviRed" class="tblHover" onclick="OpenOdabranuDijagnozu('@s.Id')">
                             <td></td>
                             <td>@s.Id</td>
                             <td>@s.Naziv</td>
@@ -86,9 +88,11 @@
             color: white;
         }
 
-        #lijekoviRed:hover {
-            background-color: aqua;
-        }
+        /*#lijekoviRed:hover {
+            background-color: #0C6980;
+            color: white;
+            cursor: pointer;
+        }*/
     </style>
 
 

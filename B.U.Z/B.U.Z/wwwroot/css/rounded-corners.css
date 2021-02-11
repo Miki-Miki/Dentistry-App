@@ -1,0 +1,47 @@
+﻿.rcMainBody {
+    border-radius: 0px 0.7em 0.7em;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.rcMainTable {
+    border-radius: 0.5em;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /*border: 1px solid red;*/
+}
+
+.rcMainBodyAC {
+    border-radius: 0.7em;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.rcCornerTh {
+    border: none !important;
+}
+
+.rcTopTh {
+    border: none !important;
+}
+
+th {
+    border: none !important;
+    user-select: none;
+}
+
+td {
+    user-select: none;
+}
+
+.rcTabs {
+    border-top-left-radius: 0.6em;
+    border-top-right-radius: 0.6em;
+    /*padding: 0.4em 0.7em 0.4em 0.7em;*/
+    /*padding-left: 4em;
+    padding-right: 4em;*/
+
+}
+
+.rcTabHeader {
+    padding: 0.2em 0.2em 0em 0em;
+    width: auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

@@ -1,11 +1,15 @@
-﻿<div>
+﻿<head>    
+    <link href="~/css/rounded-corners.css" rel="stylesheet" />
+</head>
+
+<div>
     <nav id="nav"class="navbar-expand-sm">
-        <ul class="navbar-nav">
-            <li class="nav-item" id="partialNavItems">
-                <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="nav-link primary PDP">Postojeća dentalna pomagala</a>
+        <ul class="navbar-nav ">
+            <li class="nav-item rcTabHeader" id="partialNavItems">
+                <a asp-controller="DentalnaPomagala" asp-action="DentalnaPomagala" class="rcTabs nav-link primary PDP">Postojeća dentalna pomagala</a>
             </li>
-            <li class="nav-item" id="partialNavItems">
-                <a asp-controller="DentalnaPomagala" asp-action="NovoDentalnoPomagalo" class="nav-link primary DNDP">Dodaj novo dentalno pomagalo</a>
+            <li class="nav-item rcTabHeader" id="partialNavItems">
+                <a asp-controller="DentalnaPomagala" asp-action="NovoDentalnoPomagalo" class="rcTabs nav-link primary DNDP">Dodaj novo dentalno pomagalo</a>
             </li>
         </ul>
     </nav>

@@ -1,7 +1,10 @@
 ﻿@model int
-<link href="~/css/Universal.css" rel="stylesheet" />
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<script src="~/js/Validation/NovaDijagnoza.js"></script>
+<head>
+    <link href="~/css/Universal.css" rel="stylesheet" />
+    <link href="~/css/rounded-corners.css" rel="stylesheet" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script src="~/js/Validation/NovaDijagnoza.js"></script>
+</head>
 <div id="mainContainer">
     <div>
         <partial name="../Home/Index" />
@@ -15,7 +18,7 @@
                 <partial name="DijagnozePartial" />
             </div>
 
-            <div id="ostatakBody-a" class="primarydark">
+            <div id="ostatakBody-a" class="primarydark rcMainBody">
                 <form id="NovaDijagnoza" asp-action="SpasiNovuDijagnozu">
                     <div>
                         <label>Redni broj:</label>

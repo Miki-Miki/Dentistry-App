@@ -1,9 +1,12 @@
 ﻿@using B.U.Z.ViewModels;
 @model NovoDentalnoPomagaloVM
 
-<link href="~/css/Universal.css" rel="stylesheet" />
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<script src="~/js/Validation/NovoDentalnoPomagalo.js"></script>
+    <head>
+        <link href="~/css/rounded-corners.css" rel="stylesheet" />
+        <link href="~/css/Universal.css" rel="stylesheet" />
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+        <script src="~/js/Validation/NovoDentalnoPomagalo.js"></script>
+    </head>
 <div id="mainContainer">
     <div>
         <partial name="../Home/Index" />
@@ -14,7 +17,7 @@
                 <partial name="DentalnaPomagalaPartial" />
             </div>
 
-            <div id="ostatakBody-a" class="primarydark">
+            <div id="ostatakBody-a" class="primarydark rcMainBody">
                 <form id="NovoDentalnoPomagalo" asp-action="SpasiNovoDentalnoPomagalo">
                     <div>
                         
