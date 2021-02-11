@@ -15,6 +15,7 @@ namespace B.U.Z.ViewModels
         public DateTime DatumRodjenja { get; set; }
         public string Email { get; set; }
         public string BrojTelefona { get; set; }
+        public string Kanton { get; set; }
         public string Grad { get; set; }
         public int BrojKartona { get; set; }
         public List<SelectListItem> Sesije { get; set; }

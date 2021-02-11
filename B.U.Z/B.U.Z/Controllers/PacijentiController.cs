@@ -186,12 +186,14 @@ namespace B.U.Z.Controllers
             Pacijent p = db.Pacijenti.Find(_userManager.GetUserId(User));
             Termini t = db.Termini.Where(s => s.PacijentId == p.Id).FirstOrDefault();
             List<SelectListItem> termini = db.Sesija.Where(s => s.TerminId == t.Id).OrderBy(a => a.Id).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.Termin.TerminStart.ToString() }).ToList();
+            Grad grad = db.Grad.Find(p.GradId);
             PacijentiKartonVM model = new PacijentiKartonVM
             {
                 Ime = p.FirstName,
                 Prezime = p.LastName,
                 Spol = db.Spol.Find(p.SpolId).Naziv,
                 Grad = db.Grad.Find(p.GradId).Naziv,
+                Kanton = db.Kanton.Find(grad.KantonId).Naziv,
                 Email = p.Email,
                 BrojTelefona = p.PhoneNumber,
                 DatumRodjenja = p.GodinaRodjenja,

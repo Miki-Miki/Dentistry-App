@@ -1,148 +1,260 @@
 ﻿@using B.U.Z.ViewModels
 @model PacijentiKartonVM
 
-<div style="float:left; height:1000px; width:20%; float:left; margin:0;" class="primary">
-    <partial name="../Home/Index" />
-</div>
-<h1 style="padding-top:3%; padding-left:22%;">Stomatološki karton</h1>
-<div id="PacijentiKartonContainer">
+    <link href="~/css/Universal.css" rel="stylesheet" />
 
-    <div id="LicniPodaci">
-
-        <div style="padding-bottom:3%;">
-            <h4>Lični podaci</h4>
-        </div>
+    <div id="mainContainer">
         <div>
-
-            <label>Broj kartona:</label>
-            <input type="text" value="@Model.BrojKartona" />
-
+            <partial name="../Home/Index" />
         </div>
-        <div>
+        <div id="MainPageBody">
+            <div id="pageContent">
+                <div id="ostatakBody-a">
+                    <div id="PacijentiKartonContainer">
 
-            <label>Ime:</label>
-            <input type="text" value="@Model.Ime" />
+                        <div id="LicniPodaci">
 
-        </div>
+                            <div id="partialNav">
+                                <nav id="nav" class=" navbar-expand-sm">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item" id="partialNavItems">
+                                            <a class="nav-link primary">Licni podaci</a>
+                                        </li>
 
-        <div>
-            <label>Prezime:</label>
-            <input type="text" value="@Model.Prezime" />
-        </div>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div  class="primarydark karticaBody">
+                                <div id="LicniPodaciBody">
+                                    <div id="pacijentSlika">
+                                        <img id="pacijentSlikaSlika" src="~/Images/media/male_avatar-512.webp" />
+                                    </div>
+                                    <div id="licniPodaciDesno">
+                                        <div id="licniPodaciDesnoInfo">
+                                            <div>
 
-        <div>
-            <label>Spol:</label>
-            <input type="text" value="@Model.Spol" />
-        </div>
+                                                <label>Broj kartona:</label>
+                                                <input type="text" value="@Model.BrojKartona" />
 
-        <div>
-            <label>Datum rodjenja:</label>
-            <input type="text" value="@Model.DatumRodjenja" />
+                                            </div>
+                                            <div>
+
+                                                <label>Ime:</label>
+                                                <input type="text" value="@Model.Ime" />
+
+                                            </div>
+
+                                            <div>
+                                                <label>Prezime:</label>
+                                                <input type="text" value="@Model.Prezime" />
+                                            </div>
+
+                                            <div>
+                                                <label>Spol:</label>
+                                                <input type="text" value="@Model.Spol" />
+                                            </div>
+
+                                            <div>
+                                                <label>Datum rodjenja:</label>
+                                                <input type="text" value="@Model.DatumRodjenja" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="KontaktPodaci">
+                            <div id="partialNav">
+                                <nav id="nav" class=" navbar-expand-sm">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item" id="partialNavItems">
+                                            <a class="nav-link primary">Kontakt podaci</a>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="primarydark karticaBody">
+                                <div id="KontaktPodaciBody">
+                                    <div>
+                                        <label>Email:</label>
+                                        <input type="text" value="@Model.Email" />
+                                    </div>
+
+                                    <div>
+                                        <label>Broj telefona:</label>
+                                        <input type="text" value="@Model.BrojTelefona" />
+                                    </div>
+                                    <div>
+                                        <label>Kanton:</label>
+                                        <input type="text" value="@Model.Kanton" />
+                                    </div>
+
+                                    <div>
+                                        <label>Grad:</label>
+                                        <input type="text" value="@Model.Grad" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="HistorijaTermina">
+
+                            <div id="partialNav">
+                                <nav id="nav" class=" navbar-expand-sm">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item" id="partialNavItems">
+                                            <a class="nav-link primary">Historija termina</a>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <div class="primarydark karticaBody">
+                                <div id="historijaTerminaBody">
+                                    <div id="historijaLijevo">
+                                        <div>
+                                            <label>Izvršene sesije:</label>
+                                            <select id="TerminiDropDown" asp-items="@Model.Sesije" onchange="UcitajInformacije()"></select>
+                                        </div>
+
+                                        <div>
+                                            <label>Izvršena usluga:</label>
+                                            <input id="Usluga" type="text" value="@Model.IzvrsenaUsluga" />
+                                        </div>
+
+                                        <div>
+                                            <label>Dijagnoza:</label>
+                                            <input id="Dijagnoza" type="text" value="@Model.Dijagnoza" />
+                                        </div>
+
+                                        <div>
+                                            <label>Terapija:</label>
+                                            <input id="Terapija" type="text" value="@Model.Terapija" />
+                                        </div>
+
+                                        <div>
+                                            <label>Lijek:</label>
+                                            <input id="Lijek" type="text" value="@Model.Lijek" />
+                                        </div>
+                                    </div>
+                                    <div id="historijaDesno">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <style>
+        #ostatakBody-a {
+            background-color: none !important;
+            padding: 0 !important;
+        }
 
-    <div id="KontaktPodaci">
-        <div style="padding-bottom:3%;">
-            <h4>Kontakt podaci</h4>
-        </div>
-        <div>
-            <label>Email:</label>
-            <input type="text" value="@Model.Email" />
-        </div>
+        #PacijentiKartonContainer {
+            float: left;
+            width: 100%;
+            height: 80vh;
+            margin-top:-2%;
+        }
 
-        <div>
-            <label>Broj telefona:</label>
-            <input type="text" value="@Model.BrojTelefona" />
-        </div>
+        #LicniPodaci {
+            width: 58%;
+            float: left;
+            height: 49%;
+            margin: 1%;
+            margin-top: 0;
+        }
 
-        <div>
-            <label>Grad:</label>
-            <input type="text" value="@Model.Grad" />
-        </div>
-        
-    </div>
+        .karticaBody {
+            height: 90%;
+            padding: 3%;
+        }
 
-    <div id="HistorijaTermina">
+        #KontaktPodaci {
+            width: 38%;
+            float: left;
+            height: 49%;
+            margin: 1%;
+            margin-top: 0;;
+        }
 
-        <div style="padding-bottom:3%;">
-            <h4>Historija termina</h4>
-        </div>
+        #HistorijaTermina {
+            width: 98%;
+            float: left;
+            height: 49%;
+            margin: 1%;
+        }
 
-        <div>
-            <label>Izvršene sesije:</label>
-            <select id="TerminiDropDown" asp-items="@Model.Sesije" onchange="UcitajInformacije()"></select>
-        </div>
+        #partialNav {
+            margin: 0 !important;
+            color: white !important;
+        }
 
-        <div>
-            <label>Izvršena usluga:</label>
-            <input id="Usluga" type="text" value="@Model.IzvrsenaUsluga" />
-        </div>
+        #pacijentSlika {
+            text-align:center;
+            width: 40%;
+            height: 90%;
+            float: left;
+        }
 
-        <div>
-            <label>Dijagnoza:</label>
-            <input id="Dijagnoza" type="text" value="@Model.Dijagnoza" />
-        </div>
+        #pacijentSlikaSlika {
+            height: 100%;
+            margin-top:5%;
+        }
 
-        <div>
-            <label>Terapija:</label>
-            <input id="Terapija" type="text" value="@Model.Terapija" />
-        </div>
+        #licniPodaciDesno {
+            width: 60%;
+            height:100%;
+            float: left;
+            text-align: left;
+        }
+        label{
+            width:35%;
+        }
+        input, select{
+            width:60%;
+        }
+        #historijaLijevo{
+            width:50%;
+            float:left;
+        }
+        #historijaDesno {
+            width: 50%;
+            float: left;
+        }
+        #KontaktPodaciBody{
+            margin-top:12%;
+        }
+        #LicniPodaciBody {
+            height: 100%;
+            width: 100%;
+        }
+        #historijaTerminaBody {
+            margin-top:2%;
+        }
+        #licniPodaciDesnoInfo {
+            margin-top:7%;
+        }
+    </style>
 
-        <div>
-            <label>Lijek:</label>
-            <input id="Lijek" type="text" value="@Model.Lijek" />
-        </div>
-
-    </div>
-
-</div>
-
-<style>
-    #PacijentiKartonContainer
-    {
-        border:1px solid red;
-        float:left;
-        width:80%;
-        height:100%;
-    }
-    #LicniPodaci
-    {
-        width:40%;
-        height:50%;
-        margin-left:3%;
-        margin-top:5%;
-        float:left;
-        border:1px solid green;
-    }
-    #KontaktPodaci {
-        width: 40%;
-        height: 50%;
-        margin-left: 3%;
-        margin-top: 5%;
-        float: left;
-        border: 1px solid purple;
-    }
-    #HistorijaTermina {
-        border: 3px solid black;
-        width: 55%;
-        height: auto;
-        float: left;
-        margin-left: 3%;
-        margin-top: 5%;
-    }
-</style>
-
-<script>
-    function UcitajInformacije()
-    {
-        var sesijaId = $("#TerminiDropDown").val();
-        var url = "/Pacijenti/InformacijeOTerminu?sesijaId=" + sesijaId;
-        $.get(url, function (d) {
-            $("#Usluga").val(d[0]);
-            $("#Dijagnoza").val(d[1]);
-            $("#Terapija").val(d[2]);
-            $("#Lijek").val(d[3]);
-        });
-    }
-</script>
+    <script>
+        function UcitajInformacije() {
+            var sesijaId = $("#TerminiDropDown").val();
+            var url = "/Pacijenti/InformacijeOTerminu?sesijaId=" + sesijaId;
+            $.get(url, function (d) {
+                $("#Usluga").val(d[0]);
+                $("#Dijagnoza").val(d[1]);
+                $("#Terapija").val(d[2]);
+                $("#Lijek").val(d[3]);
+            });
+        }
+    </script>
 
