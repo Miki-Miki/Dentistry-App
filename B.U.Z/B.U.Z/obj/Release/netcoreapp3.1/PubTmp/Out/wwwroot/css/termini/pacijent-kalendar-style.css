@@ -1,0 +1,222 @@
+﻿#frmZakazivanjeTermina {
+    height: auto;
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+#picker {
+    width: 200px;
+}
+
+#calendar-container {
+    /*width: 80%;*/
+    height: auto;
+    /*float: right;*/    
+}
+
+#calendar-pacijent-container {
+    width: 100%;
+    height: 50%;
+}
+
+#calendar-pacijent {
+    background-color: #C4DBE0;
+    padding: 3em;
+    border-radius: 10px;
+    color: black;
+}
+
+#selectedTermin {
+    position: fixed;
+    left: 50%;
+    margin-left: -340px;
+    width: 680px;
+    height: 400px;
+    background-color: #C4DBE0;
+    display: none;
+    z-index: 100000;
+    opacity: 0.96;
+    border-radius: 5px;
+    filter: blur(0px);
+    box-shadow: 3px 5px 20px 2px #323d40;
+    padding: 30px;
+    top: 20%;
+   
+}
+
+#btnNazad {
+    color: #0C6980;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: Tahoma;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*#tableTermin {
+    margin-top: 2em;
+    width: 100%
+}*/
+
+#ostatakBody-a {
+    border-radius: 10px !important;
+}
+
+#btnZakaziTermin {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    /*padding: 5px;*/
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #0C6980;
+    opacity: 0.7;
+    font-family: Tahoma;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;    
+}
+
+    #btnZakaziTermin:hover {
+        background-color: #8DA3A8;
+    }
+
+    #btnZakaziTermin:active {
+        background-color: #90CDDB;
+    }
+
+    #btnZakaziTermin:focus {
+        background-color: #90CDDB;
+        outline: none;
+    }
+
+.demoDivCal {
+    width: 20%;
+    float: left;
+    /*text-align: left;*/
+    padding: 0;
+    display: inline;
+    margin: 0;
+    margin-right: 2em;
+}
+
+#btnTerminDetaljiContainer {
+    display: inline;
+    width: 20%;
+    height: 100%;
+}
+
+#btnTerminDetalji {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    margin: 10px;
+    margin-top: 1.8em;
+    width: 15%;
+    height: 2.3em;
+    border: none;
+}
+
+.sui-timepicker {
+    border: none;
+    /*padding-top: 0.4em;*/
+   /* padding-bottom: 2.1em;
+    padding-left: 0.4em;
+    padding-right: 2.2em;*/
+    /*width: 12em;*/
+    width: 100%;
+    height: 2.5em;
+    display: block;
+    padding: 0 !important;
+}
+
+.sui-picker-input {
+    margin: 0.2em !important;
+    width: 79% !important;
+    height: 80% !important;
+    padding: 0.1em !important;
+}
+
+.sui-icon-wrapper {
+    margin: 0.2em 0.6em 0.2em 0.9em !important;
+    text-align: center;
+}
+
+
+
+#usluge {
+    display: block;
+    vertical-align: top;
+    padding: 0.4em;
+    width: 100%;
+    border: none;
+    text-align: center;
+    /*margin: 2px 10px 10px 10px;*/
+}
+
+#btnTerminDatalji {
+    padding: 0.4em;
+    width: 5em;
+    border: none;
+    text-align: center;
+    margin-top: 1.7em;
+}
+
+
+#btnTerminDetalji:hover {
+    background-color: #00A8A8;
+    color: white;
+}
+
+#btnTerminDetalji:active {
+    background-color: #0C6980;
+    color: white;
+}
+
+#uslugeLabel, #vrijemeLabel {
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+#uslugeContainer {
+    width: 54%;
+    height: auto;
+    display: inline;
+    /*text-align: left;*/
+    float: left;
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+#datumOdabirLabel {
+    color: white;
+    font-size: 25px;
+    margin-left: 1em;
+}
+
+#datumOdabirLabelContainer {
+    margin-bottom: 1em;
+}
+
+.sui-timepicker, #usluge, #btnTerminDetalji {
+    box-shadow: 2px 7px 20px 2px rgba(29, 29, 30, 0.30);
+}
+#KarticaContainer {
+    display: none;
+    z-index: 50000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #0C6980;
+    opacity: 0.6;
+}

@@ -1,0 +1,87 @@
+﻿#MainPageBody {
+    float: right;
+    width: 80%;
+    padding-top: 7%;
+}
+#pageContent {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+body {
+    background-image: url("/Images/media/background-image.png");
+    background-size: 300px 300px;
+    background-repeat: repeat;
+/*    background-color: #C4DBE0;*/
+}
+#naslov {
+    background-color: #00A8A8;
+    color: white;
+    margin: 0;
+    padding: 1%;
+    padding-left: 2%;
+    text-align: center;
+
+}
+#ostatakBody-a {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #0C6980;
+    padding:3%;
+}
+#naslovDiv{
+    text-align:center;
+}
+
+#tabela {
+    background-color: #C4DBE0 !important;
+    color: #0C6980;
+    width: 100%;
+    margin: 0%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+#tabelaNeprocitane {
+    background-color: #C4DBE0 !important;
+    color: #0C6980 !important;
+    width: 100%;
+    margin: 0%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+#tabelaProcitane {
+    background-color: #C4DBE0 !important;
+    color: #0C6980 !important;
+    width: 100%;
+    margin: 0%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+#partialNav {
+    margin: 0;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#nav {
+    display: inline-block;
+}
+#partialNavItems a {
+    white-space: nowrap;
+    
+}
+    #partialNavItems :hover {
+        background-color: #0C6980;
+        color:white;
+    }
+
+
+.tblHover {
+
+}
+.tblHover:hover {
+    background-color: #0C6980;
+    color: white;
+    cursor: pointer;
+}

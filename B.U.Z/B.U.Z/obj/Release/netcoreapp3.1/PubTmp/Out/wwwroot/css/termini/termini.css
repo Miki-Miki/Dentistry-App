@@ -1,0 +1,161 @@
+﻿#selectedSesija {
+    position: fixed;
+    left: 50%;
+    margin-left: -340px;
+    width: 680px;
+    height: 400px;
+    background-color: #C4DBE0;
+    display: none;
+    z-index: 100000;
+    opacity: 0.96;
+    border-radius: 5px;
+    filter: blur(0px);
+    box-shadow: 3px 5px 20px 2px #323d40;
+    padding: 30px;
+    top: 10%;
+}
+
+.popUP {
+    position: fixed;
+    left: 50%;
+    margin-left: -340px;
+    width: 680px;
+    height: 400px;
+    background-color: #C4DBE0;
+    display: none;
+    z-index: 100000;
+    opacity: 0.96;
+    border-radius: 5px;
+    filter: blur(0px);
+    box-shadow: 3px 5px 20px 2px #323d40;
+    padding: 30px;
+    top: 10%;
+}
+
+#btnNazad {
+    color: #0C6980;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: Tahoma;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+#calendar-stomatolog {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #C4DBE0;
+    padding: 30px;
+    margin-top: 0.1em;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 2px #0C6980;
+    color:black;
+}
+
+
+#termini {
+    background-color: #0C6980;
+    width: 100%;
+    height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+
+td {
+    padding: 5px;
+}
+
+#btnZapocniSesiju {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    padding: 5px;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #0C6980;
+    opacity: 0.7;
+    font-family: Tahoma;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+#btnOdbijTermin {
+    position: absolute;
+    bottom: 30px;
+    right: 170px;
+    padding: 5px;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #0C6980;
+    opacity: 0.7;
+    font-family: Tahoma;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+#btnZapocniSesiju:hover, #btnOdbijTermin:hover {
+    background-color: #8DA3A8;
+}
+
+    #btnZapocniSesiju:active, #btnOdbijTermin:active {
+        background-color: #90CDDB;
+    }
+
+#main_body {
+    width: 100%;
+    background-color: #C4DBE0;
+    padding: 30px;
+    height: 100%
+}
+
+#red:hover {
+    background-color: #507881;
+    color: white;
+}
+
+#red:active {
+    background-color: #00A8A8;
+}
+
+#red {
+    cursor: pointer;
+}
+
+#header-kalendar {
+    height: 100%;
+}
+#KarticaContainer1 {
+    display: none;
+    z-index: 50000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #0C6980;
+    opacity: 0.6;
+}
+#KarticaContainer2 {
+    display: none;
+    z-index: 50000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #0C6980;
+    opacity: 0.6;
+}
