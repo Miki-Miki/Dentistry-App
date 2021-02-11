@@ -7,27 +7,28 @@
         <label style="padding-left:10px;">Odabrana dijagnoza:</label>
     </div>
     <div id="formWrapper">
-    <form asp-controller="Dijagnoze" asp-action="SpasiNovuStaruDijagnozu">
-        <div id="LijevaDesna">
-            <div id="LijevaKolona">
-            <label>Šifra:</label>
-            <input class="inputs" type="text" asp-for="@Model.Id" />
+        <form asp-controller="Dijagnoze" asp-action="SpasiNovuStaruDijagnozu">
+            <div id="LijevaDesna">
+                <div id="LijevaKolona">
+                    <label>Šifra:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Id" />
 
-            <label>Naziv:</label>
-            <input class="inputs" type="text" asp-for="@Model.Naziv" />
+                    <label>Naziv:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Naziv" />
+                </div>
+                <div id="DesnaKolona">
+                    <label>Opis:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Opis" />
+
+                    <label>Preporuka:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Preporuka" />
+                </div>
+                <input id="BtnUredi" class="badge-danger" type="submit" value="Uredi" style="margin-top:2%;" />
+
+
             </div>
-            <div id="DesnaKolona">
-                <label>Opis:</label>
-                <input class="inputs" type="text" asp-for="@Model.Opis" />
-
-                <label>Preporuka:</label>
-                <input class="inputs" type="text" asp-for="@Model.Preporuka" />
-            </div>
-            <input id="BtnUredi" class="badge-danger" type="submit" value="Uredi" style="margin-top:2%;" />
-
-            <button id="BtnObrisi" class="badge-danger"><a style="text-decoration:none; color:white; margin-top:2%" href="/Dijagnoze/ObrisiDijagnozu?DijagnozaId=@Model.Id">Obriši</a></button>
-        </div>
-    </form>
+        </form>
+        <button id="BtnObrisi" class="badge-danger"><a style="text-decoration:none;width:100%; height:100%; color:white;"href="/Dijagnoze/ObrisiDijagnozu?DijagnozaId=@Model.Id">Obriši</a></button>
     </div>
 
 </div>

@@ -77,11 +77,13 @@ label {
 }
 
 #BtnObrisi {
-    width: 45%;
+    width: 27.4%;
     display: inline;
     border: none;
-    padding:0.5%;
-    margin-left:8%;
+    padding:0.36%;
+    position:absolute;
+    top:40%;
+    left:61.4%;
 }
 
 #BtnUredi, #BtnObrisi {
