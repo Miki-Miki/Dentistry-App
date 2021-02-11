@@ -246,6 +246,7 @@
     </style>
 
     <script>
+        
         function UcitajInformacije() {
             var sesijaId = $("#TerminiDropDown").val();
             var url = "/Pacijenti/InformacijeOTerminu?sesijaId=" + sesijaId;
@@ -256,5 +257,6 @@
                 $("#Lijek").val(d[3]);
             });
         }
+        $(document).ready(UcitajInformacije());
     </script>
 

@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace B.U.Z.Controllers
@@ -192,22 +193,50 @@ namespace B.U.Z.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
             Pacijent p = db.Pacijenti.Find(_userManager.GetUserId(User));
-            Termini t = db.Termini.Where(s => s.PacijentId == p.Id).FirstOrDefault();
-            List<SelectListItem> termini = db.Sesija.Where(s => s.TerminId == t.Id).OrderBy(a => a.Id).Select(a => new SelectListItem { Value = a.Id.ToString(), Text = a.Termin.TerminStart.ToString() }).ToList();
-            Grad grad = db.Grad.Find(p.GradId);
-            PacijentiKartonVM model = new PacijentiKartonVM
+            IQueryable<Termini> t = db.Termini.Where(s => s.PacijentId == p.Id);
+            List<SelectListItem> sesije = new List<SelectListItem>();
+            if (t != null)
             {
-                Ime = p.FirstName,
-                Prezime = p.LastName,
-                Spol = db.Spol.Find(p.SpolId).Naziv,
-                Grad = db.Grad.Find(p.GradId).Naziv,
-                Kanton = db.Kanton.Find(grad.KantonId).Naziv,
-                Email = p.Email,
-                BrojTelefona = p.PhoneNumber,
-                DatumRodjenja = p.GodinaRodjenja,
-                BrojKartona = p.BrojKartona,
-                Sesije = termini
-            };
+                //foreach (var ter in t)
+                //{
+                //    foreach (var ses in db.Sesija)
+                //    {
+                //        if (ses.TerminId == ter.Id)
+                //        {
+                //            sesije.Add(new SelectListItem { Value = ter.Id.ToString(), Text = ses.Termin.TerminStart.ToString() });
+                //        }
+                //    }
+                //}
+                List<Sesija> sesijeDb = (from s in db.Sesija
+                                         join termini in t
+                                         on s.TerminId equals termini.Id
+                                         select new Sesija
+                                         {
+                                             Id = s.Id,
+                                             TerminId = s.TerminId,
+                                             Termin=s.Termin
+                                         }).ToList();
+                foreach(var x in sesijeDb)
+                {
+                    sesije.Add(new SelectListItem { Value = x.Id.ToString(), Text = x.Termin.TerminStart.ToString() });
+                }
+
+            }
+                Grad grad = db.Grad.Find(p.GradId);
+                PacijentiKartonVM model = new PacijentiKartonVM
+                {
+                    Ime = p.FirstName,
+                    Prezime = p.LastName,
+                    Spol = db.Spol.Find(p.SpolId).Naziv,
+                    Grad = db.Grad.Find(p.GradId).Naziv,
+                    Kanton = db.Kanton.Find(grad.KantonId).Naziv,
+                    Email = p.Email,
+                    BrojTelefona = p.PhoneNumber,
+                    DatumRodjenja = p.GodinaRodjenja,
+                    BrojKartona = p.BrojKartona,
+                    Sesije = sesije
+                };
+            
             return View(model);
         }
         public List<string> InformacijeOTerminu(int sesijaId)
