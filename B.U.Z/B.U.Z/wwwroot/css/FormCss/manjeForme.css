@@ -1,0 +1,53 @@
+﻿select, input {
+    width: 100%;
+    border: none;
+    padding: 0.5%;
+}
+
+button {
+    width: 100%;
+    border: none;
+    padding: 0.5%;
+}
+#formWrapper {
+    text-align: left;
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#LijevaKolona {
+    width: 45%;
+    display: inline-block;
+}
+
+#DesnaKolona {
+    width: 45%;
+    display: inline-block;
+}
+
+.divovi {
+    width: 80%;
+    margin: 0 !important;
+}
+
+label {
+    margin-top: 1%;
+}
+
+#Dugme {
+    background-color: #00A8A8;
+    color: white;
+    border: none;
+}
+
+    #Dugme:hover {
+        background-color: #C4DBE0;
+        color: #0C6980;
+    }
+
+    #Dugme:active {
+        background-color: #0C6980;
+        color: white;
+    }

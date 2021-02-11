@@ -1,5 +1,6 @@
 ﻿@model int
 <link href="~/css/Universal.css" rel="stylesheet" />
+<link href="~/css/FormCss/manjeForme.css" rel="stylesheet" />
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script src="~/js/Validation/NoviRecept.js"></script>
 <div id="mainContainer">
@@ -16,25 +17,28 @@
             </div>
             <div id="ostatakBody-a" class="primarydark">
                 <div>
-                    <form id="NoviRecept" asp-action="SpasiNoviRecept">
-                        <div style="text-align:left">
-                            <div>
-                                <label>Redni broj:</label>
-                                <input type="text" value="@Model" />
+                    <div id="formWrapper">
+                        <form id="NoviRecept" asp-action="SpasiNoviRecept">
+                            <div style="text-align:left">
+                                <div>
+                                    <label>Redni broj:</label>
+                                    <input type="text" value="@Model" />
+                                </div>
+                                <div>
+                                    <label>Naziv:</label>
+                                    <input type="text" name="Naziv" />
+                                </div>
+                                <div>
+                                    <label>Opis:</label>
+                                    <input type="text" name="Opis" />
+                                </div>
+                                <div>
+                                    <input type="submit" name="Spasi" value="Snimi" id="Dugme" style="margin-top:4%;" />
+                                </div>
                             </div>
-                            <div>
-                                <label>Naziv:</label>
-                                <input type="text" name="Naziv" />
-                            </div>
-                            <div>
-                                <label>Opis:</label>
-                                <input type="text" name="Opis" />
-                            </div>
-                            <div>
-                                <input type="submit" name="Spasi" value="Snimi"/>
-                            </div>
-                        </div>
-                    </form>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

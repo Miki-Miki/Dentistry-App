@@ -1,44 +1,43 @@
 ﻿@model int
 
-<head>
     <link href="~/css/Universal.css" rel="stylesheet" />
+    <link href="~/css/FormCss/manjeForme.css" rel="stylesheet" />
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script src="~/js/Validation/NoviLijek.js"></script>
-    <link href="~/css/rounded-corners.css" rel="stylesheet" />
-</head>
-
-<div id="mainContainer">
-    <div>
-        <partial name="../Home/Index" />
-    </div>
+    <div id="mainContainer">
+        <div>
+            <partial name="../Home/Index" />
+        </div>
 
 
-    <div id="MainPageBody">
-        @*<h1 style="color: #0C6980">Novi lijek</h1>*@
-        <div id="pageContent">
-            <div id="partialNav">
-                <partial name="LijekoviPartial" />
+        <div id="MainPageBody">
+            @*<h1 style="color: #0C6980">Novi lijek</h1>*@
+            <div id="pageContent">
+                <div id="partialNav">
+                    <partial name="LijekoviPartial" />
+                </div>
+                <div id="ostatakBody-a" class="primarydark">
+                    <div id="formWrapper">
+                        <form id="NoviLijek" asp-action="SpasiNoviLijek">
+                            <div>
+                                <label>Redni broj:</label>
+                                <input type="text" value="@Model" />
+                            </div>
+                            <div>
+                                <label>Naziv:</label>
+                                <input id="Naziv" type="text" name="Naziv" />
+                            </div>
+                            <div>
+                                <label>Opis:</label>
+                                <input id="Opis" type="text" name="Opis" />
+                            </div>
+                            <div>
+                                <input type="submit" name="Spasi" value="Snimi" style="margin-top:4%" id="Dugme"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
-            <div id="ostatakBody-a" class="primarydark rcMainBody">
-                <form id="NoviLijek" asp-action="SpasiNoviLijek">
-                    <div>
-                        <label>Redni broj:</label>
-                        <input type="text" value="@Model" />
-                    </div>
-                    <div>
-                        <label>Naziv:</label>
-                        <input id="Naziv" type="text" name="Naziv" />
-                    </div>
-                    <div>
-                        <label>Opis:</label>
-                        <input id="Opis" type="text" name="Opis" />
-                    </div>
-                    <div>
-                        <input type="submit" name="Spasi" value="Snimi" />
-                    </div>
-                </form>
-            </div>
-
         </div>
     </div>
-</div>
