@@ -1,28 +1,35 @@
 ﻿@using B.U.Z.Models
 @{ Layout = null;}
 @model Recepti
+    <link href="~/css/FormCss/receptiAjax.css" rel="stylesheet" />
 <div class="primarydark">
     <div>
         <label style="padding-left:10px;">Odabrani recept:</label>
     </div>
-    <form asp-controller="Recepti" asp-action="SpasiNoviStariRecept">
-        <label>Šifra:</label>
-        <input type="text" asp-for="@Model.Id" />
+    <div id="formWrapper">
+        <form asp-controller="Recepti" asp-action="SpasiNoviStariRecept">
+            <div id="LijevaDesna">
+                <div id="LijevaKolona">
+                    <label>Šifra:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Id" />
 
 
-        <label>Naziv:</label>
-        <input type="text" asp-for="@Model.Naziv" />
+                    <label>Naziv:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Naziv" />
+                </div>
+                <div id="DesnaKolona">
+                    <label>Opis:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Opis" />
 
-        <label>Opis:</label>
-        <input type="text" asp-for="@Model.Opis" />
+                    <label>Preporuka:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Preporuka" />
+                </div>
+                <input id="BtnUredi" class="badge-danger" type="submit" value="Uredi" />
 
-        <label>Preporuka:</label>
-        <input type="text" asp-for="@Model.Preporuka" />
-
-        <input class="badge-danger" type="submit" class="badge-danger" value="Uredi" />
-
-        <button class="badge-danger"><a style="text-decoration:none; color:white;" href="/Recepti/ObrisiRecept?ReceptId=@Model.Id">Obriši</a></button>
-    </form>
+                <button id="BtnObrisi" class="badge-danger"><a style="text-decoration:none; color:white;" href="/Recepti/ObrisiRecept?ReceptId=@Model.Id">Obriši</a></button>
+            </div>
+        </form>
+    </div>
 
     
 

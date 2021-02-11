@@ -1,26 +1,33 @@
 ﻿@using B.U.Z.Models
 @{ Layout = null;}
+<link href="~/css/FormCss/dijagnozeAjax.css" rel="stylesheet" />
 @model Dijagnoze
 <div>
     <div>
         <label style="padding-left:10px;">Odabrana dijagnoza:</label>
     </div>
+    <div id="formWrapper">
     <form asp-controller="Dijagnoze" asp-action="SpasiNovuStaruDijagnozu">
-        <label>Šifra:</label>
-        <input type="text" asp-for="@Model.Id" />
+        <div id="LijevaDesna">
+            <div id="LijevaKolona">
+            <label>Šifra:</label>
+            <input class="inputs" type="text" asp-for="@Model.Id" />
 
-        <label>Naziv:</label>
-        <input type="text" asp-for="@Model.Naziv" />
+            <label>Naziv:</label>
+            <input class="inputs" type="text" asp-for="@Model.Naziv" />
+            </div>
+            <div id="DesnaKolona">
+                <label>Opis:</label>
+                <input class="inputs" type="text" asp-for="@Model.Opis" />
 
-        <label>Opis:</label>
-        <input type="text" asp-for="@Model.Opis" />
+                <label>Preporuka:</label>
+                <input class="inputs" type="text" asp-for="@Model.Preporuka" />
+            </div>
+            <input id="BtnUredi" class="badge-danger" type="submit" value="Uredi" style="margin-top:2%;" />
 
-        <label>Preporuka:</label>
-        <input type="text" asp-for="@Model.Preporuka" />
-
-        <input class="badge-danger" type="submit" class="badge-danger" value="Uredi" />
-
-        <button class="badge-danger"><a style="text-decoration:none; color:white;" href="/Dijagnoze/ObrisiDijagnozu?DijagnozaId=@Model.Id">Obriši</a></button>
+            <button id="BtnObrisi" class="badge-danger"><a style="text-decoration:none; color:white; margin-top:2%" href="/Dijagnoze/ObrisiDijagnozu?DijagnozaId=@Model.Id">Obriši</a></button>
+        </div>
     </form>
+    </div>
 
 </div>

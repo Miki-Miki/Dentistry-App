@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         timeZone: 'UTC',
         themeSystem: 'bootstrap',
-        locale: 'bs',
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
 
         hiddenDays: [0, 6],
-
+        buttonIcons: true,
         eventClick: function (info) {
             //alert('clicked on date ' + info.dateStr);
             console.log('isPrihvacen: ' + info.event.extendedProps.isPrihvacen);
@@ -110,7 +109,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 textColor: 'red'
             }
         ],
-        eventColor: '#00A8A8'
+        eventColor: '#00A8A8',
+        locale: 'en-au'
     });
 
     calendar.render();

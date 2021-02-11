@@ -1,70 +1,100 @@
 ﻿@using B.U.Z.ViewModels;
 @model StomatologRegistracijaVM
 
-    <link href="~/css/Universal.css" rel="stylesheet" />
+<link href="~/css/Universal.css" rel="stylesheet" />
+<link href="~/css/FormCss/formCss.css" rel="stylesheet" />
 
-    <div id="mainContainer">
-        <div>
-            <partial name="../Home/Index" />
-        </div>
-        <div id="MainPageBody">
-            @*<h1 style="color: #0C6980">Novi user account za stomatologa</h1>*@
-            <div id="pageContent">
-                <div id="partialNav">
-                    <partial name="UserAccountsPartial" />
-                </div>
-                <div id="ostatakBody-a" class="primarydark">
-                    <form asp-action="SpasiNoviStomatolog" class="primarydark">
-                        <div>
-                            <label>First name:</label>
-                            <input type="text" name="FirstName" />
-                            <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+<div id="mainContainer">
+    <div>
+        <partial name="../Home/Index" />
+    </div>
+    <div id="MainPageBody">
+        @*<h1 style="color: #0C6980">Novi user account za stomatologa</h1>*@
+        <div id="pageContent">
+            <div id="partialNav">
+                <partial name="UserAccountsPartial" />
+            </div>
+            <div id="ostatakBody-a" class="primarydark rcMainBody">
+                <div id="formWrapper">
+                    <form asp-action="SpasiNoviStomatolog" class="primarydark" style="height:100%;">
+                        <div id="LijevaDesna">
+                            <div id="LijevaKolona">
+                                <div class="divovi">
+
+                                    <label style="display:block;">Ime:</label>
+
+                                    <input type="text" name="FirstName" />
+                                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="divovi">
+
+                                    <label style="display:block;">Prezime:</label>
+
+                                    <input type="text" name="LastName" />
+                                    <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                                </div>
+                                <div class="divovi">
+
+                                    <label style="display:block;">E-mail:</label>
+
+                                    <input type="text" name="Email" />
+                                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                                </div>
+                                <div class="divovi">
+
+                                    <label style="display:block;">Broj telefona:</label>
+
+                                    <input type="text" asp-for="BrojTelefona" />
+                                </div>
+
+
+                                <div class="divovi">
+
+                                    <label style="display:block;">Lozinka:</label>
+
+                                    <input type="text" name="PasswordHash" />
+                                    <span asp-validation-for="@Model.PasswordHash" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div id="DesnaKolona">
+                                <div class="divovi">
+
+                                    <label style="display:block;">Spol:</label>
+
+                                    <select asp-for="SpolId" asp-items="Model.spolovi"></select>
+                                </div>
+                                <div class="divovi">
+
+                                    <label style="display:block;">Grad:</label>
+
+                                    <select asp-for="GradId" asp-items="Model.gradovi"></select>
+                                </div>
+                                <div class="divovi">
+
+                                    <label style="display:block;">Titula:</label>
+
+                                    <input type="text" name="Titula" />
+                                    <span asp-validation-for="@Model.Titula" class="text-danger"></span>
+                                </div>
+                                <div class="divovi">
+
+                                    <label style="display:block;">Specijalizacija:</label>
+
+                                    <input type="text" name="Specijalizacija" />
+                                    <span asp-validation-for="@Model.Specijalizacija" class="text-danger"></span>
+                                </div>
+                                <div class="divovi">
+                                    <input type="submit" value="Snimi" style="margin-top:8%;" id="Dugme" />
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <label>Last name:</label>
-                            <input type="text" name="LastName" />
-                            <span asp-validation-for="@Model.LastName" class="text-danger"></span>
-                        </div>
-                        <div>
-                            <label>E-mail:</label>
-                            <input type="text" name="Email" />
-                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
-                        </div>
-                        <div>
-                            <label>Broj telefona:</label>
-                            <input type="text" asp-for="BrojTelefona" />
-                        </div>
-                        <div>
-                            <label>Password:</label>
-                            <input type="text" name="PasswordHash" />
-                            <span asp-validation-for="@Model.PasswordHash" class="text-danger"></span>
-                        </div>
-                        <div>
-                            <label>Spol:</label>
-                            <select asp-for="SpolId" asp-items="Model.spolovi"></select>
-                        </div>
-                        <div>
-                            <label>Grad:</label>
-                            <select asp-for="GradId" asp-items="Model.gradovi"></select>
-                        </div>
-                        <div>
-                            <label>Titula:</label>
-                            <input type="text" name="Titula" />
-                            <span asp-validation-for="@Model.Titula" class="text-danger"></span>
-                        </div>
-                        <div>
-                            <label>Specijalizacija:</label>
-                            <input type="text" name="Specijalizacija" />
-                            <span asp-validation-for="@Model.Specijalizacija" class="text-danger"></span>
-                        </div>
-                        <div>
-                            <input type="submit" name="Spasi" value="Snimi" />
-                        </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,11 +1,15 @@
-﻿<div>
+﻿<head>
+    <link href="~/css/rounded-corners.css" rel="stylesheet" />
+</head>
+
+<div>
     <nav id="nav" class=" navbar-expand-sm">
         <ul class="navbar-nav">
-            <li class="nav-item" id="partialNavItems">
-                <a asp-controller="Recepti" asp-action="Recepti" class="nav-link primary PostojeciRecepti">Postojeći recepti</a>
+            <li class="nav-item rcTabHeader" id="partialNavItems">
+                <a asp-controller="Recepti" asp-action="Recepti" class="rcTabs nav-link primary PostojeciRecepti">Postojeći recepti</a>
             </li>
-            <li class="nav-item" id="partialNavItems">
-                <a asp-controller="Recepti" asp-action="NoviRecept" class="nav-link primary DodajNoviRecept">Dodaj novi recept</a>
+            <li class="nav-item rcTabHeader" id="partialNavItems">
+                <a asp-controller="Recepti" asp-action="NoviRecept" class="rcTabs nav-link primary DodajNoviRecept">Dodaj novi recept</a>
             </li>
         </ul>
     </nav>

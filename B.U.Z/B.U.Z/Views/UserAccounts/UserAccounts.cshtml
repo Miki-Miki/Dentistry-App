@@ -1,6 +1,8 @@
 ﻿@model List<ApplicationUser>
-
-    <link href="~/css/Universal.css" rel="stylesheet" />
+    <head>
+        <link href="~/css/Universal.css" rel="stylesheet" />
+        <link href="~/css/rounded-corners.css" rel="stylesheet" />
+    </head>
 
     <div id="mainContainer">
         <div>
@@ -13,10 +15,10 @@
                 </div>
 
                 @*<h1 id="naslov">User accounts</h1>*@
-                <div id="ostatakBody-a">
+                <div id="ostatakBody-a" class="rcMainBody">
 
 
-                    <table id="tabela"  class="table">
+                    <table id="tabela"  class="table rcMainTable">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -28,7 +30,6 @@
                             @foreach (var s in Model)
                             {
                                 <tr>
-                                    <td></td>
                                     <td>@s.Id</td>
                                     <td>@s.FirstName</td>
                                     <td>@s.LastName</td>

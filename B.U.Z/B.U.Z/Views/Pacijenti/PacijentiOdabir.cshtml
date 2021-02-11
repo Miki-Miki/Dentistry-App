@@ -1,31 +1,41 @@
 ﻿@using B.U.Z.Models
 @{ Layout = null;}
 @model Pacijent
+    <link href="~/css/FormCss/ajax.css" rel="stylesheet" />
 <div class="primarydark">
     <div>
         <label style="padding-left:10px;">Odabrani pacijent:</label>
     </div>
-    <form asp-controller="Pacijenti" asp-action="SpasiNovogStarogPacijenta">
-        <label style="padding-left:10px;">Id:</label>
-        <input type="text" asp-for="@Model.Id" />
+    <div id="formWrapper">
+        <div id="LijevaDesna">
+            <form asp-controller="Pacijenti" asp-action="SpasiNovogStarogPacijenta">
+                <div id="LijevaKolona">
+                    <label>Id:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Id" />
 
-        <label>Ime:</label>
-        <input type="text" asp-for="@Model.FirstName" />
+                    <label>Ime:</label>
+                    <input class="inputs" type="text" asp-for="@Model.FirstName" />
 
-        <label>Prezime:</label>
-        <input type="text" asp-for="@Model.LastName" />
+                    <label>Prezime:</label>
+                    <input class="inputs" type="text" asp-for="@Model.LastName" />
+                </div>
+                <div id="DesnaKolona">
 
-        <label>Datum rodjenja:</label>
-        <input type="text" asp-for="@Model.GodinaRodjenja" />
 
-        <label>Broj telefona:</label>
-        <input type="text" asp-for="@Model.PhoneNumber" />
+                    <label>Datum rodjenja:</label>
+                    <input class="inputs" type="text" asp-for="@Model.GodinaRodjenja" />
+                    <label>Broj telefona:</label>
+                    <input class="inputs" type="text" asp-for="@Model.PhoneNumber" />
 
-        <input class="badge-danger" type="submit" value="Uredi" />
+                    <div style="text-align:center;">
+                        <input style="margin-top:4%;" class="badge-danger inputs" type="submit" value="Uredi" id="BtnUredi" />
 
-        <button class="badge-danger"><a href="/Pacijenti/ObrisiPacijenta?PacijentId=@Model.Id" style="text-decoration:none; color:white;">Obriši</a></button>
-    </form>
-
+                        <button id="BtnObrisi" style="margin-top:4%;" class="badge-danger"><a href="/Pacijenti/ObrisiPacijenta?PacijentId=@Model.Id" style="text-decoration:none; color:white;">Obriši</a></button>
+                    </div>
+                    </div>
+            </form>
+        </div>
+    </div>
     
 
 </div>

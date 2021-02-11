@@ -1,6 +1,7 @@
 ﻿@model List<Pacijent>
 
 <link href="~/css/Universal.css" rel="stylesheet" />
+<link href="~/css/rounded-corners.css" rel="stylesheet"/>
 
 <div id="mainContainer">
     <div>
@@ -16,7 +17,7 @@
                 <partial name="PacijentiPartial" />
             </div>
 
-            <div class="primarydark" id="ostatakBody-a">
+            <div class="primarydark rcMainBody" id="ostatakBody-a">
 
                 <div id="AjaxPrikazOdabranogPacijenta">
 
@@ -29,36 +30,36 @@
                         <input type="submit" value="Pretraži" />
                     </form>
                 </div>
-
-                <table id="tabela" class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Redni broj</th>
-                            <th scope="col">Ime</th>
-                            <th scope="col">Prezime</th>
-                            <th scope="col">Datum rodjenja</th>
-                            <th scope="col">Broj telefona</th>
-                            @*<th scope="col">Odaberi</th>*@
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var s in Model)
-                        {
-                            <tr id="pacijentiRed" onclick="OpenOdabraniPacijent('@s.Id')">
-                                <td></td>
-                                <td>@s.FirstName</td>
-                                <td>@s.LastName</td>
-                                <td>@s.GodinaRodjenja</td>
-                                <td>@s.PhoneNumber</td>
-                                @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
-                                @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
-                                @*<td><button class="badge-danger">Select</button></td>*@
+                <div id="mainTabke">
+                    <table id="tabela" class="table rcMainTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Redni broj</th>
+                                <th scope="col">Ime</th>
+                                <th scope="col">Prezime</th>
+                                <th scope="col">Datum rodjenja</th>
+                                <th scope="col" class="rcCornerTh">Broj telefona</th>
+                                @*<th scope="col">Odaberi</th>*@
                             </tr>
-                        }
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr id="pacijentiRed" onclick="OpenOdabraniPacijent('@s.Id')">
+                                    <td></td>
+                                    <td>@s.FirstName</td>
+                                    <td>@s.LastName</td>
+                                    <td>@s.GodinaRodjenja</td>
+                                    <td>@s.PhoneNumber</td>
+                                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/ObrisiLijek?LijekId=@s.Id">Obriši</a></button></td>*@
+                                    @*<td><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Lijekovi/UrediLijek?LijekId=@s.Id">Uredi</a></button></td>*@
+                                    @*<td><button class="badge-danger">Select</button></td>*@
+                                </tr>
+                            }
 
-                    </tbody>
-                </table>
-
+                        </tbody>
+                    </table>
+                </div>
                 <div id="BrojPacijenata" class="primarydark">
                     <label style="margin-left:1%">Broj pacijenata:</label>@Model.Count()
                 </div>
@@ -90,7 +91,9 @@
         }
 
         #pacijentiRed:hover {
-            background-color: aqua;
+            background-color: #0C6980;
+            color: white;
+            cursor: pointer;
         }
     </style>
 

@@ -1,26 +1,31 @@
 ﻿@using B.U.Z.Models
 @{ Layout = null;}
 @model Lijekovi
+    <link href="~/css/FormCss/lijekoviAjax.css" rel="stylesheet" />
 <div class="primarydark">
     <div>
         <label style="padding-left:10px;">Odabrani lijek:</label>
     </div>
-    <form asp-controller="Lijekovi" asp-action="SpasiNoviStariLijek">
-        <label style="padding-left:10px;">Šifra:</label>
-        <input type="text" asp-for="@Model.Id" />
+    <div id="formWrapper">
+        <form asp-controller="Lijekovi" asp-action="SpasiNoviStariLijek">
+            <div id="LijevaDesna">
+                <div id="LijevaKolona">
+                    <label>Šifra:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Id" />
 
 
-        <label>Naziv:</label>
-        <input type="text" asp-for="@Model.Naziv" />
+                    <label>Naziv:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Naziv" />
+                </div>
+                <div id="DesnaKolona">
+                    <label>Opis:</label>
+                    <input class="inputs" type="text" asp-for="@Model.Opis" />
 
-        <label>Opis:</label>
-        <input type="text" asp-for="@Model.Opis" />
+                    <input id="BtnUredi" class="badge-danger" type="submit" value="Uredi" />
 
-        <input class="badge-danger" type="submit" class="badge-danger" value="Uredi" />
-
-        <button class="badge-danger"><a style="text-decoration:none; color:white;" href="/Lijekovi/ObrisiLijek?LijekId=@Model.Id">Obriši</a></button>
-    </form>
-
-    
-
+                    <button ID="BtnObrisi" class="badge-danger"><a style="text-decoration:none; color:white;" href="/Lijekovi/ObrisiLijek?LijekId=@Model.Id">Obriši</a></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

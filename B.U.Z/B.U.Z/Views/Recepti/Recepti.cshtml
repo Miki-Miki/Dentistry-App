@@ -1,6 +1,9 @@
 ﻿@model List<Recepti>
+    <head>
+        <link href="~/css/Universal.css" rel="stylesheet" />
+        <link href="~/css/rounded-corners.css" rel="stylesheet" />
+    </head>
 
-    <link href="~/css/Universal.css" rel="stylesheet" />
     <div id="mainContainer">
         <div>
             <partial name="../Home/Index" />
@@ -12,7 +15,7 @@
                     <partial name="ReceptiPartial" />
                 </div>
                 @*<h1 id="naslov">Recepti</h1>*@
-                <div class="primarydark" id="ostatakBody-a">
+                <div class="primarydark rcMainBody" id="ostatakBody-a">
 
 
                     <div id="AjaxPrikazOdabranogRecepta">
@@ -27,7 +30,7 @@
                         </form>
                     </div>
 
-                    <table id="tabela"  class="table">
+                    <table id="tabela"  class="table rcMainTable">
                         <thead>
                             <tr>
                                 <th scope="col">Redni broj</th>
@@ -40,7 +43,7 @@
                         <tbody>
                             @foreach (var s in Model)
                             {
-                                <tr id="receptiRed" onclick="OpenOdabraniRecept('@s.Id')">
+                                <tr id="receptiRed" class="tblHover" onclick="OpenOdabraniRecept('@s.Id')">
                                     <td></td>
                                     <td>@s.Id</td>
                                     <td>@s.Naziv</td>
@@ -82,9 +85,9 @@
                 color: white;
             }
 
-            #receptiRed:hover {
+            /*#receptiRed:hover {
                 background-color: aqua;
-            }
+            }*/
         </style>
 
 

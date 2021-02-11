@@ -4,7 +4,10 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<link href="~/css/Universal.css" rel="stylesheet" />
+<head>
+    <link href="~/css/Universal.css" rel="stylesheet" />
+    <link href="~/css/rounded-corners.css" rel="stylesheet" />
+</head>
 
 <div id="mainContainer">
 
@@ -15,45 +18,45 @@
     <div id="MainPageBody">
         <div id="pageContent">
 
-            <div class="primarydark" id="ostatakBody-a">
+            <div class="primarydark rcMainBodyAC" id="ostatakBody-a">
 
 
-                    <h3>Nepročitane obavijesti</h3>
-                 
-                
-                
-                    <table id="tabelaNeprocitane" class="table">
-                        @if (Model.NeProcitane.Count == 0)
-                        {
-                            <h6 id="vijest">Nema novih obavijesti!</h6>
-                        }
-                        else
-                        {
-                            <thead>
-                                <tr>
-                                    <th scope="col">Redni broj</th>
-                                    <th scope="col">Obavijest</th>
-                                    <th scope="col">Akcija</th>
+                <h3>Nepročitane obavijesti</h3>
+
+
+
+                <table id="tabelaNeprocitane" class="table rcMainTable">
+                    @if (Model.NeProcitane.Count == 0)
+                    {
+                        <h6 id="vijest">Nema novih obavijesti!</h6>
+                    }
+                    else
+                    {
+                        <thead>
+                            <tr>
+                                <th scope="col">Redni broj</th>
+                                <th scope="col">Obavijest</th>
+                                <th scope="col">Akcija</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var s in Model.NeProcitane)
+                            {
+                                <tr id="Neprocitane">
+                                    <td></td>
+                                    <td>@s.Sadrzaj</td>
+                                    @*<td><button onclick="OpenOdabranuObavijest(@s.Id)">Detalji</button></td>*@
+                                    <td id="dugme"><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
                                 </tr>
-                            </thead>
-                            <tbody>
+                            }
 
-                                @foreach (var s in Model.NeProcitane)
-                                {
-                                    <tr id="Neprocitane">
-                                        <td></td>
-                                        <td>@s.Sadrzaj</td>
-                                        @*<td><button onclick="OpenOdabranuObavijest(@s.Id)">Detalji</button></td>*@
-                                        <td id="dugme"><button class="badge-danger"><a style="color:white; text-decoration:none" ; href="/Obavijesti/ObrisiObavijest?ObavijestId=@s?.Id">Obriši</a></button></td>
-                                    </tr>
-                                }
+                        </tbody>
+                    }
+                </table>
 
-                            </tbody>
-                        }
-                    </table>
-                
                 <h3>Pročitane obavijesti</h3>
-                <table id="tabelaProcitane" class="table">
+                <table id="tabelaProcitane" class="table rcMainTable">
                     <thead>
                         <tr>
                             <th scope="col">Redni broj</th>

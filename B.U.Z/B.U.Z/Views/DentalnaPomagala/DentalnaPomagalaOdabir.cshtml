@@ -1,27 +1,35 @@
 ﻿@using B.U.Z.ViewModels
 @{ Layout = null;}
 @model NovoDentalnoPomagaloVM
-<div>
+    <link href="~/css/FormCss/dentalnaAjax.css" rel="stylesheet" />
     <div>
-        <label>Odabrano dentalno pomagalo:</label>
+        <div>
+            <label>Odabrano dentalno pomagalo:</label>
+        </div>
+        <div id="formWrapper">
+            <form asp-controller="DentalnaPomagala" asp-action="SpasiNovoStaroDentalnoPomagalo">
+                <div id="LijevaDesna">
+                    <div id="LijevaKolona">
+                        <label>Šifra:</label>
+                        <input class="inputs" type="text" asp-for="@Model.DentalnoPomagaloId" />
+
+                        <label>Naziv:</label>
+                        <input class="inputs" type="text" asp-for="@Model.Naziv" />
+                    </div>
+                    <div id="DesnaKolona">
+                        <label>Opis:</label>
+                        <input class="inputs" type="text" asp-for="@Model.Opis" />
+
+                        <label>Pacijent:</label>
+                        <select class="inputs" asp-for="PacijentId" asp-items="@Model.pacijenti"></select>
+                    </div>
+                    <input id="BtnUredi" class="badge-danger" type="submit" value="Uredi" />
+
+                    <button id="BtnObrisi" class="badge-danger"><a style="text-decoration:none; color:white;" href="/DentalnaPomagala/ObrisiDentalnoPomagalo?DentalnoPomagaloId=@Model.DentalnoPomagaloId">Obriši</a></button>
+                </div>
+            </form>
+        </div>
+
+
+
     </div>
-    <form asp-controller="DentalnaPomagala" asp-action="SpasiNovoStaroDentalnoPomagalo">
-        <label>Šifra:</label>
-        <input type="text" asp-for="@Model.DentalnoPomagaloId" />
-
-        <label>Naziv:</label>
-        <input type="text" asp-for="@Model.Naziv" />
-
-        <label>Opis:</label>
-        <input type="text" asp-for="@Model.Opis" />
-
-        <label>Pacijent:</label>
-        <select asp-for="PacijentId" asp-items="@Model.pacijenti"></select>
-        <input class="badge-danger" type="submit" class="badge-danger" value="Uredi" />
-
-        <button class="badge-danger"><a style="text-decoration:none; color:white;" href="/DentalnaPomagala/ObrisiDentalnoPomagalo?DentalnoPomagaloId=@Model.DentalnoPomagaloId">Obriši</a></button>
-    </form>
-
-    
-
-</div>
